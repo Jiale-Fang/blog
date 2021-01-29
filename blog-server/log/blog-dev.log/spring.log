@@ -1,0 +1,932 @@
+2021-01-27 11:29:19.993  INFO 7660 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 7660 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:29:19.995 DEBUG 7660 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:29:19.996  INFO 7660 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:29:21.275  INFO 7660 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:29:21.281  INFO 7660 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:29:21.328  INFO 7660 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:29:22.697  INFO 7660 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:29:22.699  INFO 7660 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:29:22.707  INFO 7660 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@59bbe88a
+2021-01-27 11:29:22.708  INFO 7660 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:29:23.606  WARN 7660 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'indexAdminController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+2021-01-27 11:29:23.616  INFO 7660 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-01-27 11:29:23.644 ERROR 7660 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' in your configuration.
+
+2021-01-27 11:29:23.647 ERROR 7660 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@41d477ed] to prepare test instance [pers.fjl.server.MybatisPlusApplicationTest@2a53f215]
+
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'indexAdminController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:608)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:531)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:923)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:588)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:767)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:123)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	... 24 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userServiceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:608)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:531)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:521)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318)
+	... 41 common frames omitted
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1346)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:521)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318)
+	... 57 common frames omitted
+
+2021-01-27 11:32:23.100  INFO 6152 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 6152 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:32:23.103 DEBUG 6152 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:32:23.104  INFO 6152 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:32:24.069  INFO 6152 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:32:24.074  INFO 6152 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:32:24.108  INFO 6152 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:32:25.283  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:32:25.285  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:32:25.292  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@4f5b08d
+2021-01-27 11:32:25.292  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:32:26.233  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@3c854752
+2021-01-27 11:32:26.233  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:32:26.723  INFO 6152 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9e1df2b3-6528-4a79-a0e6-2f01e0c92c1b
+
+2021-01-27 11:32:26.927  INFO 6152 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36e43829, org.springframework.security.web.context.SecurityContextPersistenceFilter@124dac75, org.springframework.security.web.header.HeaderWriterFilter@5c9934da, org.springframework.security.web.authentication.logout.LogoutFilter@7efa3f63, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b61bf11, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@493da830, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@152c4495, org.springframework.security.web.session.SessionManagementFilter@1bf14704, org.springframework.security.web.access.ExceptionTranslationFilter@4c6b4ed7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1984212d]
+2021-01-27 11:32:27.472  INFO 6152 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:32:27.560  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:32:27.560  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:32:27.663  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:32:27.664  INFO 6152 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:32:28.441  INFO 6152 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.046 seconds (JVM running for 7.452)
+2021-01-27 11:32:28.609 ERROR 6152 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@515c6049] to prepare test instance [pers.fjl.server.MybatisPlusApplicationTest@67d8faec]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pers.fjl.server.MybatisPlusApplicationTest': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireBeanProperties(AbstractAutowireCapableBeanFactory.java:406)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:119)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:43)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:227)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:246)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1346)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:521)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318)
+	... 26 common frames omitted
+
+2021-01-27 11:32:28.663  INFO 6152 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:35:25.140  INFO 13912 --- [main] p.fjl.server.BlogServerApplicationTests  : Starting BlogServerApplicationTests using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 13912 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:35:25.141 DEBUG 13912 --- [main] p.fjl.server.BlogServerApplicationTests  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:35:25.142  INFO 13912 --- [main] p.fjl.server.BlogServerApplicationTests  : The following profiles are active: dev
+2021-01-27 11:35:25.951  INFO 13912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:35:25.955  INFO 13912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:35:25.994  INFO 13912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:35:27.206  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:35:27.208  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:35:27.216  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@794366a5
+2021-01-27 11:35:27.216  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:35:28.199  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@771a7d53
+2021-01-27 11:35:28.199  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:35:28.721  INFO 13912 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: d7f0b291-41dd-49ef-aea6-f798d72e2b20
+
+2021-01-27 11:35:28.976  INFO 13912 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@373e6b9d, org.springframework.security.web.context.SecurityContextPersistenceFilter@5a515e5d, org.springframework.security.web.header.HeaderWriterFilter@4c51077d, org.springframework.security.web.authentication.logout.LogoutFilter@377874b4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@32f32623, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e15f4d4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65629ac6, org.springframework.security.web.session.SessionManagementFilter@9b23822, org.springframework.security.web.access.ExceptionTranslationFilter@5d512ddb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4d09cade]
+2021-01-27 11:35:29.522  INFO 13912 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:35:29.602  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:35:29.603  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:35:29.694  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:35:29.694  INFO 13912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:35:30.457  INFO 13912 --- [main] p.fjl.server.BlogServerApplicationTests  : Started BlogServerApplicationTests in 5.848 seconds (JVM running for 8.072)
+2021-01-27 11:35:30.849  INFO 13912 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:39:40.629  INFO 10328 --- [main] p.fjl.server.BlogServerApplicationTests  : Starting BlogServerApplicationTests using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 10328 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:39:40.630 DEBUG 10328 --- [main] p.fjl.server.BlogServerApplicationTests  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:39:40.631  INFO 10328 --- [main] p.fjl.server.BlogServerApplicationTests  : The following profiles are active: dev
+2021-01-27 11:39:41.506  INFO 10328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:39:41.512  INFO 10328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:39:41.544  INFO 10328 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:39:42.881  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:39:42.884  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:39:42.897  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@40f35e52
+2021-01-27 11:39:42.898  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:39:44.054  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@5a917723
+2021-01-27 11:39:44.054  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:39:44.563  INFO 10328 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 09a6ab48-540d-49a9-ba73-70bf59f8c5bb
+
+2021-01-27 11:39:44.860  INFO 10328 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@56b8aaf1, org.springframework.security.web.context.SecurityContextPersistenceFilter@3becc950, org.springframework.security.web.header.HeaderWriterFilter@66bf40e5, org.springframework.security.web.authentication.logout.LogoutFilter@16c1519e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@79476a4e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4eaf7902, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5482bcac, org.springframework.security.web.session.SessionManagementFilter@5a515e5d, org.springframework.security.web.access.ExceptionTranslationFilter@183ade54, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b862408]
+2021-01-27 11:39:45.493  INFO 10328 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:39:45.582  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:39:45.582  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:39:45.684  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:39:45.685  INFO 10328 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:39:46.517  INFO 10328 --- [main] p.fjl.server.BlogServerApplicationTests  : Started BlogServerApplicationTests in 6.519 seconds (JVM running for 8.352)
+2021-01-27 11:39:46.799  INFO 10328 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:40:42.806  INFO 16136 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 16136 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:40:42.807 DEBUG 16136 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:40:42.808  INFO 16136 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:40:43.639  INFO 16136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:40:43.644  INFO 16136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:40:43.675  INFO 16136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:40:45.009  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:40:45.012  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:40:45.029  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@28757abd
+2021-01-27 11:40:45.030  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:40:46.010  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@32d5279
+2021-01-27 11:40:46.011  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:40:46.527  INFO 16136 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 85aa85bf-a3c2-44b2-90c0-77db460854b0
+
+2021-01-27 11:40:46.782  INFO 16136 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@654e6a90, org.springframework.security.web.context.SecurityContextPersistenceFilter@52ea0269, org.springframework.security.web.header.HeaderWriterFilter@52ae997b, org.springframework.security.web.authentication.logout.LogoutFilter@4b515eab, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43ecfeb5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4dadd690, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14168e1, org.springframework.security.web.session.SessionManagementFilter@71aaf151, org.springframework.security.web.access.ExceptionTranslationFilter@32f32623, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@61615b4a]
+2021-01-27 11:40:47.284  INFO 16136 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:40:47.359  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:40:47.359  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:40:47.446  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:40:47.446  INFO 16136 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:40:48.247  INFO 16136 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.014 seconds (JVM running for 7.623)
+2021-01-27 11:40:48.291 ERROR 16136 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@97e93f1] to prepare test instance [pers.fjl.server.MybatisPlusApplicationTest@7e18ced7]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'pers.fjl.server.MybatisPlusApplicationTest': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:321)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireBeanProperties(AbstractAutowireCapableBeanFactory.java:406)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:119)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener.prepareTestInstance(SpringBootDependencyInjectionTestExecutionListener.java:43)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:244)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:350)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:355)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$7(ClassBasedTestDescriptor.java:350)
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1382)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:743)
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:742)
+	at java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:580)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:349)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$4(ClassBasedTestDescriptor.java:270)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:269)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:259)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:258)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:101)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:100)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$1(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:111)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:79)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup=, name=, description=, authenticationType=CONTAINER, type=class java.lang.Object, mappedName=)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1790)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1346)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1300)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:521)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:497)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:650)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:318)
+	... 69 common frames omitted
+
+2021-01-27 11:40:48.336  INFO 16136 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:41:15.111  INFO 11352 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 11352 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:41:15.113 DEBUG 11352 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:41:15.113  INFO 11352 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:41:15.854  INFO 11352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:41:15.859  INFO 11352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:41:15.913  INFO 11352 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:41:17.250  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:41:17.252  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:41:17.263  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@10a98392
+2021-01-27 11:41:17.263  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:41:18.246  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@3965bdf9
+2021-01-27 11:41:18.247  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:41:18.792  INFO 11352 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 818c6e14-7f87-4de0-99ca-446228a0b318
+
+2021-01-27 11:41:19.056  INFO 11352 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36ef1d65, org.springframework.security.web.context.SecurityContextPersistenceFilter@4da1f38a, org.springframework.security.web.header.HeaderWriterFilter@20c812c8, org.springframework.security.web.authentication.logout.LogoutFilter@73041b7d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4dadd690, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5eabff6b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4be0a27d, org.springframework.security.web.session.SessionManagementFilter@53940e2f, org.springframework.security.web.access.ExceptionTranslationFilter@5856dbe4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c952a33]
+2021-01-27 11:41:19.598  INFO 11352 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:41:19.691  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:41:19.691  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:41:19.799  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:41:19.800  INFO 11352 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:41:20.701  INFO 11352 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.112 seconds (JVM running for 7.739)
+2021-01-27 11:41:21.143  INFO 11352 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:41:23.997 ERROR 11352 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+java.sql.SQLException: The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the 'serverTimezone' configuration property) to use a more specific time zone value if you want to utilize time zone support.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:76)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:358)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:477)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:560)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:158)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:116)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:79)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:337)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.prepareStatement(MybatisSimpleExecutor.java:93)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doUpdate(MybatisSimpleExecutor.java:55)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at com.baomidou.mybatisplus.core.executor.MybatisCachingExecutor.update(MybatisCachingExecutor.java:85)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:82)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy118.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	at com.sun.proxy.$Proxy91.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:271)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:60)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy94.insert(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at com.sun.proxy.$Proxy95.insert(Unknown Source)
+	at com.baomidou.mybatisplus.extension.service.IService.save(IService.java:61)
+	at com.baomidou.mybatisplus.extension.service.IService$$FastClassBySpringCGLIB$$f8525d18.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:779)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:692)
+	at pers.fjl.server.service.impl.UserServiceImpl$$EnhancerBySpringCGLIB$$722cc1f.save(<generated>)
+	at pers.fjl.server.MybatisPlusApplicationTest.insertUser(MybatisPlusApplicationTest.java:29)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:688)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:149)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:140)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:84)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.lambda$invoke$0(ExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:210)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:206)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:131)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:65)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$7(NodeTestTask.java:129)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:126)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:84)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:96)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)
+Caused by: com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the 'serverTimezone' configuration property) to use a more specific time zone value if you want to utilize time zone support.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
+	at com.mysql.cj.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:134)
+	at com.mysql.cj.protocol.a.NativeProtocol.configureTimezone(NativeProtocol.java:2186)
+	at com.mysql.cj.protocol.a.NativeProtocol.initServerSession(NativeProtocol.java:2209)
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:1318)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:967)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:826)
+	... 129 common frames omitted
+
+2021-01-27 11:41:24.073  INFO 11352 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:42:30.323  INFO 13448 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 13448 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:42:30.324 DEBUG 13448 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:42:30.324  INFO 13448 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:42:31.112  INFO 13448 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:42:31.115  INFO 13448 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:42:31.147  INFO 13448 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:42:32.429  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:42:32.431  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:42:32.441  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@5f174dd2
+2021-01-27 11:42:32.442  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:42:33.424  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@3c0e00a8
+2021-01-27 11:42:33.424  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:42:33.937  INFO 13448 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 976fdcc9-734e-46dd-8aff-fb6e33ca6730
+
+2021-01-27 11:42:34.182  INFO 13448 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f366587, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e377967, org.springframework.security.web.header.HeaderWriterFilter@71aaf151, org.springframework.security.web.authentication.logout.LogoutFilter@1235151c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@707e4fe4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b000fe6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6003ad65, org.springframework.security.web.session.SessionManagementFilter@45e6d1e0, org.springframework.security.web.access.ExceptionTranslationFilter@7e15f4d4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1150d471]
+2021-01-27 11:42:34.655  INFO 13448 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:42:34.738  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:42:34.739  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:42:34.832  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:42:34.832  INFO 13448 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:42:35.623  INFO 13448 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 5.862 seconds (JVM running for 7.673)
+2021-01-27 11:42:35.914  INFO 13448 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:42:36.924  INFO 13448 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:42:37.820  INFO 13448 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:42:37.821  INFO 13448 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:42:37.986  INFO 13448 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:43:05.228  INFO 15828 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 15828 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:43:05.229 DEBUG 15828 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:43:05.229  INFO 15828 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:43:06.061  INFO 15828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:43:06.066  INFO 15828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:43:06.100  INFO 15828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:43:07.334  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:43:07.336  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:07.344  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@10a98392
+2021-01-27 11:43:07.345  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:08.331  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@3965bdf9
+2021-01-27 11:43:08.332  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:08.824  INFO 15828 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 6667530f-8208-44d0-86b0-6545a9303320
+
+2021-01-27 11:43:09.079  INFO 15828 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36ef1d65, org.springframework.security.web.context.SecurityContextPersistenceFilter@4da1f38a, org.springframework.security.web.header.HeaderWriterFilter@20c812c8, org.springframework.security.web.authentication.logout.LogoutFilter@73041b7d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4dadd690, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5eabff6b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4be0a27d, org.springframework.security.web.session.SessionManagementFilter@53940e2f, org.springframework.security.web.access.ExceptionTranslationFilter@5856dbe4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c952a33]
+2021-01-27 11:43:09.581  INFO 15828 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:43:09.670  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:43:09.671  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:09.775  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:43:09.775  INFO 15828 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:10.542  INFO 15828 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 5.862 seconds (JVM running for 7.443)
+2021-01-27 11:43:10.854  INFO 15828 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:43:11.863  INFO 15828 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:43:12.102  INFO 15828 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:43:12.103  INFO 15828 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:43:12.121  INFO 15828 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:43:49.131  INFO 16128 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 16128 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:43:49.132 DEBUG 16128 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:43:49.132  INFO 16128 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:43:49.951  INFO 16128 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:43:49.955  INFO 16128 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:43:49.982  INFO 16128 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:43:51.182  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:43:51.184  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:51.193  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@3c8a7e38
+2021-01-27 11:43:51.193  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:52.142  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@7f7b6639
+2021-01-27 11:43:52.142  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:52.649  INFO 16128 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0c18ee84-0d74-431d-a1ac-31c3872a3e7f
+
+2021-01-27 11:43:52.857  INFO 16128 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a2dc0a, org.springframework.security.web.context.SecurityContextPersistenceFilter@45e6d1e0, org.springframework.security.web.header.HeaderWriterFilter@5a058be5, org.springframework.security.web.authentication.logout.LogoutFilter@5cd96b41, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4da1f38a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16c1519e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3a00b15d, org.springframework.security.web.session.SessionManagementFilter@43ecfeb5, org.springframework.security.web.access.ExceptionTranslationFilter@f557c37, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7412a438]
+2021-01-27 11:43:53.368  INFO 16128 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:43:53.460  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:43:53.461  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:53.554  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:43:53.555  INFO 16128 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:43:54.320  INFO 16128 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 5.752 seconds (JVM running for 7.402)
+2021-01-27 11:43:54.644  INFO 16128 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:43:55.536  INFO 16128 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:43:55.829  INFO 16128 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:43:55.830  INFO 16128 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:43:55.898  INFO 16128 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:47:34.916  INFO 16272 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 16272 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:47:34.924 DEBUG 16272 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:47:34.926  INFO 16272 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:47:36.803  INFO 16272 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:47:36.810  INFO 16272 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:47:36.860  INFO 16272 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:47:38.638  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:47:38.644  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:47:38.661  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@10a98392
+2021-01-27 11:47:38.663  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:47:40.126  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@7f7b6639
+2021-01-27 11:47:40.127  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:47:40.974  INFO 16272 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3469d827-cf07-4d8c-9843-79ebc6617f2a
+
+2021-01-27 11:47:41.432  INFO 16272 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a2dc0a, org.springframework.security.web.context.SecurityContextPersistenceFilter@45e6d1e0, org.springframework.security.web.header.HeaderWriterFilter@5a058be5, org.springframework.security.web.authentication.logout.LogoutFilter@5cd96b41, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4da1f38a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@16c1519e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3a00b15d, org.springframework.security.web.session.SessionManagementFilter@43ecfeb5, org.springframework.security.web.access.ExceptionTranslationFilter@f557c37, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7412a438]
+2021-01-27 11:47:42.618  INFO 16272 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:47:42.740  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:47:42.740  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:47:42.935  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:47:42.935  INFO 16272 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:47:44.341  INFO 16272 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 10.306 seconds (JVM running for 13.182)
+2021-01-27 11:47:44.853  INFO 16272 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:47:46.307  INFO 16272 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:47:46.598  INFO 16272 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:47:46.599  INFO 16272 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:47:46.624  INFO 16272 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:48:24.028  INFO 16104 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 16104 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:48:24.029 DEBUG 16104 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:48:24.029  INFO 16104 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:48:25.649  INFO 16104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:48:25.666  INFO 16104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:48:25.759  INFO 16104 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:48:28.169  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:48:28.176  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:48:28.211  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@21a02556
+2021-01-27 11:48:28.212  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:48:29.711  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@32d5279
+2021-01-27 11:48:29.711  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:48:30.422  INFO 16104 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: c10409db-46a5-4f53-985c-7334b57fc961
+
+2021-01-27 11:48:30.697  INFO 16104 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16a5c7e4, org.springframework.security.web.context.SecurityContextPersistenceFilter@43ecfeb5, org.springframework.security.web.header.HeaderWriterFilter@1a01d7f0, org.springframework.security.web.authentication.logout.LogoutFilter@1536ea40, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53940e2f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3281dfc2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e225820, org.springframework.security.web.session.SessionManagementFilter@32d418a9, org.springframework.security.web.access.ExceptionTranslationFilter@6b9fdbc6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@33bb3f86]
+2021-01-27 11:48:31.395  INFO 16104 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:48:31.542  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:48:31.543  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:48:31.685  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:48:31.686  INFO 16104 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:48:32.971  INFO 16104 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 10.39 seconds (JVM running for 13.833)
+2021-01-27 11:48:33.495  INFO 16104 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:48:34.891  INFO 16104 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:48:35.341  INFO 16104 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:48:35.349  INFO 16104 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:48:35.385  INFO 16104 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:49:17.297  INFO 7468 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 7468 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:49:17.301 DEBUG 7468 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:49:17.302  INFO 7468 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:49:18.211  INFO 7468 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:49:18.217  INFO 7468 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:49:18.259  INFO 7468 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:49:19.632  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:49:19.634  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:49:19.643  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@1d50a7ca
+2021-01-27 11:49:19.643  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:49:20.688  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@60a7e509
+2021-01-27 11:49:20.688  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:49:21.213  INFO 7468 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 5d5be40c-a4f0-42e6-9c77-c4a15f522077
+
+2021-01-27 11:49:21.548  INFO 7468 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c952a33, org.springframework.security.web.context.SecurityContextPersistenceFilter@20c812c8, org.springframework.security.web.header.HeaderWriterFilter@32f32623, org.springframework.security.web.authentication.logout.LogoutFilter@664632e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7061622, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45e6d1e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70029d2d, org.springframework.security.web.session.SessionManagementFilter@7e15f4d4, org.springframework.security.web.access.ExceptionTranslationFilter@60f21960, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@65629ac6]
+2021-01-27 11:49:22.148  INFO 7468 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:49:22.245  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:49:22.246  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:49:22.339  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:49:22.339  INFO 7468 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:49:23.152  INFO 7468 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.566 seconds (JVM running for 8.676)
+2021-01-27 11:49:23.541  INFO 7468 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:49:24.456  INFO 7468 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:49:24.548  INFO 7468 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:49:24.550  INFO 7468 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:49:24.554  INFO 7468 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:50:12.048  INFO 13892 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 13892 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:50:12.049 DEBUG 13892 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:50:12.049  INFO 13892 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:50:12.900  INFO 13892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:50:12.905  INFO 13892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:50:12.937  INFO 13892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:50:14.155  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:50:14.157  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:14.166  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@67531e3a
+2021-01-27 11:50:14.166  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:15.195  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@40c2ce52
+2021-01-27 11:50:15.196  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:15.758  INFO 13892 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 4fa4ca71-2ac7-4693-900b-0fb09be2c777
+
+2021-01-27 11:50:16.010  INFO 13892 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e3ff233, org.springframework.security.web.context.SecurityContextPersistenceFilter@5a058be5, org.springframework.security.web.header.HeaderWriterFilter@5a515e5d, org.springframework.security.web.authentication.logout.LogoutFilter@306c7bf6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71aaf151, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@53940e2f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c952a33, org.springframework.security.web.session.SessionManagementFilter@1a01d7f0, org.springframework.security.web.access.ExceptionTranslationFilter@25c2a9e3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@373e6b9d]
+2021-01-27 11:50:16.612  INFO 13892 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:50:16.750  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:50:16.751  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:16.876  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:50:16.876  INFO 13892 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:17.766  INFO 13892 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.321 seconds (JVM running for 8.118)
+2021-01-27 11:50:18.112  INFO 13892 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:50:19.286  INFO 13892 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:50:19.460  INFO 13892 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:50:19.462  INFO 13892 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:50:19.510  INFO 13892 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:50:37.116  INFO 10912 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 10912 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:50:37.117 DEBUG 10912 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:50:37.118  INFO 10912 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:50:38.003  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:50:38.008  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:50:38.056  INFO 10912 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:50:39.510  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:50:39.512  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:39.520  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@2e766822
+2021-01-27 11:50:39.520  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:40.502  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@787508ca
+2021-01-27 11:50:40.503  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:41.017  INFO 10912 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: da12dc4f-6d47-440e-8a65-bf09033ddea7
+
+2021-01-27 11:50:41.239  INFO 10912 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1150d471, org.springframework.security.web.context.SecurityContextPersistenceFilter@7061622, org.springframework.security.web.header.HeaderWriterFilter@6b9fdbc6, org.springframework.security.web.authentication.logout.LogoutFilter@4f379769, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52ea0269, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4da1f38a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@709f0202, org.springframework.security.web.session.SessionManagementFilter@4eaf7902, org.springframework.security.web.access.ExceptionTranslationFilter@5a515e5d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5482bcac]
+2021-01-27 11:50:41.747  INFO 10912 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:50:41.837  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:50:41.837  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:41.950  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:50:41.951  INFO 10912 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:50:42.718  INFO 10912 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.193 seconds (JVM running for 7.895)
+2021-01-27 11:50:43.036  INFO 10912 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:50:43.974  INFO 10912 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:50:44.062  INFO 10912 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:50:44.063  INFO 10912 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:50:44.071  INFO 10912 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:52:16.320  INFO 17208 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 17208 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:52:16.322 DEBUG 17208 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:52:16.322  INFO 17208 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:52:17.208  INFO 17208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:52:17.214  INFO 17208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:52:17.247  INFO 17208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:52:18.713  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:52:18.715  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:52:18.726  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@2e766822
+2021-01-27 11:52:18.726  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:52:19.801  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@787508ca
+2021-01-27 11:52:19.802  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:52:20.319  INFO 17208 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9206af21-659d-43e0-a0da-50909674eac8
+
+2021-01-27 11:52:20.529  INFO 17208 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1150d471, org.springframework.security.web.context.SecurityContextPersistenceFilter@7061622, org.springframework.security.web.header.HeaderWriterFilter@6b9fdbc6, org.springframework.security.web.authentication.logout.LogoutFilter@4f379769, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52ea0269, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4da1f38a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@709f0202, org.springframework.security.web.session.SessionManagementFilter@4eaf7902, org.springframework.security.web.access.ExceptionTranslationFilter@5a515e5d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5482bcac]
+2021-01-27 11:52:21.135  INFO 17208 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:52:21.234  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:52:21.234  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:52:21.348  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:52:21.349  INFO 17208 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:52:22.150  INFO 17208 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.369 seconds (JVM running for 8.116)
+2021-01-27 11:52:22.567  INFO 17208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:52:23.523  INFO 17208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:52:23.650  INFO 17208 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:52:23.651  INFO 17208 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:52:23.676  INFO 17208 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:53:58.471  INFO 15852 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 15852 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:53:58.473 DEBUG 15852 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:53:58.473  INFO 15852 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:53:59.266  INFO 15852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:53:59.270  INFO 15852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:53:59.302  INFO 15852 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:54:00.580  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:54:00.582  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:00.591  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@ceddaf8
+2021-01-27 11:54:00.592  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:01.573  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@78cfa264
+2021-01-27 11:54:01.573  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:02.087  INFO 15852 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: d0fa1507-1037-453d-8a20-c7f91e5fa66a
+
+2021-01-27 11:54:02.342  INFO 15852 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ec99035, org.springframework.security.web.context.SecurityContextPersistenceFilter@3281dfc2, org.springframework.security.web.header.HeaderWriterFilter@52ea0269, org.springframework.security.web.authentication.logout.LogoutFilter@574059d5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14422d9d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b25ab31, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60743cdb, org.springframework.security.web.session.SessionManagementFilter@3e377967, org.springframework.security.web.access.ExceptionTranslationFilter@20c812c8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@654e6a90]
+2021-01-27 11:54:02.948  INFO 15852 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:54:03.071  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:54:03.071  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:03.177  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:54:03.178  INFO 15852 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:04.084  INFO 15852 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.165 seconds (JVM running for 7.757)
+2021-01-27 11:54:04.423  INFO 15852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:54:05.291  INFO 15852 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:54:05.389  INFO 15852 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:54:05.391  INFO 15852 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:54:05.395  INFO 15852 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:54:39.050  INFO 2996 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 2996 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:54:39.051 DEBUG 2996 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:54:39.052  INFO 2996 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:54:39.985  INFO 2996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:54:39.989  INFO 2996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:54:40.025  INFO 2996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:54:41.538  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:54:41.540  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:41.552  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@2e766822
+2021-01-27 11:54:41.553  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:42.724  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@787508ca
+2021-01-27 11:54:42.724  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:43.416  INFO 2996 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 5e30fea0-397a-4eb9-8ba0-a6dc30cc96d3
+
+2021-01-27 11:54:43.710  INFO 2996 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1150d471, org.springframework.security.web.context.SecurityContextPersistenceFilter@7061622, org.springframework.security.web.header.HeaderWriterFilter@6b9fdbc6, org.springframework.security.web.authentication.logout.LogoutFilter@4f379769, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52ea0269, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4da1f38a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@709f0202, org.springframework.security.web.session.SessionManagementFilter@4eaf7902, org.springframework.security.web.access.ExceptionTranslationFilter@5a515e5d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5482bcac]
+2021-01-27 11:54:44.356  INFO 2996 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:54:44.493  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:54:44.494  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:44.642  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:54:44.642  INFO 2996 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:54:45.595  INFO 2996 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 7.205 seconds (JVM running for 8.828)
+2021-01-27 11:54:45.997  INFO 2996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:54:47.237  INFO 2996 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:54:47.336  INFO 2996 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:54:47.337  INFO 2996 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:54:47.342  INFO 2996 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:55:15.643  INFO 16644 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 16644 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:55:15.644 DEBUG 16644 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:55:15.644  INFO 16644 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:55:16.458  INFO 16644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:55:16.462  INFO 16644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:55:16.495  INFO 16644 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:55:17.640  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:55:17.642  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:55:17.652  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@ceddaf8
+2021-01-27 11:55:17.652  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:55:18.628  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@78cfa264
+2021-01-27 11:55:18.628  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:55:19.176  INFO 16644 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3250a971-1283-4141-9fad-c73539403d08
+
+2021-01-27 11:55:19.400  INFO 16644 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ec99035, org.springframework.security.web.context.SecurityContextPersistenceFilter@3281dfc2, org.springframework.security.web.header.HeaderWriterFilter@52ea0269, org.springframework.security.web.authentication.logout.LogoutFilter@574059d5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14422d9d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b25ab31, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60743cdb, org.springframework.security.web.session.SessionManagementFilter@3e377967, org.springframework.security.web.access.ExceptionTranslationFilter@20c812c8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@654e6a90]
+2021-01-27 11:55:19.969  INFO 16644 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:55:20.064  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:55:20.065  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:55:20.201  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:55:20.201  INFO 16644 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:55:20.997  INFO 16644 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 5.885 seconds (JVM running for 7.378)
+2021-01-27 11:55:21.369  INFO 16644 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:55:22.315  INFO 16644 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:55:22.410  INFO 16644 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:55:22.412  INFO 16644 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:55:22.417  INFO 16644 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 11:56:38.065  INFO 14040 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 14040 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 11:56:38.067 DEBUG 14040 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 11:56:38.067  INFO 14040 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 11:56:38.986  INFO 14040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 11:56:38.989  INFO 14040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 11:56:39.021  INFO 14040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2021-01-27 11:56:40.286  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 11:56:40.289  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:56:40.298  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@1d50a7ca
+2021-01-27 11:56:40.298  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:56:41.255  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@60a7e509
+2021-01-27 11:56:41.256  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:56:41.758  INFO 14040 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: b5a3afd6-ebda-4f9e-957e-1553e025edc7
+
+2021-01-27 11:56:41.966  INFO 14040 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c952a33, org.springframework.security.web.context.SecurityContextPersistenceFilter@20c812c8, org.springframework.security.web.header.HeaderWriterFilter@32f32623, org.springframework.security.web.authentication.logout.LogoutFilter@664632e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7061622, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45e6d1e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70029d2d, org.springframework.security.web.session.SessionManagementFilter@7e15f4d4, org.springframework.security.web.access.ExceptionTranslationFilter@60f21960, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@65629ac6]
+2021-01-27 11:56:42.499  INFO 14040 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:56:42.576  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:56:42.577  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:56:42.681  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 11:56:42.681  INFO 14040 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 11:56:43.500  INFO 14040 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 5.974 seconds (JVM running for 7.694)
+2021-01-27 11:56:43.848  INFO 14040 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 11:56:44.894  INFO 14040 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 11:56:44.984  INFO 14040 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 11:56:44.985  INFO 14040 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 11:56:44.992  INFO 14040 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 12:19:06.690  INFO 4920 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 4920 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 12:19:06.691 DEBUG 4920 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 12:19:06.691  INFO 4920 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 12:19:07.589  INFO 4920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 12:19:07.593  INFO 4920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 12:19:07.634  INFO 4920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2021-01-27 12:19:09.280  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 12:19:09.282  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 12:19:09.291  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@10a98392
+2021-01-27 12:19:09.292  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 12:19:10.449  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder@13c8ac77
+2021-01-27 12:19:10.450  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 12:19:10.506  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.web.filter.CorsFilter@78cfa264
+2021-01-27 12:19:10.507  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 12:19:11.134  INFO 4920 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 34bf8cf7-0609-4d95-aa7f-95663a7e52c7
+
+2021-01-27 12:19:11.384  INFO 4920 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a00b15d, org.springframework.security.web.context.SecurityContextPersistenceFilter@61db86bf, org.springframework.security.web.header.HeaderWriterFilter@4eaf7902, org.springframework.security.web.authentication.logout.LogoutFilter@7e1ffe70, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e377967, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2a02e34b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36ef1d65, org.springframework.security.web.session.SessionManagementFilter@51efb731, org.springframework.security.web.access.ExceptionTranslationFilter@1a01d7f0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e3ff233]
+2021-01-27 12:19:11.865  INFO 4920 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 12:19:11.955  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 12:19:11.956  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 12:19:12.052  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 12:19:12.052  INFO 4920 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 12:19:12.811  INFO 4920 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 6.728 seconds (JVM running for 9.186)
+2021-01-27 12:19:13.343  INFO 4920 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 12:19:16.116  INFO 4920 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 12:19:16.252  INFO 4920 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 12:19:16.254  INFO 4920 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 12:19:16.294  INFO 4920 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-01-27 15:29:48.184  INFO 17728 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Starting MybatisPlusApplicationTest using Java 1.8.0_221 on DESKTOP-2SITVO1 with PID 17728 (started by Administrator in G:\download\app\Git\gitRepos2\blog\blog-server)
+2021-01-27 15:29:48.216 DEBUG 17728 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Running with Spring Boot v2.4.2, Spring v5.3.3
+2021-01-27 15:29:48.216  INFO 17728 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2021-01-27 15:29:49.118  INFO 17728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-01-27 15:29:49.123  INFO 17728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-01-27 15:29:49.160  INFO 17728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2021-01-27 15:29:50.717  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : Result:AbstractSqlParserHandler(sqlParserList=null, sqlParserFilter=null)
+2021-01-27 15:29:50.720  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 15:29:50.732  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : Result:com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor@57545c3f
+2021-01-27 15:29:50.733  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 15:29:51.712  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : Result:org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder@3069a360
+2021-01-27 15:29:51.712  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 15:29:52.211  INFO 17728 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0fb77e4e-c5b9-413b-b998-bc7f10e09dd1
+
+2021-01-27 15:29:52.451  INFO 17728 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4a50d04a, org.springframework.security.web.context.SecurityContextPersistenceFilter@7e3d7dd, org.springframework.security.web.header.HeaderWriterFilter@5d1b1c2a, org.springframework.security.web.authentication.logout.LogoutFilter@183ade54, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@413bef78, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@d7bbf12, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5099c59b, org.springframework.security.web.session.SessionManagementFilter@40ef0af8, org.springframework.security.web.access.ExceptionTranslationFilter@609319c3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@73041b7d]
+2021-01-27 15:29:53.252  INFO 17728 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-01-27 15:29:53.452  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 15:29:53.453  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 15:29:53.577  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : Result:null
+2021-01-27 15:29:53.577  INFO 17728 --- [main] pers.fjl.server.aspect.LogAspect         : ---------doAfter-----
+2021-01-27 15:29:54.865  INFO 17728 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 7.289 seconds (JVM running for 9.055)
+2021-01-27 15:29:55.464  INFO 17728 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-01-27 15:29:59.105  INFO 17728 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-01-27 15:29:59.834  INFO 17728 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-01-27 15:29:59.835  INFO 17728 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-01-27 15:29:59.848  INFO 17728 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

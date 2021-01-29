@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    username: root
+    password: 123456
+
+logging:
+  level:
+    root: info
+    pers.fjl.server: debug
+  file:
+    path: log/blog-dev.log
