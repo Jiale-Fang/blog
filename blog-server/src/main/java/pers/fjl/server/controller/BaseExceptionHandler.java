@@ -19,15 +19,15 @@ import pers.fjl.common.entity.Result;
 //@Api(value = "全局异常处理模块", description = "全局异常处理的接口信息")
 public class BaseExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public Result handler(Exception e) {
-        if (e instanceof RuntimeException) {
-            return new Result(false, MessageConstant.ERROR, e.getMessage());
-        }
-        log.error("Exception:[{}]", e);
-        return new Result(false, MessageConstant.ERROR, e.getMessage());
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseBody
+//    public Result handler(Exception e) {
+//        if (e instanceof RuntimeException) {
+//            return new Result(false, MessageConstant.ERROR, e.getMessage());
+//        }
+//        log.error("Exception:[{}]", e);
+//        return new Result(false, MessageConstant.ERROR, e.getMessage());
+//    }
 
 //    @ExceptionHandler(value = {RuntimeException.class})
 //    public Result runtimeHandler(RuntimeException e) {

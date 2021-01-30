@@ -34,9 +34,16 @@ public interface BlogService extends IService<Blog> {
     /**
      * 渲染首页的分页数据
      * @param queryPageBean
-     * @param uid
      * @return Page<BlogVo>
      */
     Page<BlogVo> findHomePage(QueryPageBean queryPageBean);
+
+    /**
+     * 根据博客id获取博客
+     * @param blog_id
+     * @return blog
+     */
+    Blog getOneBlog(Long blog_id);
+
 }
 

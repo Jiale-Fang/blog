@@ -15,12 +15,13 @@ import pers.fjl.common.vo.BlogVo;
 import pers.fjl.server.dao.BlogDao;
 import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.BlogTagService;
+import pers.fjl.server.utils.MarkdownUtils;
 
 import javax.annotation.Resource;
 
 /**
  * <p>
- * 服务实现类
+ * 博客服务实现类
  * </p>
  *
  * @author fangjiale
@@ -77,7 +78,18 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         //设置分页条件
         Page<BlogVo> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         page.setTotal(blogDao.selectCount(null));
-        page.setRecords(blogDao.findHomePage(start,pageSize));
+        page.setRecords(blogDao.findHomePage(start, pageSize));
         return page;
+    }
+
+    @Override
+    public Blog getOneBlog(Long blog_id) {
+        QueryWrapper<Blog> wrapper = new QueryWrapper<>();
+        wrapper.eq("blog_id", blog_id);
+        Blog blog = blogDao.selectOne(wrapper);
+        String content = blog.getContent();
+        if (content!=null){
+        blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));}   // 将博客对象中的正文内容markdown格式的文本转换成html元素格式
+        return blog;
     }
 }

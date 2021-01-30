@@ -43,4 +43,14 @@ public class BlogController {
         boolean flag = blogService.addBlog(addBlogVo, user.getUid());
         return new Result(flag, "添加成功", MessageConstant.OK);
     }
+
+//    @PutMapping("/{id}/state/{dataStatus}")
+//    public Result userStateChanged(@PathVariable("id") String id,
+//                                   @PathVariable("dataStatus") boolean dataStatus) {
+
+    @GetMapping("/{blogId}")
+    public Result getOneBlog(@PathVariable("blogId") Long blogId){
+        return new Result(true, MessageConstant.OK, "获取博客信息成功", blogService.getOneBlog(blogId));
+    }
+
 }
