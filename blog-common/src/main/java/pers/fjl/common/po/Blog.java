@@ -2,20 +2,25 @@ package pers.fjl.common.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
+import pers.fjl.common.utils.JsonLongSerializer;
 
 /**
  * <p>
- *
+ * 博客实体类
  * </p>
  *
  * @author fangjiale
@@ -30,6 +35,7 @@ public class Blog extends Model<Blog> {
     /**
      * 博客id
      */
+    @JsonSerialize(using = JsonLongSerializer.class )
     @TableId(value = "blog_id")
     private Long blogId;
 
@@ -109,10 +115,5 @@ public class Blog extends Model<Blog> {
      * 博客摘要
      */
     private String description;
-
-    @Override
-    protected Serializable pkVal() {
-        return this.blogId;
-    }
 
 }

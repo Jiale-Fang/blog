@@ -28,7 +28,7 @@ public interface BlogDao extends BaseMapper<Blog> {
      */
     @Select("SELECT b.blog_id, t.type_name, b.recommend, b.flag, b.update_time, b.title, b.flag " +
             "FROM blog b,type t " +
-            "WHERE b.type_id = t.type_id LIMIT #{start},#{pageSize} ")
+            "WHERE b.type_id = t.type_id AND b.uid = #{uid} LIMIT #{start},#{pageSize} ")
     List<BlogVo> getAllBlogs(Long uid, Integer start, Integer pageSize);
 
     /**
@@ -37,9 +37,9 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @param
      * @return List
      */
-    @Select("SELECT b.blog_id, u.nickname, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
-            "FROM blog b,user u " +
-            "WHERE b.uid = u.uid ORDER BY b.create_time DESC " +
+    @Select("SELECT b.blog_id, u.nickname, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
+            "FROM blog b, user u, type t  " +
+            "WHERE b.uid = u.uid AND b.type_id = t.type_id ORDER BY b.create_time DESC " +
             "LIMIT #{start},#{pageSize} ")
     List<BlogVo> findHomePage(Integer start, Integer pageSize);
 }
