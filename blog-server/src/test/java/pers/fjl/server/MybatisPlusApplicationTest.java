@@ -6,10 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pers.fjl.common.po.Comment;
 import pers.fjl.common.po.User;
 import pers.fjl.server.dao.UserDao;
+import pers.fjl.server.service.CommentService;
 import pers.fjl.server.service.UserService;
 import javax.annotation.Resource;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -18,7 +21,7 @@ public class MybatisPlusApplicationTest {
     @Resource
     private UserDao userDao;
     @Resource
-    private UserService userService;
+    private CommentService commentService;
     @Resource
     private BCryptPasswordEncoder encoder;
 
@@ -34,6 +37,19 @@ public class MybatisPlusApplicationTest {
         userDao.insert(user);
     }
 
+    @Test
+    public void getCommentList(){
+        List<Comment> commentList = commentService.getCommentList(1L);
+        System.out.println(commentList);
+    }
+
+    /**
+     * 递归删除评论
+     */
+    @Test
+    public void delComment(){
+        commentService.delComment(1354977782910414850L,1355503370591002626L,84351321231233L);
+    }
 
     /**
      * 更新用户表密码
