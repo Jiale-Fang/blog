@@ -35,7 +35,7 @@ public class Blog extends Model<Blog> {
     /**
      * 博客id
      */
-    @JsonSerialize(using = JsonLongSerializer.class )
+    @JsonSerialize(using = JsonLongSerializer.class)
     @TableId(value = "blog_id")
     private Long blogId;
 
