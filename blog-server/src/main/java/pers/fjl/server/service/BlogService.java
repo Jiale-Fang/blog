@@ -7,6 +7,8 @@ import pers.fjl.common.po.Blog;
 import pers.fjl.common.vo.AddBlogVo;
 import pers.fjl.common.vo.BlogVo;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -32,7 +34,7 @@ public interface BlogService extends IService<Blog> {
     boolean addBlog(AddBlogVo addBlogVo, Long uid);
 
     /**
-     * 渲染首页的分页数据
+     * 渲染首页的分页数据(按阅读量降序)
      * @param queryPageBean
      * @return Page<BlogVo>
      */
@@ -43,7 +45,20 @@ public interface BlogService extends IService<Blog> {
      * @param blog_id
      * @return blog
      */
-    Blog getOneBlog(Long blog_id);
+    BlogVo getOneBlog(Long blog_id);
+
+    /**
+     * 按照时间降序获取最新推荐的博客列表
+     * @return list
+     */
+    List<Blog> getLatestList();
+
+    /**
+     * 根据分类id获取博客分页数据
+     * @param queryPageBean
+     * @return page
+     */
+    Page<BlogVo> getByTypeId(QueryPageBean queryPageBean);
 
 }
 

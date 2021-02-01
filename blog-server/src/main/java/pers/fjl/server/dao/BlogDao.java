@@ -39,7 +39,20 @@ public interface BlogDao extends BaseMapper<Blog> {
      */
     @Select("SELECT b.blog_id, u.nickname, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
             "FROM blog b, user u, type t  " +
-            "WHERE b.uid = u.uid AND b.type_id = t.type_id ORDER BY b.create_time DESC " +
+            "WHERE b.uid = u.uid AND b.type_id = t.type_id ORDER BY b.views DESC " +
             "LIMIT #{start},#{pageSize} ")
     List<BlogVo> findHomePage(Integer start, Integer pageSize);
+
+    /**
+     * 根据分类类型获取博客列表
+     * @param start
+     * @param pageSize
+     * @return
+     */
+    @Select("SELECT b.blog_id, u.nickname, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
+            "FROM blog b, user u, type t  " +
+            "WHERE b.uid = u.uid AND b.type_id = t.type_id AND b.type_id = #{typeId} ORDER BY b.views DESC " +
+            "LIMIT #{start},#{pageSize} ")
+    List<BlogVo> getByTypeId(Integer start, Integer pageSize, Long typeId);
+
 }

@@ -25,14 +25,9 @@ public class BlogTag extends Model<BlogTag> {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonSerialize(using = JsonLongSerializer.class)
-    @TableId(value = "blog_id")
     private Long blogId;
 
-    @JsonSerialize(using = JsonLongSerializer.class)
-    @TableId(value = "tag_id")
     private Long tagId;
-
 
     @Override
     protected Serializable pkVal() {
