@@ -13,11 +13,13 @@ import pers.fjl.server.annotation.LoginRequired;
 import pers.fjl.server.service.UserService;
 import pers.fjl.server.utils.IpUtils;
 import pers.fjl.server.utils.JWTUtils;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+
 import static pers.fjl.server.utils.JWTUtils.getTokenInfo;
 
 @Slf4j
@@ -58,18 +60,18 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if (loginRequired != null) {
             // 执行认证
 //            String token = request.getHeader("token");  // 从 http 请求头中取出 token
-            String token=request.getHeader("Authorization");
+            String token = request.getHeader("Authorization");
             if (token == null) {
                 throw new RuntimeException("无token，请重新登录");
             }
             String userId;
             try {
                 DecodedJWT verify = getTokenInfo(token);
-                userId = verify.getClaim("id").asString();
+                userId= verify.getClaim("id").asString();
             } catch (JWTDecodeException e) {
                 throw new RuntimeException("token无效，请重新登录");
             }
-            User user = userService.findById(userId);
+            User user = userService.findById(Long.parseLong(userId));
             if (user == null) {
                 throw new RuntimeException("用户不存在，请重新登录");
             }
