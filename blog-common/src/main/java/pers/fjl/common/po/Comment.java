@@ -9,9 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 import pers.fjl.common.utils.JsonLongSerializer;
 
 /**
@@ -42,6 +45,10 @@ public class Comment extends Model<Comment> {
     /**
      * 创建时间
      */
+    @ApiModelProperty(value = "创建时间")
+    @com.baomidou.mybatisplus.annotations.TableField("`create_time`")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     private Long blogId;
