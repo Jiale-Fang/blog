@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Type;
+import pers.fjl.common.vo.TypeVo;
 
 import java.util.List;
 
@@ -62,4 +63,11 @@ public interface TypeService extends IService<Type> {
      * @return list
      */
     List<Type> getTypeList();
+
+    /**
+     * 获取每个分类的博客数量
+     * @return list
+     */
+    List<TypeVo> getTypeCount();
+
 }

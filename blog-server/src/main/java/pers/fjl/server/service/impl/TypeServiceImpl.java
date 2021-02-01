@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Type;
 import pers.fjl.common.po.User;
+import pers.fjl.common.vo.TypeVo;
 import pers.fjl.server.dao.TypeDao;
 import pers.fjl.server.service.TypeService;
 
@@ -73,5 +74,10 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
     @Override
     public List<Type> getTypeList() {
         return typeDao.selectList(null);
+    }
+
+    @Override
+    public List<TypeVo> getTypeCount() {
+        return typeDao.getTypeCount();
     }
 }

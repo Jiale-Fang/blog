@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="blog-common" />
         <module name="blog-server" />
+        <module name="blog-eureka" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="blog-common" options="-parameters" />
+      <module name="blog-eureka" options="-parameters" />
       <module name="blog-server" options="-parameters" />
     </option>
   </component>

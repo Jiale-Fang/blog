@@ -51,6 +51,6 @@ public class IndexAdminController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new Result(false, MessageConstant.ERROR, "token生成失败,请检查你的账号与密码是否匹配");
+        return new Result(false, "token生成失败,请检查你的账号与密码是否匹配", MessageConstant.ERROR);
     }
 }
