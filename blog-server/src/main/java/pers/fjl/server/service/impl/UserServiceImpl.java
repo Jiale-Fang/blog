@@ -41,13 +41,26 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     }
 
     //    @Cacheable(value = {"User"})
-    public User findById(String userId) {
+    public User findById(Long userId) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("uid", userId);
         if (userDao.selectOne(wrapper) == null) {
             return null;
         }
         return userDao.selectOne(wrapper);
+    }
+
+    @Override
+    public void add(User user) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        log.info("addUser.user.getUsername():[{}]", user.getUsername());
+        log.info("addUser.user.getPassword():[{}]", user.getPassword());
+        if (userService.UserExist(user.getUsername())) {
+            throw new RuntimeException("用户名已被注册");
+        }
+        user.setDataStatus(MessageConstant.UserAble);
+        user.setPassword(encoder.encode(user.getPassword()));
+        userDao.insert(user);
     }
 
     public User login(User user) throws RuntimeException {

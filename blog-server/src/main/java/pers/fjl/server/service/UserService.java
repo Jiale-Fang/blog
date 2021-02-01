@@ -35,5 +35,11 @@ public interface UserService extends IService<User> {
      * @param userId
      * @return user
      */
-    User findById(String userId);
+    User findById(Long userId);
+
+    /**
+     * 用户注册
+     * @param user
+     */
+    void add(User user);
 }

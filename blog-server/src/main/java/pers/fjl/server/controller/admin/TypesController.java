@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @author fangjiale 2021年01月27日
  */
 
-@Api(value = "分类管理模块", description = "分类管理模块的接口信息")
+@Api(value = "后台分类管理模块", description = "分类管理模块的接口信息")
 @RequestMapping("/types2")
 @RestController
 @CrossOrigin
@@ -35,14 +35,14 @@ public class TypesController {
     }
 
     @PostMapping("/add")
-    public Result addType(@RequestBody Type type){
+    public Result addType(@RequestBody Type type) {
         boolean flag = typeService.addType(type);
-        return new Result(flag,"添加成功", MessageConstant.OK);
+        return new Result(flag, "添加成功", MessageConstant.OK);
     }
 
     @GetMapping("/getTypeList")
-    public Result getTypeList(){
-        return new Result(true,MessageConstant.OK,"获取成功", typeService.getTypeList());
+    public Result getTypeList() {
+        return new Result(true, MessageConstant.OK, "获取分类信息成功", typeService.getTypeList());
     }
 
 }

@@ -16,6 +16,7 @@
     <modules>
         <module>blog-server</module>
         <module>blog-common</module>
+        <module>blog-eureka</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

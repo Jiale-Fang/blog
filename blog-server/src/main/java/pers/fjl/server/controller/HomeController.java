@@ -9,6 +9,8 @@ import pers.fjl.common.entity.Result;
 import pers.fjl.common.po.User;
 import pers.fjl.server.annotation.LoginRequired;
 import pers.fjl.server.service.BlogService;
+import pers.fjl.server.service.TagService;
+import pers.fjl.server.service.TypeService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +28,30 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController {
     @Resource
     private BlogService blogService;
+    @Resource
+    private TagService tagService;
+    @Resource
+    private TypeService typeService;
 
-    @LoginRequired
     @ApiOperation(value = "分页查询", notes = "返回分页数据")
     @PostMapping("/findHomePage")
-    public Result findHomePage(@RequestBody QueryPageBean queryPageBean, HttpServletRequest request) {
+    public Result findHomePage(@RequestBody QueryPageBean queryPageBean) {
         return new Result(true, MessageConstant.OK, "获取分页数据成功", blogService.findHomePage(queryPageBean));
     }
+
+    @GetMapping("/getTypeCount")
+    public Result getTypeCount() {
+        return new Result(true, MessageConstant.OK, "获取分类信息成功", typeService.getTypeCount());
+    }
+
+    @GetMapping("/getTagCount")
+    public Result getTagCount() {
+        return new Result(true, MessageConstant.OK, "获取标签信息成功", tagService.getTypeCount());
+    }
+
+    @GetMapping("/latestList")
+    public Result getRecommendList() {
+        return new Result(true, MessageConstant.OK, "获取最新推荐信息成功", blogService.getLatestList());
+    }
+
 }
