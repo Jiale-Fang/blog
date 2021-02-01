@@ -1,10 +1,13 @@
 package pers.fjl.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.BlogTag;
+import pers.fjl.common.vo.BlogVo;
 import pers.fjl.server.dao.BlogTagDao;
 import pers.fjl.server.service.BlogTagService;
 
@@ -23,6 +26,10 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
     @Resource
     private BlogTagDao blogTagDao;
 
+    private Integer currentPage;
+    private Integer pageSize;
+    private Integer start;
+
     @Transactional
     public boolean addOneBlogTag(Long blogId, Long[] value) {
         BlogTag blogTag = new BlogTag();
@@ -32,5 +39,19 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
             blogTagDao.insert(blogTag);
         }
         return true;
+    }
+
+    @Override
+    public Page<BlogVo> getByTagId(QueryPageBean queryPageBean) {
+        currentPage = queryPageBean.getCurrentPage();
+        pageSize = queryPageBean.getPageSize();
+        start = (currentPage - 1) * pageSize;
+        //设置分页条件
+        Page<BlogVo> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
+        QueryWrapper<BlogTag> wrapper = new QueryWrapper<>();
+        wrapper.eq(queryPageBean.getTagId() != null, "tag_id", queryPageBean.getTagId());
+        page.setTotal(blogTagDao.selectCount(wrapper));
+        page.setRecords(blogTagDao.getByTagId(start, pageSize, queryPageBean.getTagId()));
+        return page;
     }
 }
