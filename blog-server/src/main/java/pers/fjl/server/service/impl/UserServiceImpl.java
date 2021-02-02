@@ -40,7 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         return userDao.selectCount(wrapper) != 0;
     }
 
-    //    @Cacheable(value = {"User"})
+    @Cacheable(value = {"UserMap"}, key = "#userId")
     public User findById(Long userId) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("uid", userId);

@@ -26,7 +26,7 @@ public interface TagDao extends BaseMapper<Tag> {
     @Select("SELECT DISTINCT t.tag_id, t.tag_name, COUNT(bts.tag_id) tag_count " +
             "FROM tag t LEFT OUTER JOIN blog_tag bts " +
             "ON t.tag_id = bts.tag_id " +
-            "GROUP BY tag_name " +
+            "GROUP BY t.tag_id " +
             "ORDER BY COUNT(bts.tag_id) DESC ")
     List<TagVo> getTagCount();
 }
