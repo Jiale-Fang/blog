@@ -26,7 +26,7 @@ public interface TypeDao extends BaseMapper<Type> {
     @Select("SELECT DISTINCT t.type_id, t.type_name, COUNT(b.type_id) type_count " +
             "FROM type t LEFT OUTER JOIN blog b " +
             "ON t.type_id = b.type_id " +
-            "GROUP BY type_name " +
+            "GROUP BY t.type_id " +
             "ORDER BY COUNT(b.type_id) DESC")
     List<TypeVo> getTypeCount();
 }

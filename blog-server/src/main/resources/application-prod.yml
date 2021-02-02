@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    url: jdbc:mysql://39.108.136.207:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
     password: 123456
 
@@ -11,3 +11,9 @@ logging:
     pers.fjl.server: debug
   file:
     path: log/blog-prod.log
+eureka:
+  client:
+    service-url:
+      defaultZone: http://39.108.136.207:6868/eureka/
+  instance:
+    prefer-ip-address: true

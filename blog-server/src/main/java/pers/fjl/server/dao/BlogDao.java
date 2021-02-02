@@ -37,7 +37,7 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @param
      * @return List
      */
-    @Select("SELECT b.blog_id, u.nickname, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
+    @Select("SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
             "FROM blog b, user u, type t  " +
             "WHERE b.uid = u.uid AND b.type_id = t.type_id ORDER BY b.views DESC " +
             "LIMIT #{start},#{pageSize} ")
@@ -49,7 +49,7 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @param pageSize
      * @return
      */
-    @Select("SELECT b.blog_id, u.nickname, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
+    @Select("SELECT b.blog_id, u.nickname, u.avatar,t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
             "FROM blog b, user u, type t  " +
             "WHERE b.uid = u.uid AND b.type_id = t.type_id AND b.type_id = #{typeId} ORDER BY b.views DESC " +
             "LIMIT #{start},#{pageSize} ")

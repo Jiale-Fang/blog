@@ -13,5 +13,6 @@ public class BlogVo extends Blog implements Serializable {
 
     private String typeName;    // 分类名称
     private String nickname;    //用户昵称
+    private String avatar;      //用户头像
 
 }

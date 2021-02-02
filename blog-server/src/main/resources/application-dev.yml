@@ -11,3 +11,10 @@ logging:
     pers.fjl.server: debug
   file:
     path: log/blog-dev.log
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true
+
