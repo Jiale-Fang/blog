@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.BlogDao">
+
+    <select id="findHomePage" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.BlogVo">
+        SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture
+        FROM blog b, user u, type t
+        WHERE b.uid = u.uid AND b.type_id = t.type_id
+        <if test="queryPageBean.queryString !=null">
+        AND b.content LIKE '%${queryPageBean.queryString}%'
+        </if>
+        <if test="queryPageBean.typeId !=null">
+            AND b.type_id = #{queryPageBean.typeId}
+        </if>
+        ORDER BY b.views DESC
+        LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
+    </select>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="pers.fjl.server.dao.BlogDao">
+        <id column="blog_id" property="blogId" />
+        <result column="appreciation" property="appreciation" />
+        <result column="commentabled" property="commentabled" />
+        <result column="content" property="content" />
+        <result column="create_time" property="createTime" />
+        <result column="first_picture" property="firstPicture" />
+        <result column="flag" property="flag" />
+        <result column="published" property="published" />
+        <result column="recommend" property="recommend" />
+        <result column="share_statement" property="shareStatement" />
+        <result column="title" property="title" />
+        <result column="update_time" property="updateTime" />
+        <result column="views" property="views" />
+        <result column="type_id" property="typeId" />
+        <result column="uid" property="uid" />
+        <result column="description" property="description" />
+    </resultMap>
+
+</mapper>
