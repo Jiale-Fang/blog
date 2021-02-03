@@ -6,7 +6,7 @@ import pers.fjl.common.po.User;
 
 /**
  * <p>
- *  用户服务类
+ * 用户服务类
  * </p>
  *
  * @author fangjiale
@@ -39,7 +39,15 @@ public interface UserService extends IService<User> {
 
     /**
      * 用户注册
+     *
      * @param user
      */
     void add(User user);
+
+    /**
+     * 检验验证码
+     *
+     * @return boolean
+     */
+    boolean verifyCode(String verKey, String captcha, String sessionCode);
 }

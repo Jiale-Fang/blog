@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.po.User;
 import pers.fjl.server.dao.UserDao;
 import pers.fjl.server.service.UserService;
+import pers.fjl.server.utils.RedisUtil;
 
 import javax.annotation.Resource;
 
@@ -32,6 +34,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     private UserDao userDao;
     @Resource
     private BCryptPasswordEncoder encoder;
+    @Resource
+    private RedisUtil redisUtil;
 
     public boolean UserExist(String username) {//搜索用户名是否存在
         QueryWrapper<User> wrapper = new QueryWrapper<>();
@@ -60,6 +64,18 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         user.setDataStatus(MessageConstant.UserAble);
         user.setPassword(encoder.encode(user.getPassword()));
         userDao.insert(user);
+    }
+
+    @Override
+    public boolean verifyCode(String verKey, String code, String realCode) {
+        redisUtil.del(verKey);  // 验证码是否正确都删除，否则验证错误的验证码会存在redis中无法删除
+        if (realCode == null || StringUtils.isEmpty(realCode)) {
+            throw new RuntimeException("请输入验证码！");
+        }
+        if (!code.equalsIgnoreCase(realCode)) {
+            throw new RuntimeException("请输入正确的验证码！");
+        }
+        return true;
     }
 
     public User login(User user) throws RuntimeException {
