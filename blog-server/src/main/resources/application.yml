@@ -2,7 +2,7 @@ server:
   port: 9002
 spring:
   profiles:
-    active: dev
+    active: prod
   application:
     name: blog-server #指定服务名
 
