@@ -16,6 +16,13 @@ zuul:
       strip-prefix: true #所有的article的请求都进行转发
       sentiviteHeaders:
       customSensitiveHeaders: true #让zuul网关处理cookie和重定向
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
 ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000

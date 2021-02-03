@@ -3,6 +3,8 @@ package pers.fjl.server.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.entity.QueryPageBean;
@@ -15,7 +17,7 @@ import javax.annotation.Resource;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author fangjiale
@@ -31,6 +33,7 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
     private Integer start;
 
     @Transactional
+    @CacheEvict(value = {"BlogPage"}, allEntries = true)
     public boolean addOneBlogTag(Long blogId, Long[] value) {
         BlogTag blogTag = new BlogTag();
         blogTag.setBlogId(blogId);
@@ -41,7 +44,7 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
         return true;
     }
 
-    @Override
+    @Cacheable(value = {"BlogPage"}, key = "#root.methodName+'['+#queryPageBean.tagId+']'")
     public Page<BlogVo> getByTagId(QueryPageBean queryPageBean) {
         currentPage = queryPageBean.getCurrentPage();
         pageSize = queryPageBean.getPageSize();

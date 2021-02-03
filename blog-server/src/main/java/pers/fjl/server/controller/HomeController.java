@@ -46,7 +46,7 @@ public class HomeController {
 
     @GetMapping("/getTagCount")
     public Result getTagCount() {
-        return new Result(true, MessageConstant.OK, "获取标签信息成功", tagService.getTypeCount());
+        return new Result(true, MessageConstant.OK, "获取标签信息成功", tagService.getTagCount());
     }
 
     @GetMapping("/latestList")

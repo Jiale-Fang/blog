@@ -2,6 +2,8 @@ package pers.fjl.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.po.Comment;
 import pers.fjl.common.po.User;
@@ -25,7 +27,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
     @Resource
     private CommentDao commentDao;
 
-    @Override
+    @Cacheable(value = {"CommentMap"}, key = "#blogId")
     public List<Comment> getCommentList(Long blogId) {
 //        QueryWrapper<Comment> wrapper = new QueryWrapper<>();
 //        wrapper.eq("blog_id",blogId)
@@ -44,7 +46,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         return combineChildren(comments1, comments2);
     }
 
-    @Override
+    @CacheEvict(value = {"CommentMap"}, key = "#comment.blogId")
     public void replyComment(Comment comment, Long uid) {
         comment.setUid(uid);
         if (comment.getParentCommentId() == null) {
@@ -53,7 +55,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         commentDao.insert(comment);
     }
 
-    @Override
+    @CacheEvict(value = {"CommentMap"}, key = "#blogId")
     public void delComment(Long blogId, Long commentId, Long uid) {
         QueryWrapper<Comment> wrapper = new QueryWrapper<>();
         wrapper.eq("uid", uid)

@@ -52,7 +52,6 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Override
     public void add(User user) {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
         log.info("addUser.user.getUsername():[{}]", user.getUsername());
         log.info("addUser.user.getPassword():[{}]", user.getPassword());
         if (userService.UserExist(user.getUsername())) {
