@@ -10,6 +10,7 @@ public class MessageConstant {
     public static final String ACCESSERROR = "权限不足";//权限不足
     public static final String REMOTEERROR = "远程调用失败";//远程调用失败
     public static final String REPERROR = "重复操作";//重复操作
+    public static final String VERIFICATION_CODE_SUCCESS = "验证码生成成功";
     public static final boolean UserAble = true;//用户可用
     public static final boolean UserDisable = false;//用户已经被禁用
 }
