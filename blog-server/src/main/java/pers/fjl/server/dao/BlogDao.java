@@ -2,8 +2,10 @@ package pers.fjl.server.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.swagger.models.auth.In;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Blog;
 import pers.fjl.common.vo.BlogVo;
 
@@ -32,27 +34,11 @@ public interface BlogDao extends BaseMapper<Blog> {
     List<BlogVo> getAllBlogs(Long uid, Integer start, Integer pageSize);
 
     /**
-     * 获取首页博客列表(多表查询)
+     * 获取博客列表(多表查询)
      *
      * @param
      * @return List
      */
-    @Select("SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
-            "FROM blog b, user u, type t  " +
-            "WHERE b.uid = u.uid AND b.type_id = t.type_id ORDER BY b.views DESC " +
-            "LIMIT #{start},#{pageSize} ")
-    List<BlogVo> findHomePage(Integer start, Integer pageSize);
-
-    /**
-     * 根据分类类型获取博客列表
-     * @param start
-     * @param pageSize
-     * @return
-     */
-    @Select("SELECT b.blog_id, u.nickname, u.avatar,t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
-            "FROM blog b, user u, type t  " +
-            "WHERE b.uid = u.uid AND b.type_id = t.type_id AND b.type_id = #{typeId} ORDER BY b.views DESC " +
-            "LIMIT #{start},#{pageSize} ")
-    List<BlogVo> getByTypeId(Integer start, Integer pageSize, Long typeId);
+    List<BlogVo> findHomePage(@Param("queryPageBean")QueryPageBean queryPageBean);
 
 }

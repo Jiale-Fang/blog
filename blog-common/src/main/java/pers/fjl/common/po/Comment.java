@@ -51,6 +51,7 @@ public class Comment extends Model<Comment> {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     private LocalDateTime createTime;
 
+    @JsonSerialize(using = JsonLongSerializer.class )
     private Long blogId;
 
     @JsonSerialize(using = JsonLongSerializer.class )

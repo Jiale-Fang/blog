@@ -25,9 +25,9 @@ public interface BlogTagDao extends BaseMapper<BlogTag> {
      * @param pageSize
      * @return
      */
-    @Select("SELECT b.blog_id, u.nickname, u.avatar, t.tag_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
-            "FROM blog b, user u, tag t, blog_tag bts " +
-            "WHERE b.uid = u.uid AND b.blog_id = bts.blog_id AND bts.tag_id = t.tag_id AND t.tag_id = #{tagId} " +
+    @Select("SELECT b.blog_id, u.nickname, u.avatar, type.type_name, t.tag_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture " +
+            "FROM blog b, user u, tag t, blog_tag bts, type " +
+            "WHERE b.uid = u.uid AND b.blog_id = bts.blog_id AND bts.tag_id = t.tag_id AND t.tag_id = #{tagId} AND type.type_id = b.type_id " +
             "GROUP BY b.blog_id " +
             "ORDER BY b.views DESC " +
             "LIMIT #{start},#{pageSize}")

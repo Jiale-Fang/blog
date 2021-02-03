@@ -3,6 +3,7 @@ package pers.fjl.server.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Blog;
@@ -30,13 +31,12 @@ public class TagServiceImpl extends ServiceImpl<TagDao, Tag> implements TagServi
     @Resource
     private TagDao tagDao;
 
-    @Override
     public List<Tag> getTagList() {
         return tagDao.selectList(null);
     }
 
-    @Override
-    public List<TagVo> getTypeCount() {
+    @Cacheable(value = {"BlogPage"}, key = "#root.methodName")
+    public List<TagVo> getTagCount() {
         return tagDao.getTagCount();
     }
 
@@ -46,7 +46,7 @@ public class TagServiceImpl extends ServiceImpl<TagDao, Tag> implements TagServi
         Page<Tag> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         //设置查询条件
         QueryWrapper<Tag> wrapper = new QueryWrapper<>();
-        wrapper.like(queryPageBean.getQueryString() != null, "role_name", queryPageBean.getQueryString());
+//        wrapper.like(queryPageBean.getQueryString() != null, "role_name", queryPageBean.getQueryString());
         return tagDao.selectPage(page, wrapper);
     }
 

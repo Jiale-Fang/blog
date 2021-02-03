@@ -21,7 +21,7 @@ import java.util.List;
 public interface TagService extends IService<Tag> {
 
     /**
-     * 获取tag标签列表
+     * 获取后台管理的tag标签列表
      *
      * @return list
      */
@@ -32,10 +32,10 @@ public interface TagService extends IService<Tag> {
      *
      * @return list
      */
-    List<TagVo> getTypeCount();
+    List<TagVo> getTagCount();
 
     /**
-     * 获取标签列表
+     * 获取后台管理标签列表
      * @param queryPageBean
      * @return page
      */

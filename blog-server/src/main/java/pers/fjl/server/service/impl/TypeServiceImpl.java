@@ -50,14 +50,12 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
         return null;
     }
 
-
-//    @Cacheable(value = {"Types2Map"})
     public Page<Type> findPage(QueryPageBean queryPageBean) {
         //设置分页条件
         Page<Type> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         //设置查询条件
         QueryWrapper<Type> wrapper = new QueryWrapper<>();
-        wrapper.like(queryPageBean.getQueryString() != null, "role_name", queryPageBean.getQueryString());
+//        wrapper.like(queryPageBean.getQueryString() != null, "role_name", queryPageBean.getQueryString());
         return typeDao.selectPage(page, wrapper);
     }
 
@@ -76,7 +74,7 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
         return typeDao.selectList(null);
     }
 
-    @Override
+    @Cacheable(value = {"BlogPage"}, key = "#root.methodName")
     public List<TypeVo> getTypeCount() {
         return typeDao.getTypeCount();
     }

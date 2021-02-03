@@ -34,7 +34,7 @@ public interface TypeService extends IService<Type> {
     Type getType(Long id);
 
     /**
-     * 查询分类
+     * 后台管理分类列表
      *
      * @param queryPageBean
      * @return Page
