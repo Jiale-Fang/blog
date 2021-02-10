@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="blog-common" />
         <module name="blog-server" />
+        <module name="blog-extension" />
         <module name="blog-encrypt" />
         <module name="blog-eureka" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="blog-common" options="-parameters" />
       <module name="blog-encrypt" options="-parameters" />
       <module name="blog-eureka" options="-parameters" />
+      <module name="blog-extension" options="-parameters" />
       <module name="blog-server" options="-parameters" />
     </option>
   </component>

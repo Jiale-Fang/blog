@@ -2,7 +2,7 @@ server:
   port: 6868
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: blog-eureka
 ribbon:

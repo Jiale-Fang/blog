@@ -18,6 +18,7 @@
         <module>blog-common</module>
         <module>blog-eureka</module>
         <module>blog-encrypt</module>
+        <module>blog-extension</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

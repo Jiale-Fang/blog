@@ -50,6 +50,7 @@ public class BlogController {
 
     @GetMapping("/{blogId}")
     public Result getOneBlog(@PathVariable("blogId") Long blogId){
+        blogService.setViews(blogId);
         return new Result(true, MessageConstant.OK, "获取博客信息成功", blogService.getOneBlog(blogId));
     }
 
