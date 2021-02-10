@@ -2,7 +2,7 @@ server:
   port: 9001
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: blog-encrypt
 zuul:
@@ -10,19 +10,26 @@ zuul:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
   routes:
+    blog-extension: #博客的拓展服务端
+      path: /extension/** #配置请求URL的请求规则
+      serviceId: blog-extension #指定Eureka注册中心中的服务id
+      strip-prefix: true #所有的/extension的请求都进行转发
+      sentiviteHeaders:
+      customSensitiveHeaders: true #让zuul网关处理cookie和重定向
     blog-server: #服务端
       path: /server/** #配置请求URL的请求规则
       serviceId: blog-server #指定Eureka注册中心中的服务id
-      strip-prefix: true #所有的article的请求都进行转发
+      strip-prefix: true #所有的/server的请求都进行转发
       sentiviteHeaders:
       customSensitiveHeaders: true #让zuul网关处理cookie和重定向
+
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 240001
 ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000

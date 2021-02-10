@@ -20,33 +20,33 @@ import javax.validation.ConstraintViolationException;
 //@Api(value = "全局异常处理模块", description = "全局异常处理的接口信息")
 public class BaseExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public Result handler(Exception e) {
-        if (e instanceof RuntimeException) {
-            return new Result(false, e.getMessage(), MessageConstant.ERROR);
-        }
-        log.error("Exception:[{}]", e);
-        return new Result(false, e.getMessage(), MessageConstant.ERROR);
-    }
-
-    @ExceptionHandler(value = {RuntimeException.class})
-    @ResponseBody
-    public Result runtimeHandler(RuntimeException e) {
-        System.out.println("出现异常：" + e.getMessage());
-        return new Result(false, e.getMessage(), MessageConstant.LOGINERROR);
-    }
-
-    @ExceptionHandler(value = {JWTVerificationException.class})
-    @ResponseBody
-    public Result jwtHandler(JWTVerificationException e) {
-        log.debug(e.getMessage());
-        return new Result(false, e.getMessage(), MessageConstant.ACCESSERROR);
-    }
-
-    @ExceptionHandler(value = {ConstraintViolationException.class})
-    @ResponseBody
-    public Result validHandle(ConstraintViolationException e) {
-        return new Result(false, e.getMessage(), MessageConstant.ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseBody
+//    public Result handler(Exception e) {
+//        if (e instanceof RuntimeException) {
+//            return new Result(false, e.getMessage(), MessageConstant.ERROR);
+//        }
+//        log.error("Exception:[{}]", e);
+//        return new Result(false, e.getMessage(), MessageConstant.ERROR);
+//    }
+//
+//    @ExceptionHandler(value = {RuntimeException.class})
+//    @ResponseBody
+//    public Result runtimeHandler(RuntimeException e) {
+//        System.out.println("出现异常：" + e.getMessage());
+//        return new Result(false, e.getMessage(), MessageConstant.LOGINERROR);
+//    }
+//
+//    @ExceptionHandler(value = {JWTVerificationException.class})
+//    @ResponseBody
+//    public Result jwtHandler(JWTVerificationException e) {
+//        log.debug(e.getMessage());
+//        return new Result(false, e.getMessage(), MessageConstant.ACCESSERROR);
+//    }
+//
+//    @ExceptionHandler(value = {ConstraintViolationException.class})
+//    @ResponseBody
+//    public Result validHandle(ConstraintViolationException e) {
+//        return new Result(false, e.getMessage(), MessageConstant.ERROR);
+//    }
 }

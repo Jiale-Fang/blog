@@ -105,9 +105,6 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         wrapper.eq("blog_id", blog_id);
         // 返回的博客要含有昵称，所以要用vo
         Blog blog = blogDao.selectOne(wrapper);
-        update(new UpdateWrapper<Blog>()
-                .set("views", blog.getViews() + 1)
-                .eq("blog_id", blog_id));
         BlogVo blogVo = new BlogVo();
         User user = userService.getById(blog.getUid());
         BeanUtils.copyProperties(blog, blogVo);
@@ -138,6 +135,16 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         page.setTotal(blogDao.selectCount(wrapper));
         page.setRecords(blogDao.findHomePage(queryPageBean));
         return page;
+    }
+
+    @Override
+    public void setViews(Long blogId) {
+        QueryWrapper<Blog> wrapper = new QueryWrapper<>();
+        wrapper.eq("blog_id", blogId);
+        Blog blog = blogDao.selectOne(wrapper);
+        update(new UpdateWrapper<Blog>()
+                .set("views", blog.getViews() + 1)
+                .eq("blog_id", blogId));
     }
 
     public Page<BlogVo> search(QueryPageBean queryPageBean) {

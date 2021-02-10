@@ -60,5 +60,10 @@ public interface BlogService extends IService<Blog> {
      */
     Page<BlogVo> getByTypeId(QueryPageBean queryPageBean);
 
+    /**
+     * 增加博客浏览量，直接调用getOneBlog方法会导致缓存，致使博客浏览量没有提升
+     * @param blogId
+     */
+    void setViews(Long blogId);
 }
 

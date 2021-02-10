@@ -20,7 +20,7 @@ public class MPAutoGenerator {
     public void testGenerator(){
         //1. 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("G:\\download\\app\\Git\\gitRepos2\\blog\\blog-common\\src\\main\\java");
+        gc.setOutputDir("G:\\download\\app\\Git\\gitRepos2\\blog\\blog-extension\\src\\main\\java");
         gc.setFileOverride(true);
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false
         gc.setEnableCache(false);// XML 二级缓存
@@ -36,7 +36,7 @@ public class MPAutoGenerator {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=GMT%2B8&characterEncoding=UTF-8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/blog-extension?serverTimezone=GMT%2B8&characterEncoding=UTF-8");
         dsc.setUsername("root");
         dsc.setPassword("123456");
 
@@ -54,10 +54,10 @@ public class MPAutoGenerator {
 
         //4.包名策略配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.baomidou");
+        pc.setParent("pers.fjl.extension");
         pc.setMapper("dao");
         pc.setService("service");
-        pc.setModuleName("test");
+//        pc.setModuleName("test");
         pc.setEntity("po");
         pc.setController("controller");
 //        pc.setXml("mapper");
