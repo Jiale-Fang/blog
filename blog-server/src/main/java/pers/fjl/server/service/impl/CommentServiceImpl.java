@@ -29,16 +29,6 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
 
     @Cacheable(value = {"CommentMap"}, key = "#blogId")
     public List<Comment> getCommentList(Long blogId) {
-//        QueryWrapper<Comment> wrapper = new QueryWrapper<>();
-//        wrapper.eq("blog_id",blogId)
-//                .isNull("parent_comment_id");
-//        List<Comment> comments1 = commentDao.selectList(wrapper);
-
-//        wrapper = new QueryWrapper<>();
-//        wrapper.eq("blog_id",blogId)
-//                .isNotNull("parent_comment_id");
-//        List<Comment> comments2 = commentDao.selectList(wrapper);
-
         // 获取一级评论的list
         List<Comment> comments1 = commentDao.selectRootList(blogId);
         // 获取二级评论的list
@@ -110,6 +100,4 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         }
         return rootList;
     }
-
-
 }
