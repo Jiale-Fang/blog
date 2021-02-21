@@ -1,7 +1,7 @@
 @[TOC](入站须知)
 # 一.个人博客简介
 项目地址：http://39.108.136.207 （源码地址在本文末尾）
-## 1.1 页面展示：
+## 1.1 博客主要页面：
 ### &ensp;1.1.1 首页
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210205213646404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210160225997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
@@ -17,7 +17,8 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210160507435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210160625660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ### &ensp;1.1.6 关于我
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210160745369.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221200545642.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+
 ### &ensp;1.1.7 留言页面
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210160955636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ### &ensp;1.1.8 登录页面
@@ -27,26 +28,41 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210203202014905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210205214310257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
-#### &ensp;1.1.9.1 发布博客页面
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210203201455308.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
-### &ensp;1.1.10 后台管理页面
-&ensp;初步完成了分页展示的功能，其余几个页面结构相似，在此不做展示。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210165006799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+## 1.2 博客后台管理页面：
+> &ensp;后台管理主要有三大模块构成：用户管理，博客管理，数据统计构成。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221202824736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### &ensp;1.2.1 用户管理模块
+- 个人信息界面
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204257198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 
+### &ensp;1.2.2 博客管理模块
+- 发布博客页面
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204623704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+- 查看博客页面
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204704429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+- 标签管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204753853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+- 分类管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204804881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### &ensp;1.2.3 数据统计模块
+- 博文数据
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204907962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+- 单篇博客分析
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204922316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 
-## 1.2 功能介绍：
-&ensp;本博客简单实现了博客展示、后台管理、发布博客还有评论等功能，其中后台管理、发布博客和评论功能要在用户登录后才可使用，而后台管理功能目前普通用户只有查看的功能，并没有分配增删改的权限。
-## 1.3 博客介绍
+## 1.3 功能介绍：
+&ensp;本博客简单实现了博客展示、后台管理、发布博客还有评论等功能，其中后台管理、发布博客和评论功能要在用户登录后才可使用，而后台管理的某些功能普通用户只有查看的权限，并没有分配增删改的权限。
+## 1.4 博客介绍
 &ensp;由于博客是由博主一人完成的，所以暂且只做了一些简单的功能，部分地方还是有不完善的地方甚至有bug，欢迎各位在本篇博文下评论处指出。
 
-## 1.4 Tips
-### &ensp;1.4.1 
+## 1.5 Tips
+### &ensp;1.5.1 
 &ensp;编写博客的markdown编辑器在文章过长时，编写栏和预览栏可能会有错位，此时可手动拉动预览栏滚动条）
-### &ensp;1.4.2 
+### &ensp;1.5.2 
 &ensp;暂未设置图片上传功能，涉及图片的上传和使用建议使用网络地址。推荐的图片地址（https://picsum.photos/images#1），使用的时候，将右侧链接的(https://unsplash.it/100/100?image=1002) ***1002*** 改成自己的图片id即可，100/100是图片的尺寸，即长宽。
-### &ensp;1.4.3
+### &ensp;1.5.3
  &ensp;前端的请求没有用baseURL封装到一个js里。
-### &ensp;1.4.4
+### &ensp;1.5.4
  &ensp;由于笔者偷懒，没有使用vuex存储某些共享数据，用的都是sessionstorage。
 
 # 二.前端开发：
@@ -75,6 +91,8 @@
 [弹幕效果 vue-baberrage](https://blog.csdn.net/Dlihctcefrep/article/details/113773737)
 
 [背景的彩带效果 ribbon](https://gitee.com/aaajkcn/ribbon)
+
+[统计图 echarts](https://echarts.apache.org/zh/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts)
 
 # 三.后端开发：
 ## 3.1 简介：
