@@ -30,12 +30,12 @@ public class BaseExceptionHandler {
 //        return new Result(false, e.getMessage(), MessageConstant.ERROR);
 //    }
 //
-//    @ExceptionHandler(value = {RuntimeException.class})
-//    @ResponseBody
-//    public Result runtimeHandler(RuntimeException e) {
-//        System.out.println("出现异常：" + e.getMessage());
-//        return new Result(false, e.getMessage(), MessageConstant.LOGINERROR);
-//    }
+    @ExceptionHandler(value = {RuntimeException.class})
+    @ResponseBody
+    public Result runtimeHandler(RuntimeException e) {
+        System.out.println("出现异常：---------------------------》" + e.getMessage());
+        return new Result(false, e.getMessage(), MessageConstant.LOGINERROR);
+    }
 //
 //    @ExceptionHandler(value = {JWTVerificationException.class})
 //    @ResponseBody

@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Blog;
+import pers.fjl.common.po.ThumbsUp;
 import pers.fjl.common.po.User;
 import pers.fjl.common.vo.AddBlogVo;
 import pers.fjl.common.vo.BlogVo;
 import pers.fjl.server.dao.BlogDao;
+import pers.fjl.server.dao.ThumbsUpDao;
 import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.BlogTagService;
 import pers.fjl.server.service.UserService;
@@ -41,6 +43,8 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
     private BlogTagService blogTagService;
     @Resource
     private UserService userService;
+    @Resource
+    private ThumbsUpDao thumbsUpDao;
 
     private Integer currentPage;
     private Integer pageSize;
@@ -99,6 +103,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         return page;
     }
 
+    @Transactional
     @Cacheable(value = {"BlogMap"}, key = "#blog_id")
     public BlogVo getOneBlog(Long blog_id) {
         QueryWrapper<Blog> wrapper = new QueryWrapper<>();
@@ -145,6 +150,23 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         update(new UpdateWrapper<Blog>()
                 .set("views", blog.getViews() + 1)
                 .eq("blog_id", blogId));
+    }
+
+    @Override
+    public void thumbsUp(Long blogId, Long uid) {
+        QueryWrapper<ThumbsUp> wrapper = new QueryWrapper<>();
+        wrapper.eq("blog_id", blogId)
+                .eq("uid", uid);
+
+        if (thumbsUpDao.selectCount(wrapper) != 0) { // 该用户已点赞过该篇博客
+            thumbsUpDao.delete(wrapper);
+            throw new RuntimeException("取消点赞成功");
+        }
+
+        ThumbsUp thumbsUp = new ThumbsUp();
+        thumbsUp.setBlogId(blogId);
+        thumbsUp.setUid(uid);
+        thumbsUpDao.insert(thumbsUp);
     }
 
     public Page<BlogVo> search(QueryPageBean queryPageBean) {

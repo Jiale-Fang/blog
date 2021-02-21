@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,9 +14,12 @@ import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.po.User;
 import pers.fjl.server.dao.UserDao;
 import pers.fjl.server.service.UserService;
+import pers.fjl.server.utils.BeanUtilsIgnoreNull;
 import pers.fjl.server.utils.RedisUtil;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -67,7 +71,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     }
 
     @Override
-    public boolean verifyCode(String verKey, String code, String realCode) {
+    public boolean verifyCode(String verKey, String code, String realCode) throws RuntimeException {
         redisUtil.del(verKey);  // 验证码是否正确都删除，否则验证错误的验证码会存在redis中无法删除
         if (realCode == null || StringUtils.isEmpty(realCode)) {
             throw new RuntimeException("请输入验证码！");
@@ -78,7 +82,26 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         return true;
     }
 
-    public User login(User user) throws RuntimeException {
+    @Override
+    public boolean updateUser(User user) {
+        User userDB = userDao.selectById(user.getUid());
+        if (userService.UserExist(user.getUsername()) && !userDB.getUsername().equals(user.getUsername())) {
+            throw new RuntimeException("用户名已被注册");
+        }
+        if (user.getPassword() != null && !user.getPassword().equals("")) { // 用户更改了密码
+            System.out.println("修改密码");
+            user.setPassword(encoder.encode(user.getPassword()));
+        } else {
+            user.setPassword(null);
+        }
+        BeanUtilsIgnoreNull.copyPropertiesIgnoreNull(user, userDB);
+        userDB.setUpdateTime(LocalDateTime.now());
+        userDB.setDataStatus(MessageConstant.UserAble);
+        userDao.updateById(userDB);
+        return true;
+    }
+
+    public User login(User user) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.select("uid", "username", "password", "data_status", "nickname", "avatar");
         wrapper.eq("username", user.getUsername());

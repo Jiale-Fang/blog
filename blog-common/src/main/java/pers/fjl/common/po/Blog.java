@@ -79,6 +79,11 @@ public class Blog extends Model<Blog> {
     private String flag;
 
     /**
+     * 点赞数
+     */
+    private Integer thumbs;
+
+    /**
      * 发布状态
      */
     private boolean published;
