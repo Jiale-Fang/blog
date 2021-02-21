@@ -65,5 +65,12 @@ public interface BlogService extends IService<Blog> {
      * @param blogId
      */
     void setViews(Long blogId);
+
+    /**
+     * 点赞
+     * @param blogId
+     * @param uid
+     */
+    void thumbsUp(Long blogId, Long uid);
 }
 

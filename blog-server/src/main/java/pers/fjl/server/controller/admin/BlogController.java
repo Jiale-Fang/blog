@@ -8,8 +8,10 @@ import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.entity.Result;
 import pers.fjl.common.po.User;
 import pers.fjl.common.vo.AddBlogVo;
+import pers.fjl.server.annotation.IpRequired;
 import pers.fjl.server.annotation.LoginRequired;
 import pers.fjl.server.service.BlogService;
+import pers.fjl.server.service.ViewsService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 public class BlogController {
     @Resource
     private BlogService blogService;
+    @Resource
+    private ViewsService viewsService;
 
     @LoginRequired
     @ApiOperation(value = "分页查询", notes = "返回分页数据")
@@ -48,10 +52,18 @@ public class BlogController {
 //    public Result userStateChanged(@PathVariable("id") String id,
 //                                   @PathVariable("dataStatus") boolean dataStatus) {
 
+    @IpRequired
     @GetMapping("/{blogId}")
-    public Result getOneBlog(@PathVariable("blogId") Long blogId){
+    public Result getOneBlog(@PathVariable("blogId") Long blogId, HttpServletRequest request) {
+        viewsService.addViews(blogId, (String) request.getAttribute("host"));
         blogService.setViews(blogId);
         return new Result(true, MessageConstant.OK, "获取博客信息成功", blogService.getOneBlog(blogId));
+    }
+
+    @GetMapping("/{blogId}/{uid}")
+    public Result thumbsUp(@PathVariable("blogId") Long blogId, @PathVariable("uid") Long uid) {
+        blogService.thumbsUp(blogId, uid);
+        return new Result(true, "点赞成功", MessageConstant.OK);
     }
 
 }

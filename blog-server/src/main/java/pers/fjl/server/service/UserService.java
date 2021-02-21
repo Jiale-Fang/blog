@@ -17,7 +17,7 @@ public interface UserService extends IService<User> {
      * 利用jwt登录验证
      *
      * @param user
-     * @return
+     * @return user
      */
     User login(User user);
 
@@ -50,4 +50,11 @@ public interface UserService extends IService<User> {
      * @return boolean
      */
     boolean verifyCode(String verKey, String captcha, String sessionCode);
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return boolean
+     */
+    boolean updateUser(User user);
 }

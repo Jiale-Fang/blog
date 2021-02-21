@@ -1,4 +1,4 @@
-package pers.fjl.server.controller;
+package pers.fjl.server.controller.admin;
 
 
 import io.swagger.annotations.Api;
@@ -34,5 +34,11 @@ public class UserController {
         userService.add(user);
         return new Result(true, "注册成功", MessageConstant.OK);
     }
+
+    @PutMapping("/updateUser")
+    public Result updateUser(@RequestBody User user) {
+        return new Result(true, MessageConstant.OK, "更新用户信息成功", userService.updateUser(user));
+    }
+
 }
 

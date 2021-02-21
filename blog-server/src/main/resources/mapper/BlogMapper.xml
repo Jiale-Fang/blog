@@ -3,7 +3,7 @@
 <mapper namespace="pers.fjl.server.dao.BlogDao">
 
     <select id="findHomePage" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.BlogVo">
-        SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture
+        SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture, b.thumbs
         FROM blog b, user u, type t
         WHERE b.uid = u.uid AND b.type_id = t.type_id
         <if test="queryPageBean.queryString !=null">

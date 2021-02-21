@@ -1,5 +1,6 @@
 package pers.fjl.server;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -14,9 +15,12 @@ import pers.fjl.common.vo.BlogVo;
 import pers.fjl.server.dao.UserDao;
 import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.CommentService;
+import pers.fjl.server.service.ReportService;
 import pers.fjl.server.service.UserService;
+
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -30,9 +34,17 @@ public class MybatisPlusApplicationTest {
     private BCryptPasswordEncoder encoder;
     @Resource
     private BlogService blogService;
+    @Resource
+    private ReportService reportService;
 
     @Test
-    public void getBlogHomePage(){
+    public void getReport() throws Exception {
+        Map<String, Object> report = reportService.getReport(1354747628447477762L);
+        System.out.println(report);
+    }
+
+    @Test
+    public void getBlogHomePage() {
         QueryPageBean queryPageBean = new QueryPageBean();
         queryPageBean.setCurrentPage(1);
         queryPageBean.setPageSize(3);
@@ -54,7 +66,19 @@ public class MybatisPlusApplicationTest {
     }
 
     @Test
-    public void getCommentList(){
+    public void updateUser() {
+        String password = "123456";
+        userDao.updatePassword(1L,encoder.encode(password));
+//        QueryWrapper<User> wrapper = new QueryWrapper<>();
+//        wrapper.eq("username", "rosie");
+//        User userDB = userDao.selectOne(wrapper);
+//        userDB.setNickname("朴彩英2");
+//        userDB.setPassword(encoder.encode(password));
+//        userDao.updateById(userDB);
+    }
+
+    @Test
+    public void getCommentList() {
         List<Comment> commentList = commentService.getCommentList(1L);
         System.out.println(commentList);
     }
@@ -63,8 +87,8 @@ public class MybatisPlusApplicationTest {
      * 递归删除评论
      */
     @Test
-    public void delComment(){
-        commentService.delComment(1354977782910414850L,1355503370591002626L,84351321231233L);
+    public void delComment() {
+        commentService.delComment(1354977782910414850L, 1355503370591002626L, 84351321231233L);
     }
 
     /**
