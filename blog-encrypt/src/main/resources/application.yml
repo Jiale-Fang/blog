@@ -22,6 +22,12 @@ zuul:
       strip-prefix: true #所有的/server的请求都进行转发
       sentiviteHeaders:
       customSensitiveHeaders: true #让zuul网关处理cookie和重定向
+    blog-search: #ElasticSearch搜索服务
+      path: /es/** #配置请求URL的请求规则
+      serviceId: blog-search #指定Eureka注册中心中的服务id
+      strip-prefix: true #所有的/es的请求都进行转发
+      sentiviteHeaders:
+      customSensitiveHeaders: true #让zuul网关处理cookie和重定向
 
 hystrix:
   command:
