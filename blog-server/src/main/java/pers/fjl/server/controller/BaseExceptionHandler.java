@@ -1,14 +1,11 @@
 package pers.fjl.server.controller;
 
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.Result;
-
-import javax.validation.ConstraintViolationException;
 
 /**
  * 异常处理控制器

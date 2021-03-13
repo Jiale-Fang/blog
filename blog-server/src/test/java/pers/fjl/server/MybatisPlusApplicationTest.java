@@ -55,11 +55,11 @@ public class MybatisPlusApplicationTest {
 
     @Test
     public void insertUser() {
-        String pass = "kllxdwh";
+        String pass = "888888";
         String hashPass = encoder.encode(pass);
         User user = new User();
-        user.setUsername("fjl");
-        user.setNickname("方嘉乐");
+        user.setUsername("zhangsan");
+        user.setNickname("张三");
         user.setPassword(hashPass);
         user.setDataStatus(true);
         userDao.insert(user);

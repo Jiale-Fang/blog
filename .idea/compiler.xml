@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="blog-common" />
-        <module name="blog-server" />
         <module name="blog-extension" />
+        <module name="blog-server" />
+        <module name="blog-search-api" />
+        <module name="blog-common" />
         <module name="blog-encrypt" />
         <module name="blog-eureka" />
       </profile>
@@ -20,6 +21,7 @@
       <module name="blog-encrypt" options="-parameters" />
       <module name="blog-eureka" options="-parameters" />
       <module name="blog-extension" options="-parameters" />
+      <module name="blog-search-api" options="-parameters" />
       <module name="blog-server" options="-parameters" />
     </option>
   </component>

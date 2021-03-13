@@ -24,12 +24,12 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, Message> impleme
     @Resource
     private MessageDao messageDao;
 
-    @Cacheable(value = {"MessageMap"})
+    @Cacheable(value = {"MessageMap"}, key = "'MessageMap'")
     public List<Message> getMessageList() {
         return messageDao.selectList(null);
     }
 
-    @CacheEvict(value = {"MessageMap"})
+    @CacheEvict(value = {"MessageMap"}, key = "'MessageMap'")
     public boolean addMessage(Message message) {
         int i = messageDao.insert(message);
         if (i != 1) {

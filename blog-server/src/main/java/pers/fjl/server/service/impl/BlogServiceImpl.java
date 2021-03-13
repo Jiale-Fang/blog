@@ -23,7 +23,6 @@ import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.BlogTagService;
 import pers.fjl.server.service.UserService;
 import pers.fjl.server.utils.MarkdownUtils;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -167,6 +166,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         thumbsUp.setBlogId(blogId);
         thumbsUp.setUid(uid);
         thumbsUpDao.insert(thumbsUp);
+    }
+
+    @Override
+    public List<BlogVo> findAll() {
+        return blogDao.findAll();
     }
 
     public Page<BlogVo> search(QueryPageBean queryPageBean) {

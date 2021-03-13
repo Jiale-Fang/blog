@@ -7,7 +7,7 @@
         FROM blog b, user u, type t
         WHERE b.uid = u.uid AND b.type_id = t.type_id
         <if test="queryPageBean.queryString !=null">
-        AND b.content LIKE '%${queryPageBean.queryString}%'
+        AND b.content LIKE '%${queryPageBean.queryString}%' OR b.title LIKE '%${queryPageBean.queryString}%'
         </if>
         <if test="queryPageBean.typeId !=null">
             AND b.type_id = #{queryPageBean.typeId}

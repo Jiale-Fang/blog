@@ -72,5 +72,10 @@ public interface BlogService extends IService<Blog> {
      * @param uid
      */
     void thumbsUp(Long blogId, Long uid);
+
+    /**
+     * 查出所有的blog
+     */
+    List<BlogVo> findAll();
 }
 
