@@ -40,4 +40,13 @@ public interface BlogDao extends BaseMapper<Blog> {
      */
     List<BlogVo> findHomePage(@Param("queryPageBean")QueryPageBean queryPageBean);
 
+    /**
+     * 获取博所有博客
+     * @param
+     * @return List
+     */
+    @Select("SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag, b.update_time, b.title, b.flag, b.first_picture, b.thumbs " +
+            "        FROM blog b, user u, type t " +
+            "        WHERE b.uid = u.uid AND b.type_id = t.type_id")
+    List<BlogVo> findAll();
 }
