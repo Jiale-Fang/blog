@@ -1,0 +1,11 @@
+server:
+  port: 6868
+spring:
+  profiles:
+    active: dev
+  application:
+    name: blog-eureka
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
