@@ -1,6 +1,7 @@
-@[TOC](入站须知)
+入站须知
 # 一.个人博客简介
 项目地址：http://39.108.136.207 （源码地址在本文末尾）
+> 需要知道的，项目有两个版本，master分支是已经上线了的项目源码地址，dev分支则是我后来加的ElasticSearch，至于为什么不放到服务器上，是因为ElasticSearch太占内存了，阿里云1核两G的学生机根本跑不起来，所以只能在本地用VMware创建虚拟机跑一下玩玩。
 ## 1.1 博客主要页面：
 ### &ensp;1.1.1 首页
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210205213646404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
@@ -52,6 +53,7 @@
 
 ## 1.3 功能介绍：
 &ensp;本博客简单实现了博客展示、后台管理、发布博客还有评论等功能，其中后台管理、发布博客和评论功能要在用户登录后才可使用，而后台管理的某些功能普通用户只有查看的权限，并没有分配增删改的权限。
+>&emsp;需要知道的，项目有两个版本，master分支是已经上线了的项目源码地址，dev分支则是我后来加的ElasticSearch，至于为什么不放到服务器上，是因为ElasticSearch太占内存了，阿里云1核两G的学生机根本跑不起来，所以只能在本地用VMware创建虚拟机跑一下玩玩。
 ## 1.4 博客介绍
 &ensp;由于博客是由博主一人完成的，所以暂且只做了一些简单的功能，部分地方还是有不完善的地方甚至有bug，欢迎各位在本篇博文下评论处指出。
 
@@ -97,23 +99,22 @@
 # 三.后端开发：
 ## 3.1 简介：
 &ensp;***https://gitee.com/fang-jiale/blog***（后端源码地址）
->- 大致框架采用了SpringBoot+MybatisPlus+SpringCloud(Eureka)完成的，用redis做缓存中间件，采用微服务的架构。
+>- 大致框架采用了SpringBoot+MybatisPlus+SpringCloud(Eureka)+ElasticSearch完成的，用redis做缓存中间件，采用微服务的架构。
 >- 安全方面采用了SpringSecurity和BCEncrypt
 >- 用了jwt来请求访问接口
 >- 利用RSA算法对前端发送的重要参数进行加密，经过网关解密后把参数发送到后端服务器。
 
-
 ## 3.2 项目结构：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210175739859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021031320105054.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 >项目是由五个模块组成的，
 >- blog-common: 博客服务端的实体类
 >- blog-encrypt: 博客的服务代理类（从前端接收请求，网关RSA解密后转发给服务端接口）
 > - blog-eureka: 微服务注册中心server
 > - blog-server: 主体服务端
 > - blog-extension: 拓展服务端（留言和友链功能）
+> - **blog-search-api:** **ElasticSearch的服务端，在dev分支才有该模块，master分支中没有。**
 
 ## 3.3 开发中遇到的一些问题：
-&ensp;
 ### 3.3.1 关于jwt与zuul
 &ensp;本人使用自定义注解@LoginRequired来对某些类或者接口进行jwt验证，但是在一开始加入网关微服务的时候，发现后端用了jwt验证的接口一直访问不通过。在浏览器看，发的请求的请求头明明都带上了token，这是一开始百思不得其解的地方之一。
 >&ensp;后来才得知，原来是在网关转发前端的请求后，再把请求转发给后端服务器时，请求头中的token丢失，于是只能在网关filter里面，**在转发请求给后端前，手动的把token加到头部。**
@@ -263,10 +264,17 @@ public class RSARequestFilter extends ZuulFilter {
 &ensp;获取到前端的加密请求参数时，还有对其进行URLdecode解码，然而加密后的数据中的空格依旧没有转换成加号，此时就得自己用字符串替换。前端传来的数据要进行解码否则就会有%2F,%3D等出现，其次base64编码的+号会变成空格，要对字符串进行处理重新变为＋号，关于转码问题可以参考: [这篇文章](https://www.cnblogs.com/hongdada/p/10338015.html)。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021019475237.png)
 
-
 ### 3.4 有意思的插件
 -  captcha：自动生成验证码
 - commonmark：将markdown格式的文章转换成html格式的显示在页面
+### 3.5 关于ELK
+&emsp;之前一直没做项目关于ElasticSearch的整合，是因为不知道项目如果采用了ES后，对数据库的操作该怎么实现。
+>例如：当我更改数据库的数据时，还要同步ES索引中的数据，这也未免太过繁琐。此外，数据库中的多对多、一对多关系在ES索引中该如何表示？Linux系统下该怎么部署ES？
 
+&emsp;后来查阅资料，才明白不一定要把数据库表的所有字段都存在索引中，只需要存我们需要的字段即可，ES的查询速度比mysql确实快的不止一星半点，并且还有IK分词器对搜索词分词，然后进行得分排序显示查询出来的结果。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210313202539208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+&emsp;然后要说的就是Logstash了，就是他完成了数据库和索引的实时同步（最快就是一分钟同步一次），不过只能实现增量同步。
+ [具体关于ELK的配置，还请各位点击我的这篇文章，其中有详细说明。](https://blog.csdn.net/Dlihctcefrep/article/details/114641093)
+&ensp; 
 >&ensp;  项目涉及增删改查的部分还是挺好理解的，各位看看源码应该都能理解，所以笔者在此不再赘述。
 >&ensp;如果这篇文章对你有帮助，**麻烦点个赞，并star一下仓库**，有问题请在评论处指出，感谢各位支持！
