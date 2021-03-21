@@ -37,7 +37,7 @@ public class MPAutoGenerator {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=GMT%2B8&characterEncoding=UTF-8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/blog-extension?serverTimezone=GMT%2B8&characterEncoding=UTF-8");
         dsc.setUsername("root");
         dsc.setPassword("123456");
 
