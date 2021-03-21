@@ -1,10 +1,12 @@
-入站须知
+(入站须知)
+
+**使用该源码希望能够注明原博客以及源码出处，并禁止商用，谢谢！**
 # 一.个人博客简介
 项目地址：http://39.108.136.207 （源码地址在本文末尾）
-> 需要知道的，项目有两个版本，master分支是已经上线了的项目源码地址，dev分支则是我后来加的ElasticSearch，至于为什么不放到服务器上，是因为ElasticSearch太占内存了，阿里云1核两G的学生机根本跑不起来，所以只能在本地用VMware创建虚拟机跑一下玩玩。
 ## 1.1 博客主要页面：
 ### &ensp;1.1.1 首页
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210205213646404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021032119414418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210210160225997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 
 ### &ensp;1.1.2 分类页
@@ -29,8 +31,13 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210203202014905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210205214310257.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### &ensp;1.1.10 爬虫页面
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321171848526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+&ensp;从csdn爬取了三千篇文章放到数据库做文本分类的训练集，仅做学习使用。
+
 ## 1.2 博客后台管理页面：
 > &ensp;后台管理主要有三大模块构成：用户管理，博客管理，数据统计构成。
+> 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221202824736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 ### &ensp;1.2.1 用户管理模块
 - 个人信息界面
@@ -50,21 +57,43 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204907962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 - 单篇博客分析
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221204922316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+## 1.3 网站音乐盒模块（仿网易云）：
+>&emsp; 后花园中的音乐盒有，五个主要模块组成：发现音乐，推荐歌单，最新音乐，最新MV，搜索模块。后台接口调用的是网易云的api
+### 1.3.1 发现音乐：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321194751139.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321194837438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.2 推荐歌单：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/202103211949390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.3 最新音乐：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195128379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.4 最新MV：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195157688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.5 搜索详情页：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195339192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195352504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195401665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.6 MV详情页：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195450182.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.7 歌单详情页：
 
-## 1.3 功能介绍：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195701878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+### 1.3.8 评论详情：
+&ensp;歌单和MV中都有评论
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195815619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321195845890.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+
+## 1.4 功能介绍：
 &ensp;本博客简单实现了博客展示、后台管理、发布博客还有评论等功能，其中后台管理、发布博客和评论功能要在用户登录后才可使用，而后台管理的某些功能普通用户只有查看的权限，并没有分配增删改的权限。
 >&emsp;需要知道的，项目有两个版本，master分支是已经上线了的项目源码地址，dev分支则是我后来加的ElasticSearch，至于为什么不放到服务器上，是因为ElasticSearch太占内存了，阿里云1核两G的学生机根本跑不起来，所以只能在本地用VMware创建虚拟机跑一下玩玩。
-## 1.4 博客介绍
+## 1.5 博客介绍
 &ensp;由于博客是由博主一人完成的，所以暂且只做了一些简单的功能，部分地方还是有不完善的地方甚至有bug，欢迎各位在本篇博文下评论处指出。
 
-## 1.5 Tips
-### &ensp;1.5.1 
+## 1.6 Tips
+### &ensp;1.6.1 
 &ensp;编写博客的markdown编辑器在文章过长时，编写栏和预览栏可能会有错位，此时可手动拉动预览栏滚动条）
-### &ensp;1.5.2 
+### &ensp;1.6.2 
 &ensp;暂未设置图片上传功能，涉及图片的上传和使用建议使用网络地址。推荐的图片地址（https://picsum.photos/images#1），使用的时候，将右侧链接的(https://unsplash.it/100/100?image=1002) ***1002*** 改成自己的图片id即可，100/100是图片的尺寸，即长宽。
-### &ensp;1.5.3
+### &ensp;1.6.3
  &ensp;前端的请求没有用baseURL封装到一个js里。
-### &ensp;1.5.4
+### &ensp;1.6.4
  &ensp;由于笔者偷懒，没有使用vuex存储某些共享数据，用的都是sessionstorage。
 
 # 二.前端开发：
@@ -96,6 +125,7 @@
 
 [统计图 echarts](https://echarts.apache.org/zh/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts)
 
+[音乐播放器 vue-aplayer](https://aplayer.netlify.app/docs/guide/)
 # 三.后端开发：
 ## 3.1 简介：
 &ensp;***https://gitee.com/fang-jiale/blog***（后端源码地址）
@@ -103,16 +133,18 @@
 >- 安全方面采用了SpringSecurity和BCEncrypt
 >- 用了jwt来请求访问接口
 >- 利用RSA算法对前端发送的重要参数进行加密，经过网关解密后把参数发送到后端服务器。
+>- 由于服务器内存和配置的原因，服务器只上线了四个模块
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321201208846.png)
 
-## 3.2 项目结构：
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021031320105054.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
->项目是由五个模块组成的，
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321200814120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+>项目是由七个模块组成的，
 >- blog-common: 博客服务端的实体类
 >- blog-encrypt: 博客的服务代理类（从前端接收请求，网关RSA解密后转发给服务端接口）
 > - blog-eureka: 微服务注册中心server
 > - blog-server: 主体服务端
 > - blog-extension: 拓展服务端（留言和友链功能）
 > - **blog-search-api:** **ElasticSearch的服务端，在dev分支才有该模块，master分支中没有。**
+> - blog-article-crawler：爬虫和人工智能模块，用的webmagic框架爬取数据，deeplearning4j做文本分类
 
 ## 3.3 开发中遇到的一些问题：
 ### 3.3.1 关于jwt与zuul
@@ -267,6 +299,7 @@ public class RSARequestFilter extends ZuulFilter {
 ### 3.4 有意思的插件
 -  captcha：自动生成验证码
 - commonmark：将markdown格式的文章转换成html格式的显示在页面
+- NeteaseCloudMusicApi：网易云音乐后台数据的api接口
 ### 3.5 关于ELK
 &emsp;之前一直没做项目关于ElasticSearch的整合，是因为不知道项目如果采用了ES后，对数据库的操作该怎么实现。
 >例如：当我更改数据库的数据时，还要同步ES索引中的数据，这也未免太过繁琐。此外，数据库中的多对多、一对多关系在ES索引中该如何表示？Linux系统下该怎么部署ES？
@@ -276,5 +309,18 @@ public class RSARequestFilter extends ZuulFilter {
 &emsp;然后要说的就是Logstash了，就是他完成了数据库和索引的实时同步（最快就是一分钟同步一次），不过只能实现增量同步。
  [具体关于ELK的配置，还请各位点击我的这篇文章，其中有详细说明。](https://blog.csdn.net/Dlihctcefrep/article/details/114641093)
 &ensp; 
+
+### 3.6 关于AI和爬虫模块
+&ensp; 用了三千篇从csdn上爬取下来的文章做训练集。总共迭代了二十次，词向量维度是200，用DeepLearning4j的cnn文本分类算法，但是最终算法效果还是差强人意。对于MachineLearning而言，这些数据量属实太少，但是仅仅迭代了这么少的数据量和次数，都要花费笔者四五十分钟的时间。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321202044482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321202132263.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321202304392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321202310544.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+>&ensp;  根据爬取下来的三千篇文章的内容和标题做的分词，以及词向量分析，算法就不在此细说了，用的都是别人的，源码中都有。
+>&ensp; **值得一提的是，在使用webmagic根据页面元素的Xpath获取指定数据的过程还是挺有趣的**
+>
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210321202752694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+
+
 >&ensp;  项目涉及增删改查的部分还是挺好理解的，各位看看源码应该都能理解，所以笔者在此不再赘述。
 >&ensp;如果这篇文章对你有帮助，**麻烦点个赞，并star一下仓库**，有问题请在评论处指出，感谢各位支持！
