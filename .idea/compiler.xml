@@ -6,19 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="blog-common" />
-        <module name="blog-server" />
         <module name="blog-extension" />
+        <module name="blog-server" />
+        <module name="blog-article-crawler" />
+        <module name="blog-common" />
         <module name="blog-encrypt" />
         <module name="blog-eureka" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="blog-search-api" target="8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="blog-article-crawler" options="-parameters" />
       <module name="blog-common" options="-parameters" />
       <module name="blog-encrypt" options="-parameters" />
       <module name="blog-eureka" options="-parameters" />

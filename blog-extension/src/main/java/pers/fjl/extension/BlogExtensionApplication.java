@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 @EnableCaching
-@EnableEurekaClient
+//@EnableEurekaClient
 @MapperScan("pers.fjl.extension.dao")
 public class BlogExtensionApplication {
 
