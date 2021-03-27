@@ -2,14 +2,16 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/blog-article-crawler/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-article-crawler/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-common/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/blog-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-encrypt/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-encrypt/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-eureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-eureka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-extension/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-extension/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/blog-server/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
