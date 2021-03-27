@@ -1,8 +1,9 @@
-(入站须知)
-
+@[TOC](入站须知)
 **使用该源码希望能够注明原博客以及源码出处，并禁止商用，谢谢！**
 # 一.个人博客简介
-项目地址：http://39.108.136.207 （源码地址在本文末尾）
+项目地址：http://39.108.136.207 （源码地址在本文末尾），感谢阿里云爸爸，送了一个两个月的2核4g的服务器，现在搜索模块也用上了elasticsearch
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210327193121530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
+
 ## 1.1 博客主要页面：
 ### &ensp;1.1.1 首页
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021032119414418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
@@ -82,7 +83,6 @@
 
 ## 1.4 功能介绍：
 &ensp;本博客简单实现了博客展示、后台管理、发布博客还有评论等功能，其中后台管理、发布博客和评论功能要在用户登录后才可使用，而后台管理的某些功能普通用户只有查看的权限，并没有分配增删改的权限。
->&emsp;需要知道的，项目有两个版本，master分支是已经上线了的项目源码地址，dev分支则是我后来加的ElasticSearch，至于为什么不放到服务器上，是因为ElasticSearch太占内存了，阿里云1核两G的学生机根本跑不起来，所以只能在本地用VMware创建虚拟机跑一下玩玩。
 ## 1.5 博客介绍
 &ensp;由于博客是由博主一人完成的，所以暂且只做了一些简单的功能，部分地方还是有不完善的地方甚至有bug，欢迎各位在本篇博文下评论处指出。
 
@@ -142,8 +142,8 @@
 >- blog-encrypt: 博客的服务代理类（从前端接收请求，网关RSA解密后转发给服务端接口）
 > - blog-eureka: 微服务注册中心server
 > - blog-server: 主体服务端
-> - blog-extension: 拓展服务端（留言和友链功能）
-> - **blog-search-api:** **ElasticSearch的服务端，在dev分支才有该模块，master分支中没有。**
+> - blog-extension: 拓展服务端（留言和友链功能），上线的版本集成了blog-search-api模块，因为阿里云服务器内存太小了
+> - **blog-search-api:** **ElasticSearch的服务端，分出一个模块是为了更清晰的展现微服务架构，但是服务器内存太小，所以集成在上述模块中，自己开发可以直接使用本模块**
 > - blog-article-crawler：爬虫和人工智能模块，用的webmagic框架爬取数据，deeplearning4j做文本分类
 
 ## 3.3 开发中遇到的一些问题：
