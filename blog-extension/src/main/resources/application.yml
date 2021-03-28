@@ -5,6 +5,10 @@ spring:
     active: prod
   application:
     name: blog-extension #指定服务名
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 119.23.62.26:9300
 
 # Mybatis-Plus 配置
 mybatis-plus:

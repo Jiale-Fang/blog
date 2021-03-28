@@ -55,7 +55,7 @@ public class MybatisPlusApplicationTest {
 
     @Test
     public void insertUser() {
-        String pass = "kllxdwh";
+        String pass = "aa";
         String hashPass = encoder.encode(pass);
         User user = new User();
         user.setUsername("fjl");
