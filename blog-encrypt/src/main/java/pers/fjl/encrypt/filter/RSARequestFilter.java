@@ -88,17 +88,17 @@ public class RSARequestFilter extends ZuulFilter {
             String s = URLDecoder.decode(requestData, "UTF-8");
             String s2 = s.replace(' ', '+');
             if (requestData != null && s2 != null) {
-                System.out.println("加密后" + requestData);
-                System.out.println("替换后" + s2);
+//                System.out.println("加密后" + requestData);
+//                System.out.println("替换后" + s2);
             }
             //对加密后的数据进行解密
             if (!Strings.isNullOrEmpty(s2)) {
                 try {
                     decryptData = rsaService.RSADecryptDataPEM(s2, RsaKeys.getServerPrvKeyPkcs8());
                 } catch (BadPaddingException e) {
-                    System.out.println("网关发送的是明文数据");
+//                    System.out.println("网关发送的是明文数据");
                 }
-                System.out.println("解密后" + decryptData);
+//                System.out.println("解密后" + decryptData);
             }
 
             if (!Strings.isNullOrEmpty(decryptData)) {

@@ -10,6 +10,7 @@
         <module name="blog-server" />
         <module name="blog-article-crawler" />
         <module name="blog-common" />
+        <module name="blog-ai" />
         <module name="blog-encrypt" />
         <module name="blog-eureka" />
       </profile>
@@ -17,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="blog-ai" options="-parameters" />
       <module name="blog-article-crawler" options="-parameters" />
       <module name="blog-common" options="-parameters" />
       <module name="blog-encrypt" options="-parameters" />

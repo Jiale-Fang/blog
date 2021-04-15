@@ -20,6 +20,7 @@ import pers.fjl.server.utils.RedisUtil;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +51,7 @@ public class IndexAdminController {
         BeanUtils.copyProperties(userVo, user);
         userService.verifyCode(userVo.getVerKey(), userVo.getCode(), (String) redisUtil.get(userVo.getVerKey())); // 验证如果不通过，后台直接抛异常
         log.info("用户名:[{}]", user.getUsername());
+        request.getSession().setAttribute("username", user.getUsername());   // 给websocket取出
         log.info("密码:[{}]", user.getPassword());
         try {
             //认证成功，生成jwt令牌
