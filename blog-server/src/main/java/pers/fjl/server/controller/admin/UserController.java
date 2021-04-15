@@ -40,5 +40,10 @@ public class UserController {
         return new Result(true, MessageConstant.OK, "更新用户信息成功", userService.updateUser(user));
     }
 
+    @GetMapping("/getUserList")
+    public Result getUserList(){
+        return new Result(true, MessageConstant.OK, "获取用户信息成功", userService.getUserList());
+    }
+
 }
 

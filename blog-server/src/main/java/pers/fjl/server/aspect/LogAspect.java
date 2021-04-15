@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author fangjiale 2021年01月26日
  */
-@Aspect
-@Slf4j
-@Component
-public class LogAspect {
+//@Aspect
+//@Slf4j
+//@Component
+//public class LogAspect {
 //
 //    //    @Pointcut("execution(* pers.fjl.server.*.*(..))")
 //    @Pointcut("within(pers.fjl.server..*)")
@@ -54,4 +54,4 @@ public class LogAspect {
 //    }
 //
 
-}
+//}

@@ -3,6 +3,8 @@ package pers.fjl.server.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.po.User;
 
+import java.util.List;
+
 
 /**
  * <p>
@@ -57,4 +59,12 @@ public interface UserService extends IService<User> {
      * @return boolean
      */
     boolean updateUser(User user);
+
+    /**
+     * 获取本站用户列表
+     * @return
+     */
+    List<User> getUserList();
+
+    User selectByUsername(String username);
 }

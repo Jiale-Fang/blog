@@ -34,7 +34,7 @@ public class BaseExceptionHandler {
     @ResponseBody
     public Result runtimeHandler(RuntimeException e) {
         System.out.println("出现异常：---------------------------》" + e.getMessage());
-        return new Result(false, e.getMessage(), MessageConstant.LOGINERROR);
+        return new Result(false, e.getMessage(), MessageConstant.RUNTIMEERROR);
     }
 //
 //    @ExceptionHandler(value = {JWTVerificationException.class})

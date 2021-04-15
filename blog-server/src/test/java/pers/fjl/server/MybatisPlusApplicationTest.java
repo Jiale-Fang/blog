@@ -19,11 +19,15 @@ import pers.fjl.server.service.ReportService;
 import pers.fjl.server.service.UserService;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest
 @Slf4j
 public class MybatisPlusApplicationTest {
     @Resource
@@ -102,6 +106,18 @@ public class MybatisPlusApplicationTest {
 //            userDao.updatePassword("145373837323121238", hashPass);
 ////        }
 //    }
+
+    @Test
+    public void isImagesTrue() throws IOException {
+        int max=1000;
+        int min=1;
+        Random random = new Random();
+
+        int s = random.nextInt(max)%(max-min+1) + min;
+        String picUrl = "https://unsplash.it/100/100?image="+s;
+        System.out.println(picUrl);
+    }
+
 }
 
 

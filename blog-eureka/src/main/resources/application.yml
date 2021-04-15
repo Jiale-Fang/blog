@@ -1,8 +1,8 @@
 server:
-  port: 6868
+  port: 8686
 spring:
   profiles:
-    active: dev
+    active: prod
   application:
     name: blog-eureka
 ribbon:
