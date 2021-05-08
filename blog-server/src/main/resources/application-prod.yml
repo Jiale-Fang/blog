@@ -1,11 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.108.136.207:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    url: jdbc:mysql://xx/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
-    password: kllxdwh
+    password: xx
   redis:
-    host: 39.108.136.207
+    host: xx
 
 logging:
   level:

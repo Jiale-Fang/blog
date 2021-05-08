@@ -8,7 +8,7 @@ spring:
   data:
     elasticsearch:
       cluster-name: elasticsearch
-      cluster-nodes: xx:9300
+      cluster-nodes: 119.23.62.26:9300
 
 # Mybatis-Plus 配置
 mybatis-plus:

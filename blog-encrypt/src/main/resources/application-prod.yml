@@ -4,6 +4,6 @@ ribbon:
 eureka:
   client:
     service-url:
-      defaultZone: http://xxx/eureka/
+      defaultZone: http://xx/eureka/
   instance:
     prefer-ip-address: true
