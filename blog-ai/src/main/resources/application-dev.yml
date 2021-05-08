@@ -1,0 +1,3 @@
+ai:
+  pythonPath: G:\download\python\TensorFlow\Miniconda\python.exe #python路径
+  pyPath: G:\download\python\project\DeepLearningExamples-master\tf2-rnn-poetry-generator\eval.py  #脚本路径

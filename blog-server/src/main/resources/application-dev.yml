@@ -9,14 +9,18 @@ spring:
 
 logging:
   level:
-    root: info
+    root: warn
     pers.fjl.server: debug
   file:
-    path: log/blog-dev.log
+    path: log/blog-prod.log
+
+ribbon:
+  ReadTimeout: 600000000
+  ConnectTimeout: 600000000
+
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:6868/eureka/
+      defaultZone: http://127.0.0.1:8686/eureka/
   instance:
     prefer-ip-address: true
-

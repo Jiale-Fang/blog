@@ -1,11 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://xx:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    url: jdbc:mysql://39.108.136.207:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
-    password: 123456
+    password: kllxdwh
   redis:
-    host: xxx
+    host: 39.108.136.207
 
 logging:
   level:
@@ -13,9 +13,14 @@ logging:
     pers.fjl.server: debug
   file:
     path: log/blog-prod.log
+
+ribbon:
+  ReadTimeout: 600000000
+  ConnectTimeout: 600000000
+
 eureka:
   client:
     service-url:
-      defaultZone: http://xxx:6868/eureka/
+      defaultZone: http://xx/eureka/
   instance:
     prefer-ip-address: true

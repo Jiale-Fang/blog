@@ -2,13 +2,13 @@ server:
   port: 9001
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: blog-encrypt
 zuul:
   host:
-    connect-timeout-millis: 6000000
-    socket-timeout-millis: 1000000
+    connect-timeout-millis: 60000000
+    socket-timeout-millis: 60000000
   routes:
     blog-extension: #博客的拓展服务端
       path: /extension/** #配置请求URL的请求规则
@@ -29,25 +29,33 @@ zuul:
       sentiviteHeaders:
       customSensitiveHeaders: true #让zuul网关处理cookie和重定向
 
+# Disable Hystrix timeout globally (for all services)
 hystrix:
-  threadpool:
-    default:
-      coreSize: 100
   command:
     default:
-      fallback:
-        isolation:
-          semaphore:
-            maxConcurrentRequests: 50
       execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 360000
-  metrics:
-    enabled:
-ribbon:
-  eureka:
-    enabled: true
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
+        timeout:
+          enabled: false
+
+#hystrix:
+#  threadpool:
+#    default:
+#      coreSize: 100
+#  command:
+#    default:
+#      fallback:
+#        isolation:
+#          semaphore:
+#            maxConcurrentRequests: 50
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 360000
+#  metrics:
+#    enabled:
+#ribbon:
+#  eureka:
+#    enabled: true
+#  ReadTimeout: 60000
+#  ConnectTimeout: 60000
 
