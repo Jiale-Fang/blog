@@ -1,14 +1,17 @@
 package pers.fjl.crawler.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.nn.graph.ComputationGraph;
+import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.util.ModelSerializer;
+import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.exception.ND4JIllegalStateException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import pers.fjl.common.utils.IKUtil;
 import pers.fjl.crawler.util.CnnUtil;
+import pers.fjl.crawler.util.IKUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,15 +43,35 @@ public class CnnService {
         try {
             // 创建计算图对象
             ComputationGraph computationGraph = CnnUtil.createComputationGraph(100);
+            System.out.println(computationGraph.summary());
             // 加载词向量，训练数据集
-            String[] childPaths = {"java", "ops", "python"};
-            DataSetIterator dataSetIterator = CnnUtil.getDataSetIterator(dataPath, childPaths, vecModel);
-            // 训练
-            computationGraph.fit(dataSetIterator);
-            // 删除之前生成卷积模型
+            String[] childPaths = { "db","java", "python"};
+            DataSetIterator dataSetIterator = CnnUtil.getDataSetIterator(dataPath, childPaths, vecModel,32);
+            DataSetIterator testIter = CnnUtil.getDataSetIterator(dataPath, childPaths, vecModel,1);
+            //使用单条记录并且打印每一层网络的输入和输出信息
+            INDArray input = testIter.next().getFeatures();
+            System.out.println(input.shapeInfoToString());
+            Map<String, INDArray> map = computationGraph.feedForward(input, false);
+            for (Map.Entry<String, INDArray> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + ":" + entry.getValue().shapeInfoToString());
+                System.out.println();
+            }
 
-            // 保存
+            // 训练开始
+            System.out.println("Starting training");
+            computationGraph.setListeners(new ScoreIterationListener(1));
+            for (int i = 0; i < 20; i++){
+                computationGraph.fit(dataSetIterator);
+                System.out.println("Epoch " + i + " complete. Starting evaluation:");
+                Evaluation evaluation = computationGraph.evaluate(dataSetIterator);
+                dataSetIterator.reset();
+                testIter.reset();
+                System.out.println(evaluation.stats());
+            }
+
+            // 删除之前生成卷积模型
             new File(cnnModel).delete();
+            // 保存
             ModelSerializer.writeModel(computationGraph, cnnModel, true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,14 +79,14 @@ public class CnnService {
     }
 
     /**
-     * 返回各分类的百分比
+     * 返回各博客分类的百分比
      *
      * @param content
      * @return
      */
     public Map textClassify(String content) {
         System.out.println("content:" + content); //分词
-        String[] childPaths = {"java", "ops", "python"}; //获取预言结果
+        String[] childPaths = { "db","java", "python"}; //获取预言结果
         Map<String, Double> predictions = null;
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("article.cnnmodel");
         try {

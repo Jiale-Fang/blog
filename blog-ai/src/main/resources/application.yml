@@ -1,0 +1,8 @@
+server:
+  port: 9007
+spring:
+  profiles:
+    active: prod
+  application:
+    name: blog‐ai
+

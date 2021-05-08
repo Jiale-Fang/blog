@@ -24,7 +24,9 @@ public class HTMLUtil {
         Pattern p_html = Pattern.compile(regEx_html, Pattern.CASE_INSENSITIVE);
         Matcher m_html = p_html.matcher(htmlStr);
         htmlStr = m_html.replaceAll("");//过滤html标签
-
+        htmlStr = htmlStr.replaceAll ("nbsp", "");
+        htmlStr = htmlStr.replaceAll ("lt;", "");
+        htmlStr = htmlStr.replaceAll ("gt;", "");
         return htmlStr.trim();//返回文本字符串
     }
 }

@@ -9,13 +9,18 @@ import org.deeplearning4j.nn.conf.ComputationGraphConfiguration;
 import org.deeplearning4j.nn.conf.ConvolutionMode;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.graph.MergeVertex;
+import org.deeplearning4j.nn.conf.inputs.InputType;
 import org.deeplearning4j.nn.conf.layers.ConvolutionLayer;
 import org.deeplearning4j.nn.conf.layers.GlobalPoolingLayer;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
+import org.deeplearning4j.nn.conf.layers.PoolingType;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.util.ModelSerializer;
+import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.learning.config.Adam;
+import org.nd4j.linalg.lossfunctions.LossFunctions;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,10 +40,12 @@ public class CnnUtil {
      */
     public static ComputationGraph createComputationGraph(int cnnLayerFeatureMaps) {
         //训练模型
-        int vectorSize = 300;               //向量大小
+        int vectorSize = 128;               //向量大小
         //int cnnLayerFeatureMaps = 100;      每种大小卷积层的卷积核的数量=词向量维度
         ComputationGraphConfiguration config = new NeuralNetConfiguration.Builder()
                 .convolutionMode(ConvolutionMode.Same)// 设置卷积模式
+                .updater(new Adam(0.01))//aa
+                .l2(0.0001)//aa
                 .graphBuilder()
                 .addInputs("input")
                 .addLayer("cnn1", new ConvolutionLayer.Builder()//卷积层
@@ -61,12 +68,17 @@ public class CnnUtil {
                         .build(), "input")
                 .addVertex("merge", new MergeVertex(), "cnn1", "cnn2", "cnn3")//全连接层
                 .addLayer("globalPool", new GlobalPoolingLayer.Builder()//池化层
+                        .poolingType(PoolingType.MAX)//aa
+                        .dropOut(0.5)//aa
                         .build(), "merge")
                 .addLayer("out", new OutputLayer.Builder()//输出层
+                        .lossFunction(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)//aa
+                        .activation(Activation.SOFTMAX)//aa
                         .nIn(3 * cnnLayerFeatureMaps)
                         .nOut(3)
                         .build(), "globalPool")
                 .setOutputs("out")
+                .setInputTypes(InputType.convolutional(256,vectorSize,1))//aa
                 .build();
         ComputationGraph net = new ComputationGraph(config);
         net.init();
@@ -79,9 +91,9 @@ public class CnnUtil {
      * @param path       分词语料库根目录
      * @param childPaths 分词语料库子文件夹
      * @param vecModel   词向量模型
-     * @return
+     * @return DataSetIterator
      */
-    public static DataSetIterator getDataSetIterator(String path, String[] childPaths, String vecModel) {
+    public static DataSetIterator getDataSetIterator(String path, String[] childPaths, String vecModel, int minibatchSize) {
 
         //加载词向量模型
         WordVectors wordVectors = WordVectorSerializer.loadStaticModel(new File(vecModel));
@@ -89,19 +101,18 @@ public class CnnUtil {
         Map<String, List<File>> reviewFilesMap = new HashMap<>();
 
         for (String childPath : childPaths) {
-            System.out.println("childpath" + childPath);
+            System.out.println("childpath:" + childPath);
             File[] files = new File(path + "/" + childPath).listFiles();
             if (files != null) {
-                System.out.println("files");
                 reviewFilesMap.put(childPath, Arrays.asList(files));
             }
         }
         //标记跟踪
         LabeledSentenceProvider sentenceProvider = new FileLabeledSentenceProvider(reviewFilesMap, new Random(12345));
-        return new CnnSentenceDataSetIterator.Builder()
+        return new CnnSentenceDataSetIterator.Builder(CnnSentenceDataSetIterator.Format.CNN2D)
                 .sentenceProvider(sentenceProvider)
                 .wordVectors(wordVectors)
-                .minibatchSize(32)
+                .minibatchSize(minibatchSize)
                 .maxSentenceLength(256)
                 .useNormalizedWordVectors(false)
                 .build();
@@ -115,7 +126,7 @@ public class CnnUtil {
      * @param dataPath   分词语料库根目录
      * @param childPaths 分词语料库文件夹
      * @param content    预言的文本内容
-     * @return
+     * @return  map
      * @throws IOException
      */
     public static Map<String, Double> predictions(InputStream is,String vecModel, String cnnModel, String dataPath, String[] childPaths, String content) throws IOException {
@@ -125,7 +136,7 @@ public class CnnUtil {
         ComputationGraph model = ModelSerializer.restoreComputationGraph(is);
 
         //加载数据集
-        DataSetIterator dataSet = CnnUtil.getDataSetIterator(dataPath, childPaths, vecModel);
+        DataSetIterator dataSet = CnnUtil.getDataSetIterator(dataPath, childPaths, vecModel,32);
         //通过句子获取概率矩阵对象
         INDArray featuresFirstNegative = ((CnnSentenceDataSetIterator) dataSet).loadSingleSentence(content);
         INDArray predictionsFirstNegative = model.outputSingle(featuresFirstNegative);

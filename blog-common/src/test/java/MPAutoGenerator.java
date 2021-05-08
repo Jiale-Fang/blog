@@ -28,7 +28,7 @@ public class MPAutoGenerator {
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
         // .setKotlin(true) 是否生成 kotlin 代码
-        gc.setAuthor("fangjiale");
+        gc.setAuthor("Levi");
         gc.setIdType(IdType.AUTO);
         gc.setServiceImplName("%sServiceImpl");
         gc.setServiceName("%sService");
@@ -37,7 +37,7 @@ public class MPAutoGenerator {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=GMT%2B8&characterEncoding=UTF-8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/blogs?serverTimezone=GMT%2B8&characterEncoding=UTF-8");
         dsc.setUsername("root");
         dsc.setPassword("123456");
 
@@ -55,7 +55,7 @@ public class MPAutoGenerator {
 
         //4.包名策略配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("pers.fjl.extension");
+        pc.setParent("cn.edu.ctbu");
         pc.setMapper("dao");
         pc.setService("service");
 //        pc.setModuleName("test");

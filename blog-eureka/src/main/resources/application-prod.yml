@@ -1,3 +1,6 @@
+ribbon:
+  ReadTimeout: 600000000
+  ConnectTimeout: 600000000
 eureka:
   client:
     register-with-eureka: false #是否将自己注册到eureka中
