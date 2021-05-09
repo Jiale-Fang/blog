@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pers.fjl.common.utils.FileUtil;
 import pers.fjl.crawler.service.CnnService;
 import pers.fjl.crawler.service.Word2VecService;
 
@@ -15,7 +14,8 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 
-import static pers.fjl.common.utils.FileUtil.readToString;
+import static pers.fjl.crawler.util.FileUtil.readToString;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
