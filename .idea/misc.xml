@@ -6,12 +6,6 @@
       <list>
         <option value="$PROJECT_DIR$/blog-ai/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/blog-common/pom.xml" />
-        <option value="$PROJECT_DIR$/blog-encrypt/pom.xml" />
-        <option value="$PROJECT_DIR$/blog-eureka/pom.xml" />
-        <option value="$PROJECT_DIR$/blog-server/pom.xml" />
-        <option value="$PROJECT_DIR$/blog-extension/pom.xml" />
-        <option value="$PROJECT_DIR$/blog-article-crawler/pom.xml" />
       </list>
     </option>
   </component>

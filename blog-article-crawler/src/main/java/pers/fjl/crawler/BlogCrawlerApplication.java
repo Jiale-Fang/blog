@@ -17,7 +17,7 @@ public class BlogCrawlerApplication {
 //    private String redis_host;
 
     public static void main(String[] args) {
-        SpringApplication.run(pers.fjl.crawler.BlogCrawlerApplication.class, args);
+        SpringApplication.run(BlogCrawlerApplication.class, args);
     }
 
     @Bean

@@ -2,7 +2,7 @@ server:
   port: 9003
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: blog-extension #指定服务名
   data:
