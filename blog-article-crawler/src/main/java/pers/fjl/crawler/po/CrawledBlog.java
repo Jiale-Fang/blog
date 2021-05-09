@@ -1,7 +1,4 @@
 package pers.fjl.crawler.po;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -41,7 +38,6 @@ public class CrawledBlog extends Model<CrawledBlog> {
 
     private String content;
 
-    @TableField("`create_time`")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
