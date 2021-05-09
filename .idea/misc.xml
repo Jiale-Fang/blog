@@ -6,10 +6,16 @@
       <list>
         <option value="$PROJECT_DIR$/blog-ai/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/blog-common/pom.xml" />
+        <option value="$PROJECT_DIR$/blog-encrypt/pom.xml" />
+        <option value="$PROJECT_DIR$/blog-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/blog-server/pom.xml" />
+        <option value="$PROJECT_DIR$/blog-extension/pom.xml" />
+        <option value="$PROJECT_DIR$/blog-article-crawler/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
