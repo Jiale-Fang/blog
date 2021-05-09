@@ -12,11 +12,11 @@
     <artifactId>blog-article-crawler</artifactId>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>pers.fjl</groupId>-->
-<!--            <artifactId>blog-common</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>pers.fjl</groupId>-->
+        <!--            <artifactId>blog-common</artifactId>-->
+        <!--            <version>1.0-SNAPSHOT</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -92,21 +92,21 @@
             <artifactId>nd4j-native-platform</artifactId>
             <version>1.0.0-beta2</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.deeplearning4j</groupId>-->
-<!--            <artifactId>deeplearning4j-core</artifactId>-->
-<!--            <version>1.0.0-beta</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.deeplearning4j</groupId>-->
-<!--            <artifactId>deeplearning4j-nlp</artifactId>-->
-<!--            <version>1.0.0-beta</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.nd4j</groupId>-->
-<!--            <artifactId>nd4j-native-platform</artifactId>-->
-<!--            <version>1.0.0-beta</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.deeplearning4j</groupId>-->
+        <!--            <artifactId>deeplearning4j-core</artifactId>-->
+        <!--            <version>1.0.0-beta</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.deeplearning4j</groupId>-->
+        <!--            <artifactId>deeplearning4j-nlp</artifactId>-->
+        <!--            <version>1.0.0-beta</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.nd4j</groupId>-->
+        <!--            <artifactId>nd4j-native-platform</artifactId>-->
+        <!--            <version>1.0.0-beta</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
