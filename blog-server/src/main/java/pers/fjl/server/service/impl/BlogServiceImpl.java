@@ -25,7 +25,10 @@ import pers.fjl.server.service.UserService;
 import pers.fjl.server.utils.MarkdownUtils;
 
 import javax.annotation.Resource;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+import java.util.Random;
 
 /**
  * <p>
@@ -79,6 +82,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         blog.setUid(uid);
         Long blogId = IdWorker.getId(Blog.class);
         blog.setBlogId(blogId);
+        blog.setFirstPicture(isImagesTrue(blog.getFirstPicture()));
         blogDao.insert(blog);
         // 还要插入标签与博客的中间表
         blogTagService.addOneBlogTag(blogId, addBlogVo.getValue());
@@ -179,4 +183,32 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
         return page;
     }
 
+    /**
+     * 用户提供的图片链接无效就自动生成图片
+     * @param postUrl
+     * @return
+     */
+    public String isImagesTrue(String postUrl) {
+        int max = 1000;
+        int min = 1;
+        String picUrl = "https://unsplash.it/800/450?image=";
+        try {
+            URL url = new URL(postUrl);
+            HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
+            urlCon.setRequestMethod("POST");
+            urlCon.setRequestProperty("Content-type",
+                    "application/x-www-form-urlencoded");
+            if (urlCon.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return postUrl;
+            } else {
+                Random random = new Random();
+                int s = random.nextInt(max) % (max - min + 1) + min;
+                return picUrl+s;
+            }
+        } catch (Exception e) {   // 代表图片链接无效
+            Random random = new Random();
+            int s = random.nextInt(max) % (max - min + 1) + min;
+            return picUrl+s;
+        }
+    }
 }
