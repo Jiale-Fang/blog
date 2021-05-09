@@ -6,7 +6,7 @@ import org.deeplearning4j.text.sentenceiterator.LineSentenceIterator;
 import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import pers.fjl.common.utils.FileUtil;
+import pers.fjl.crawler.util.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class Word2VecService {
         System.out.println(fileNames);
         try {
             FileUtil.merge(wordLib, fileNames);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -42,13 +42,13 @@ public class Word2VecService {
         try {//加载数爬虫分词数据集
             SentenceIterator iter = new LineSentenceIterator(new File(wordLib));
             Word2Vec vec = new Word2Vec.Builder()
-                    .minWordFrequency(5).  // 分词语料库出现的最少次数
-                    iterations(30).  // 设置迭代次数
-                    layerSize(200). // 词向量维度
+                    .minWordFrequency(4).  // 分词语料库出现的最少次数
+                    iterations(10).  // 设置迭代次数
+                    layerSize(100). // 词向量维度
                     seed(42).   // 随机种子
                     windowSize(5).  //  当前词与预测词在一个句子中的最大距离
                     iterate(iter).build();
-            vec.fit(); //保存模型之前先删除
+                vec.fit(); //保存模型之前先删除
             new File(vecModel).delete();//删除
             WordVectorSerializer.writeWordVectors(vec, vecModel);
         } catch (Exception e) {
