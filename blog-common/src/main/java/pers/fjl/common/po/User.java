@@ -45,8 +45,6 @@ public class User extends Model<User> {
 
     private String avatar;
 
-    private String type;
-
     /**
      * 创建时间
      */

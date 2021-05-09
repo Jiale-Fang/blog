@@ -10,11 +10,13 @@
         <module name="blog-server" />
         <module name="blog-article-crawler" />
         <module name="blog-common" />
-        <module name="blog-ai" />
         <module name="blog-encrypt" />
         <module name="blog-eureka" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="blog-ai" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
