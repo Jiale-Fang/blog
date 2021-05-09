@@ -20,7 +20,6 @@
         <module>blog-encrypt</module>
         <module>blog-extension</module>
         <module>blog-article-crawler</module>
-        <module>blog-ai</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
