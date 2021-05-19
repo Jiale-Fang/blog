@@ -12,12 +12,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pers.fjl.crawler.util.CnnUtil;
 import pers.fjl.crawler.util.IKUtil;
+import pers.fjl.crawler.vo.TextClassifyVo;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,7 +61,7 @@ public class CnnService {
             // 训练开始
             System.out.println("Starting training");
             computationGraph.setListeners(new ScoreIterationListener(1));
-            for (int i = 0; i < 20; i++){
+            for (int i = 0; i < 40; i++){
                 computationGraph.fit(dataSetIterator);
                 System.out.println("Epoch " + i + " complete. Starting evaluation:");
                 Evaluation evaluation = computationGraph.evaluate(dataSetIterator);
@@ -84,10 +85,11 @@ public class CnnService {
      * @param content
      * @return
      */
-    public Map textClassify(String content) {
+    public List<TextClassifyVo> textClassify(String content) {
         System.out.println("content:" + content); //分词
         String[] childPaths = { "db","java", "python"}; //获取预言结果
-        Map<String, Double> predictions = null;
+//        Map<String, Double> predictions = null;
+        List<TextClassifyVo> predictions = new ArrayList<>();
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("article.cnnmodel");
         try {
             content = IKUtil.split(content, " ");
@@ -95,8 +97,11 @@ public class CnnService {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ND4JIllegalStateException e2) {
-            predictions = new HashMap<>();
-            predictions.put("训练集中没有与该段话匹配的结果", 0.0);
+            TextClassifyVo textClassifyVo = new TextClassifyVo();
+            textClassifyVo.setType("训练集中没有与该段话匹配的结果").setResult(0.0);
+            predictions.add(textClassifyVo);
+//            predictions = new HashMap<>();
+//            predictions.put("训练集中没有与该段话匹配的结果", 0.0);
             return predictions;
         }
         return predictions;

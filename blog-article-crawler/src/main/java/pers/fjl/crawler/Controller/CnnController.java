@@ -25,4 +25,9 @@ public class CnnController {
         return new Result(true, MessageConstant.OK, "请求成功", cnnService.textClassify(crawledBlog.getDescription()));
     }
 
+    @GetMapping(value = "/test")
+    public Result test() {
+        return new Result(true, MessageConstant.OK, "请求成功","这是一个测试接口");
+    }
+
 }

@@ -21,7 +21,9 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
+import pers.fjl.crawler.vo.TextClassifyVo;
 
+import javax.xml.soap.Text;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -129,7 +131,7 @@ public class CnnUtil {
      * @return  map
      * @throws IOException
      */
-    public static Map<String, Double> predictions(InputStream is,String vecModel, String cnnModel, String dataPath, String[] childPaths, String content) throws IOException {
+    public static List<TextClassifyVo> predictions(InputStream is,String vecModel, String cnnModel, String dataPath, String[] childPaths, String content) throws IOException {
         Map<String, Double> map = new HashMap<>();
         //模型应用
 //        ComputationGraph model = ModelSerializer.restoreComputationGraph(cnnModel);//通过cnn模型获取计算图对象
@@ -141,12 +143,15 @@ public class CnnUtil {
         INDArray featuresFirstNegative = ((CnnSentenceDataSetIterator) dataSet).loadSingleSentence(content);
         INDArray predictionsFirstNegative = model.outputSingle(featuresFirstNegative);
         List<String> labels = dataSet.getLabels();
-
+        List<TextClassifyVo> textClassifyVos = new ArrayList<>();
         for (int i = 0; i < labels.size(); i++) {
+            TextClassifyVo textClassifyVo = new TextClassifyVo();
+            textClassifyVo.setType(labels.get(i)).setResult(predictionsFirstNegative.getDouble(i));
+            textClassifyVos.add(textClassifyVo);
             System.out.println("i:"+i+"====>"+labels.get(i)+"======>"+predictionsFirstNegative.getDouble(i));
             map.put(labels.get(i) + "", predictionsFirstNegative.getDouble(i));
         }
-        return map;
+        return textClassifyVos;
     }
 
 }

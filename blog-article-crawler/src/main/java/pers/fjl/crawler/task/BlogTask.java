@@ -6,7 +6,7 @@ import pers.fjl.crawler.pipeline.ArticleTextPipeline;
 import pers.fjl.crawler.pipeline.DbPipeline;
 import pers.fjl.crawler.processor.BlogProcessor;
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.scheduler.RedisScheduler;
+//import us.codecraft.webmagic.scheduler.RedisScheduler;
 
 import javax.annotation.Resource;
 
@@ -25,8 +25,8 @@ public class BlogTask {
     @Resource
     private ArticleTextPipeline articleTextPipeline;
 
-    @Resource
-    private RedisScheduler redisScheduler;
+//    @Resource
+//    private RedisScheduler redisScheduler;
 
 //    /**
 //     * 秒 分 时 日 月 星期
@@ -39,7 +39,7 @@ public class BlogTask {
         articleTextPipeline.setChannelId("java");
         spider.addPipeline(articleTextPipeline);
         spider.addPipeline(dbPipeline);
-        spider.setScheduler(redisScheduler);
+//        spider.setScheduler(redisScheduler);
         spider.start();
     }
 
@@ -84,7 +84,7 @@ public class BlogTask {
         articleTextPipeline.setChannelId("python");
         spider.addPipeline(articleTextPipeline);
         spider.addPipeline(dbPipeline);
-        spider.setScheduler(redisScheduler);
+//        spider.setScheduler(redisScheduler);
         spider.start();
     }
 //
@@ -96,7 +96,7 @@ public class BlogTask {
         articleTextPipeline.setChannelId("db");
         spider.addPipeline(articleTextPipeline);
         spider.addPipeline(dbPipeline);
-        spider.setScheduler(redisScheduler);
+//        spider.setScheduler(redisScheduler);
         spider.start();
     }
 //
