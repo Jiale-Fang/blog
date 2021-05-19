@@ -19,15 +19,15 @@ public class TrainTask {
     /**
      * 训练博客分类模型
      */
-    @Scheduled(cron = "30 18 17 * * ?")
+    @Scheduled(cron = "59 35 12 * * ?")
     public void trainBlogModel() {
 //        System.out.println("开始合并语料库......");
 //        word2VecService.mergeWord();
 //        System.out.println("合并语料库结束‐‐‐‐‐‐");
 
-//        System.out.println("开始构建词向量模型");
-//        word2VecService.build();
-//        System.out.println("构建词向量模型结束");
+        System.out.println("开始构建词向量模型");
+        word2VecService.build();
+        System.out.println("构建词向量模型结束");
 
         System.out.println("开始构建神经网络卷积模型");
         cnnService.build();
