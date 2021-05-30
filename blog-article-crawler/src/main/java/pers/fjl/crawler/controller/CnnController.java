@@ -1,4 +1,4 @@
-package pers.fjl.crawler.Controller;
+package pers.fjl.crawler.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pers.fjl.crawler.constant.MessageConstant;
@@ -7,7 +7,6 @@ import pers.fjl.crawler.po.CrawledBlog;
 import pers.fjl.crawler.service.CnnService;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 /**
  *

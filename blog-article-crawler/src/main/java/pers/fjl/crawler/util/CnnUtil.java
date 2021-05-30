@@ -96,9 +96,9 @@ public class CnnUtil {
      * @return DataSetIterator
      */
     public static DataSetIterator getDataSetIterator(String path, String[] childPaths, String vecModel, int minibatchSize) {
-
         //加载词向量模型
-        WordVectors wordVectors = WordVectorSerializer.loadStaticModel(new File(vecModel));
+//        WordVectors wordVectors = WordVectorSerializer.loadStaticModel(new File(vecModel));
+        WordVectors wordVectors = WordVectorSerializer.readWord2VecModel(new File(vecModel));
         //词标记分类比标签
         Map<String, List<File>> reviewFilesMap = new HashMap<>();
 
@@ -133,6 +133,7 @@ public class CnnUtil {
      */
     public static List<TextClassifyVo> predictions(InputStream is,String vecModel, String cnnModel, String dataPath, String[] childPaths, String content) throws IOException {
         Map<String, Double> map = new HashMap<>();
+
         //模型应用
 //        ComputationGraph model = ModelSerializer.restoreComputationGraph(cnnModel);//通过cnn模型获取计算图对象
         ComputationGraph model = ModelSerializer.restoreComputationGraph(is);

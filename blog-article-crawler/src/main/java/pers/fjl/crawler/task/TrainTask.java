@@ -16,22 +16,22 @@ public class TrainTask {
     @Resource
     private CnnService cnnService;
 
-    /**
-     * 训练博客分类模型
-     */
-    @Scheduled(cron = "59 35 12 * * ?")
-    public void trainBlogModel() {
-//        System.out.println("开始合并语料库......");
-//        word2VecService.mergeWord();
-//        System.out.println("合并语料库结束‐‐‐‐‐‐");
-
-        System.out.println("开始构建词向量模型");
-        word2VecService.build();
-        System.out.println("构建词向量模型结束");
-
-        System.out.println("开始构建神经网络卷积模型");
-        cnnService.build();
-        System.out.println("构建神经网络卷积模型结束");
-    }
+//    /**
+//     * 训练博客分类模型
+//     */
+//    @Scheduled(cron = "39 01 00 * * ?")
+//    public void trainBlogModel() {
+////        System.out.println("开始合并语料库......");
+////        word2VecService.mergeWord();
+////        System.out.println("合并语料库结束‐‐‐‐‐‐");
+//
+//        System.out.println("开始构建词向量模型");
+//        word2VecService.build();
+//        System.out.println("构建词向量模型结束");
+//
+//        System.out.println("开始构建神经网络卷积模型");
+//        cnnService.build();
+//        System.out.println("构建神经网络卷积模型结束");
+//    }
 }
 

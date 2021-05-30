@@ -7,6 +7,15 @@ spring:
   redis:
     host: 39.108.136.207
 
+ai:
+  #  dataPath: G:\repository\crawler #爬取下来的文章的分词文本
+  dataPath: /usr/local/crawler
+  wordLib: /usr/local/crawler/article.txt  #合并后的分词语料库
+  #  vecModel: G:\repository\crawler\article.vecmodel #词向量模型
+  vecModel: /usr/local/crawler/article.vecmodel #词向量模型
+  #  cnnModel: G:\repository\crawler\article.cnnmodel  #神经网络卷积模型
+  cnnModel: /usr/local/crawler/article.cnnmodel  #神经网络卷积模型
+
 #eureka:
 #  client:
 #    service-url:
