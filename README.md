@@ -1,7 +1,7 @@
 
 @[TOC](入站须知)
 # 一.个人博客简介
-项目地址：http://39.108.136.207 （源码地址在本文末尾），感谢阿里云爸爸，送了一个两个月的2核4g的服务器，现在搜索模块也用上了elasticsearch
+项目地址：http://www.tcefrep.site/ （源码地址在本文末尾），感谢阿里云爸爸，送了一个两个月的2核4g的服务器，现在搜索模块也用上了elasticsearch
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210327193121530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RsaWhjdGNlZnJlcA==,size_16,color_FFFFFF,t_70)
 
 ## 1.1 博客主要页面：
