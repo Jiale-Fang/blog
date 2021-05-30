@@ -2,7 +2,7 @@ server:
   port: 9005
 spring:
   profiles:
-    active: dev
+    active: prod
   application:
     name: blog‐crawler #指定服务名 datasource:
 
@@ -28,9 +28,12 @@ mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-ai:
-  dataPath: G:\repository\crawler #爬取下来的文章的分词文本
-  wordLib: G:\repository\crawler\article.txt  #合并后的分词语料库
-  vecModel: G:\repository\crawler\article.vecmodel #词向量模型
-  cnnModel: blog-article-crawler/src/main/resources/article.cnnmodel  #神经网络卷积模型
+#ai:
+##  dataPath: G:\repository\crawler #爬取下来的文章的分词文本
+#  dataPath: blog-article-crawler/src/main/resources/data
+#  wordLib: G:\repository\crawler\article.txt  #合并后的分词语料库
+##  vecModel: G:\repository\crawler\article.vecmodel #词向量模型
+#  vecModel: blog-article-crawler/src/main/resources/article.vecmodel #词向量模型
+##  cnnModel: G:\repository\crawler\article.cnnmodel  #神经网络卷积模型
+#  cnnModel: blog-article-crawler/src/main/resources/article.cnnmodel  #神经网络卷积模型
 

@@ -6,6 +6,11 @@ spring:
     password: 123456
   redis:
     host: 127.0.0.1
+ai:
+  dataPath: G:\repository\crawler #爬取下来的文章的分词文本
+  wordLib: G:\repository\crawler\article.txt  #合并后的分词语料库
+  vecModel: G:\repository\crawler\article.vecmodel #词向量模型
+  cnnModel: G:\repository\crawler\article.cnnmodel  #神经网络卷积模型
 
 #eureka:
 #  client:

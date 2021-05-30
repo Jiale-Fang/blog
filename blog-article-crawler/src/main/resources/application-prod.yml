@@ -3,9 +3,18 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://39.108.136.207:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
-    password: 123456
+    password: xx
   redis:
-    host: 39.108.136.207
+    host: xx
+
+ai:
+  #  dataPath: G:\repository\crawler #爬取下来的文章的分词文本
+  dataPath: /usr/local/crawler
+  wordLib: /usr/local/crawler/article.txt  #合并后的分词语料库
+  #  vecModel: G:\repository\crawler\article.vecmodel #词向量模型
+  vecModel: /usr/local/crawler/article.vecmodel #词向量模型
+  #  cnnModel: G:\repository\crawler\article.cnnmodel  #神经网络卷积模型
+  cnnModel: /usr/local/crawler/article.cnnmodel  #神经网络卷积模型
 
 #eureka:
 #  client:

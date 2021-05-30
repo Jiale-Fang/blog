@@ -1,4 +1,4 @@
-package pers.fjl.crawler.wanggongxi;
+package pers.fjl.crawler.cnn;
 
 import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.iterator.CnnSentenceDataSetIterator;
