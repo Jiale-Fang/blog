@@ -15,7 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="blog-ai" target="1.5" />
+      <module name="blog-ai" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
