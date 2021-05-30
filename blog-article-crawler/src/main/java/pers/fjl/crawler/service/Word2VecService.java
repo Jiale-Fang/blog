@@ -50,7 +50,8 @@ public class Word2VecService {
                     iterate(iter).build();
                 vec.fit(); //保存模型之前先删除
             new File(vecModel).delete();//删除
-            WordVectorSerializer.writeWordVectors(vec, vecModel);
+            WordVectorSerializer.writeWord2VecModel(vec, vecModel);
+//            WordVectorSerializer.writeWordVectors(vec, vecModel);
         } catch (Exception e) {
             e.printStackTrace();
         }

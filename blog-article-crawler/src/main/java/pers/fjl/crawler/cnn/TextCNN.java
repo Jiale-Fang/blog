@@ -1,4 +1,4 @@
-package pers.fjl.crawler.wanggongxi;
+package pers.fjl.crawler.cnn;
 
 import org.deeplearning4j.eval.Evaluation;
 import org.deeplearning4j.iterator.CnnSentenceDataSetIterator;
@@ -22,7 +22,6 @@ import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreproc
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 import org.nd4j.linalg.activations.Activation;
-import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
@@ -32,7 +31,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class TextCNN {
 
