@@ -17,7 +17,7 @@ public class WordCount {
 
     public static void main(String[] args) throws Exception {
 
-        BufferedReader br = new BufferedReader(new FileReader("G:\\repository\\comment\\comment.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("G:\\repository\\crawler\\article.txt"));
         List<String> lists = new ArrayList<String>();  //存储过滤后单词的列表
         String readLine = null;
         while ((readLine = br.readLine()) != null) {
@@ -63,7 +63,7 @@ public class WordCount {
         });
         PrintWriter printWriter = null;
         try {
-            printWriter = new PrintWriter(new File("G:\\repository\\comment\\wordCount.txt"));
+            printWriter = new PrintWriter(new File("G:\\repository\\crawler\\wordCountDesc.txt"));
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getValue() <= 4) { //去掉小于5次的行
                     continue;

@@ -35,6 +35,5 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, LongWritab
             //将每个单词标记为 输出为<单词，1>
             context.write(outKey, outValue);
         }
-
     }
 }

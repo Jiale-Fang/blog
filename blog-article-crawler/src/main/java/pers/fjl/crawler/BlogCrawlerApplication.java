@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import us.codecraft.webmagic.scheduler.RedisScheduler;
+//import us.codecraft.webmagic.scheduler.RedisScheduler;
 
 @SpringBootApplication
 @EnableScheduling
@@ -20,8 +20,8 @@ public class BlogCrawlerApplication {
         SpringApplication.run(BlogCrawlerApplication.class, args);
     }
 
-    @Bean
-    public RedisScheduler redisScheduler() {
-        return new RedisScheduler("127.0.0.1");
-    }
+//    @Bean
+//    public RedisScheduler redisScheduler() {
+//        return new RedisScheduler("127.0.0.1");
+//    }
 }

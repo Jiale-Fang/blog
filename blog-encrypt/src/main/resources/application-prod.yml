@@ -1,9 +1,6 @@
-ribbon:
-  ReadTimeout: 600000000
-  ConnectTimeout: 600000000
 eureka:
   client:
     service-url:
-      defaultZone: http://xx/eureka/
+      defaultZone: http://xx:8686/eureka/
   instance:
     prefer-ip-address: true

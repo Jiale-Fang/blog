@@ -9,9 +9,6 @@ import java.io.IOException;
 
 public class HDFSClient {
 
-    public static void main(String[] args) {
-    }
-
     public static void writeData(String content) {
         Configuration conf = null;
         FileSystem fs = null;
