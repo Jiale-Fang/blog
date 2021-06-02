@@ -1,0 +1,1 @@
+21. 查询 不同 老师 所 教 不同 课程 平 均分 从高 到 低 显示 sscore sscore descstudent 表 sc 表 teacher 表 course 表 

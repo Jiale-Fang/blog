@@ -1,0 +1,1 @@
+uncaught referenceerror xx is not defined 问题 如果 提示 是 函数 未定义 把 函数 写在 了 jquery 的 document ready 函数 里面 这种 情况 是 文档 没有 就绪 document ready 没有 执行 所以 找不到 函数 在哪 解决方法 按 f 进入 开发者 界面 在 console 看有 没有 bug 把 函数 写在 了 导入 jquery 包 的 script 标签 中 如 obj alert objvalue ltscriptgt 如果 提示 参数 未定义 传入 参数 有误 字符串 要用 括 起来 

@@ -1,0 +1,1 @@
+idea 连接 mysql 报错 server returns invalid timezone 原因 idea 先要 装 mysql 驱动 才能 连接 mysqlmysql 驱动 默认 utc 时区 mysql 版本 之后 就要 注意 这个 问题解决 方式 法 一 设置 全局 时区 设置 时区 为 东 八区 刷新 权限 使 设置 立即 生效 法 二 将 添加到 url 后面 

@@ -1,0 +1,1 @@
+mybatis 通过 获取 sqlsession 实例 我们 通 过从 中 获取 对象 完全 包含 以 数据库 为 背景 的 所有 执行 sql 操作 的 方法 就 可以用 sqlsession 实例 来 直接 执行 已 映射 的 sql 语句 例如 tryblogblog blog 这种 方法 起到 的 作用 和 之前 的 mybatis 版 本是 相似 的 现在 有 一种 更 简洁 的 方法 使用 合理 描述 参数 和 sql 语句 返回值 的 接口 比如 blogmapperclass 这样 现在 就可以 至此 那个 更 简单 更 安全 的 代码 没有 容易发生 的 字符串 文字 和 转换 的 错误 例如 blogmapperclass 使用 接口 映射 转 载于 

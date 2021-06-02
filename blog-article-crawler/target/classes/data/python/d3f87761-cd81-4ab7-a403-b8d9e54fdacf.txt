@@ -1,0 +1,1 @@
+cve-2019-9762 漏洞 复现 cve 在 phpshe 中 文件 ordertable 函数 获取 传 参 id 的 值 处理 后 直接 将 返回值 拼 接到 sql 语句 中表 名 可控 造成 sql 注入 进入 主 页面 注册 账号 并 登录 定位 到 存在 注入 的 文件 在 个人 中心 充值 板块 使用 支付宝 充值 输入 充值 金额 用 burp 抓 包 点击 提交 先 抓到 userphpmodpay 这个 包 放掉 会 抓到 第二个 跳转 请求 payphpidpay 发到 repeter 改 id 的 值 为 payand 注意 pay 后面 不是 单引号 根据 response 返回 包 的 长度 测试 出字 段数 为 回 显 点在 把 换成 database 得到 数据库 
