@@ -1,0 +1,1 @@
+c 语言 慕 课 第九 周 第三 题 intaintn intmain inputn nlt n scanf dampn printf inputdnumbersnn for iiltni scanf dampai maxminexchang an printf for iiltni printf dai printf n intaintn iiltni if akltai kiif ajgtai 

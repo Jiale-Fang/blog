@@ -1,0 +1,1 @@
+洛 谷 p2758 的 空间 优化 主要 参考 的 是 这个 回答 知 乎 intlenbbsize for intiiltlenbi dpiifor intiiltlenai inttmpdpdpifor intjjltlenbj 对 第 ij 次 循环 而言 tmp 保存 的 是 dpij 因此 对于 第 ij 次 循环 而言 pre 存 的 是 aibj min predpj dpj printf dndplenb 

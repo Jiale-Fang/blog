@@ -1,0 +1,1 @@
+ubuntu 编译 安装 glibc glibc 编译 安装 过程中 出现 的 问题解决 安装 如 出现 错误 出现 重新 链接 再 重现 安装 即可 makeinstall 

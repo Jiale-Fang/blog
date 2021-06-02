@@ -1,0 +1,1 @@
+idea 连接 mysql 数据库 仅是 本人 遇到 的 问题 server returns invalid timezone. go to advanced tab and set servertimez 连接 操作 连接 时会 遇到 的 问题 找到 的 解决方案 是 翻译 一下 错误 是 时区 不对 故 在 url 后面 加上 解决问题 接着 就 ok 了 

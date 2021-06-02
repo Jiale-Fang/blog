@@ -1,0 +1,1 @@
+ubuntu 安装 glibc 下载 解压 配置 cdglibc 进入 解压 目录 mkdirbuild 新建 build 目录 编译 安装 添加 环境变量 在 文件 末尾 添加 更新 环境变量 至此 安装 完成 

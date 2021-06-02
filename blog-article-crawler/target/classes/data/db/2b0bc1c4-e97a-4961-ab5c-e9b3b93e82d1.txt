@@ -1,0 +1,1 @@
+mysql 先 排序 后去 重 group by 与 order by 联用 未 生效 解决方案 貌似 mysql 自身 有 bug 版本 mysqlwinxcreate 代码 带 数据 主机 服务器 版本 gpl 服务器 操作系统 winheidisql 版本 导出 test 的 数据库 结构 导出 表 testtable 结构 idamp 

@@ -1,0 +1,1 @@
+解决 maven 打包 报错 the pom for jar is invalid transitive dependencies if any will not be available 解决 maven 打包 问题 ifany 这类 问题 属于 pom 文件 下载 出错 或者 jar 包下 载 出错 导致 解决方案 将 整个 mavenrepository 删除 使用 maven 重新 下载 并 导入 此 方 法会 导致 把 正确 的 依赖 包 也 一并 删除 后期 所有 项目 依赖 需要 全部 重新 下载 不 建议 采用 仅 删除 对应 jar 包 找到 maven 仓库 根据 下图 找到 指定 版本 如下 找到 后 删除 该 版本 的 目 录在 项 目中 重新 下载 依赖 包 

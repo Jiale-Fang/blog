@@ -1,0 +1,1 @@
+jpa 面试题 jpa 默认 的 fetchtype 是 lazy 还是 eagerlazy 么 错 eager 么 还是 错 这 就是 这个 问题 的 坑 因为 要区 分 来看 onetoone 默认 是 eagermanytoone 默认 eageronetomany 默认 是 lazyjpa 如何 设置 cascadetype 才会 级联 查询 all 么 persist 么 都不对 因为 cascadetype 跟 查询 没有 一毛钱 关系 级联 指的是 增 删改 这些 操作 的 时候 进行 哪些 相关 操作 级联 查询 这个词 本身 就有 问题 说是 关联 查询 还 正确 一些 

@@ -1,0 +1,1 @@
+linux 上面 跑 lvgl gui 简单 实例 一 下载 lvgl 源码 二 编译 在 lvgldemo 目 录下 make 三 运行 demo 

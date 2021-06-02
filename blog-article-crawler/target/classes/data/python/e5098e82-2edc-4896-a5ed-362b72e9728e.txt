@@ -1,0 +1,1 @@
+ubuntu 安装 软件 提示 错误 could not get lock var lib dpkg lock-frontend open 11 resource temporarly unavail 报错 原因 默认 有 aptget 运行 查看 psauxgrepaptget 解决方法 运行 
