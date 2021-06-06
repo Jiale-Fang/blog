@@ -118,6 +118,13 @@ public class MybatisPlusApplicationTest {
         System.out.println(picUrl);
     }
 
+    @Test
+    public void testRegx(){
+        String str="https://39.108.136.207/chat/rosie";
+        String regx = "^~/chat/";
+        System.out.println(str.matches(regx));
+    }
+
 }
 
 

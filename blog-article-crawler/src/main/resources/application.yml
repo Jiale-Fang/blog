@@ -28,6 +28,8 @@ mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+
+
 #ai:
 ##  dataPath: G:\repository\crawler #爬取下来的文章的分词文本
 #  dataPath: blog-article-crawler/src/main/resources/data
