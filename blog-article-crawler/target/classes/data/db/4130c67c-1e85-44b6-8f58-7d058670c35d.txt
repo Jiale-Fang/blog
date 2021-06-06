@@ -1,1 +1,0 @@
-shell 脚本 收集 oracle 审计 信息 背景 单 节点 dg 数据库 准备 迁移 要 开启 登录 审计 确认 所有 使用 数据库 的 业务 系统 数据库 的 audittrail 是 os 由于 业务 不能 中断 单 节点 的 锅 无法 修改 audittrail 只 能从 auditfile 中 汇总 登录 信息 了 思路 把 数据库 的 其他 审计 都 关掉 只留下 登录 审计 通过 cat 审计 文件 grep 出 登录 信息 过滤 出 有用 的 信息 最后 把 审计 信息 按 schema 分类 每个 schema 一个 文件 脚本 

@@ -1,1 +1,0 @@
-e could not get lock var lib dpkg lock-frontend open 11 resource temporarly unavailable 当我 的 ubuntuinstall 某个 东西 时 给出 下面 提示 删除 锁定 文件 行了 

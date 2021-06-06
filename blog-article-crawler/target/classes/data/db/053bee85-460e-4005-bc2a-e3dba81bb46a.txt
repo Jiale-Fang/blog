@@ -1,1 +1,0 @@
-springboot 关于 mysql 和 jdbc 的 配置 首先 注入 依赖 mysql 和 jbdc 依赖 然后 配置 application 文件 后缀 为 后缀 为 注意 配置文件 和 数据库 连接 的 相对 内容 要 相 对应 而且 要注意 mysql 的 版本 与 驱动 之间 的 对应 

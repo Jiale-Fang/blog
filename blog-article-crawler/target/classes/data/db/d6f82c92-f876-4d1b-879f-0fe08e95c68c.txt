@@ -1,1 +1,0 @@
-pom 文件 报错 failed to read artifact descriptor for spring-web jar 5.1.8release... 今天在 创建 一个 新 的 springboot 项目 时 pom 文件 报了 这个 错误 花了 一些 时间 终于 解决 了 错误 原因 网络 原因 导致 jar 包 没有 正常 下载 完整 你 在 jar 包 下载 的 过程中 点击 了 停止 解决方法 先去 你 本地 maven 仓库 找到 报错 的 jar 包 发现该 jar 包 没有 下 全 把 jar 包 和 文件夹 都 删掉 我 用 的 是 idea 右键 点击 项目 后 选择 maven 后 点击 reimport 保持 网络 畅通 该 jar 包 会 重新 下载 错误 即可 解决 转 载于 

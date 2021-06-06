@@ -1,1 +1,0 @@
-用 二分法 求 下面 的 一元 三次 方程 在 区间 10 10 上 误差 不大于 的 根 x 3-x-1 0 慕 课 第九 周 floata return pow a a intmain ffampxampx b xx while fabs fangcheng b gt b xx if fangcheng x fangcheng b lt xbelsexbprintf xfnb return 

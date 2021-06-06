@@ -1,1 +1,0 @@
-mysql 清空 binlog 文件 登录 mysqlurootp 回车 输入 密码 进入 mysql 查看 showbinarylogs 删除 指定 log 文件 清除 所有 

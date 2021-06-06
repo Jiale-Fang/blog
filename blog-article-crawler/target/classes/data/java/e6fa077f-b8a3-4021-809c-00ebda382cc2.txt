@@ -1,1 +1,0 @@
-史上 最全 的 各种 idea 快捷键 超 全 一 快速 生成 main 输入 psvm 二 快速 生成 systemoutprint 使用 sout 三 文件 保存 idea 是 自动 保存 的 不需要 我们 去 ctrls 保存 四 删除 一行 ctrly 五 新添 新建 添加 的 快捷键 altlnsert 六 切换 java 程序 alt 右 箭头 或 alt 左 箭头 七 目录 显示 与 关闭 ctrlfnf 八 运行 ctrlshiftf 九 提示 方法 的 参数 ctrlp 十 切换 窗口 alt 数字 我们 可以 鼠标 放在 窗口 按钮 查看 快捷键 数字 最后 我们 也 可以 自定义 快捷键 或者 修改 快捷键 

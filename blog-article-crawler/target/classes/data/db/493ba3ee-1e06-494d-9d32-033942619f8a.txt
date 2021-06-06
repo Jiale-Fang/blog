@@ -1,1 +1,0 @@
-idea 连接 mysql 报错 server returns invalid timezone. go to advanced tab and set servertimezone prope 解决 报错 界面 解决方法 一 进入 cmdwinr 输入 mysqlurootp 密码 登陆 mysql 前提 是 配置 了 mysql 环境变量 二 输入 出现 下图 显示 的 内容 就是 说明 没有 设置 时区 三 输入 即可 设置 时区 四 返回 idea 再次 连接 数据库 显示 成功 连接 

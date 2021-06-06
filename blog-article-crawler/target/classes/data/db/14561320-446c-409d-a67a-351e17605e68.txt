@@ -1,1 +1,0 @@
-22. 查询 所有 课程 的 成绩 第 2名 到 第 3名 的 学生 信息 及 该 课程 成绩 selecttfrom tstudent 表 sc 表 teacher 表 course 表 

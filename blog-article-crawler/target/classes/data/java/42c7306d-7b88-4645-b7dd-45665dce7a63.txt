@@ -1,1 +1,0 @@
-rabbimq operation queue.declare caused a channel exception not_found 问题 操作 openstack 的 horizon 删除 或者 新建 云 主机 一直 卡住 最后 报错 接收 消息 超时 参看 rabbitmq 日志 发现 如下 报错 经 查询 是 队列 有 问题 去 页面 查看 发现该 队列 的 各项 数据 均 显示 nan 而 正常 的 队列 都有 数据 即使 没有 消息 也 会 显示 为 解决 根据 操作 删除 该 队列 之后 再 操作 horizon 问题解决 页面 也 显示 正常 

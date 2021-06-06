@@ -1,1 +1,0 @@
-idea 连接 mysql 数据库 出现 server returns invalid timezone need to set servertimezone property 经常出现 这个 问题 记录 一下 问题 原因 数据库 时区 设定 解决 思路 通过 mysql 控制台 修改 数据库 时区 具体方法 

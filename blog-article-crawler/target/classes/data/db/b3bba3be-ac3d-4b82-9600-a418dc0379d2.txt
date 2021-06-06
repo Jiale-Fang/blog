@@ -1,1 +1,0 @@
-idea 连接 mysql 报 server returns invalid timezone. go to advanced tab and set servertimezon 时区 不同 重新 设置 mysql 时区 在 终端 的 mysql 模式 下 中 输入 命令 

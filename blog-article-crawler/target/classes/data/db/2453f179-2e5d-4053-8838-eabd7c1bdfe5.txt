@@ -1,1 +1,0 @@
-idea 中 配置 mysql 出现 server returns invalid timezone 问题 解决方法 原因 首先 出现 该 问题 的 原因是 mysql 驱动 jar 中 的 默认 时区 是 utcutc 代表 的 是 全球 标准时间 但是 我们 使用 的 时间 是 北京 时区 也 就是 东 八区 领先 utc 八个 小时 因为 时区 不一致 所以 提示 服务器 返回 了 无效 的 时区 去 高级 标签 中 手工 设置 servertimezon 属性 值 解决方案 

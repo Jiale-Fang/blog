@@ -1,1 +1,0 @@
-v rman_status 查询 缓慢 版本 oracle 现象 vrmanstatus 查询 缓慢 几分钟 都 查不出 结果 session 中 event 显示 为 查看 执行计划 执行计划 中有 解决办法 sysxkccrsr sysxkccrsr 参考 docid 

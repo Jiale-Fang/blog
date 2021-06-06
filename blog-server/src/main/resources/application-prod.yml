@@ -3,9 +3,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://39.108.136.207:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
-    password: xx
+    password: kllxdwh
   redis:
-    host: xx
+    host: 39.108.136.207
 
 logging:
   level:
@@ -16,6 +16,6 @@ logging:
 eureka:
   client:
     service-url:
-      defaultZone: http://xx:8686/eureka/
+      defaultZone: http://39.108.136.207:8686/eureka/
   instance:
     prefer-ip-address: true

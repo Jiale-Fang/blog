@@ -1,1 +1,0 @@
-mysql 1064 错误 你 的 给出 的 代码 里 option 为 mysql 关键字 不能 直接 写 需要用 包括 起来 它为 数字键 左边 的 键 上 的 字符 为 optionvarchar notnulldefault 转 载于 

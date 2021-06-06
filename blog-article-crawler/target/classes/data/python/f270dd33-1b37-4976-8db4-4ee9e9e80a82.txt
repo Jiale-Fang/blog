@@ -1,1 +1,0 @@
-linux 编译 错误 fatal error jpeglib.h no such file or directory 报错 解决 安装 jpeg 库 

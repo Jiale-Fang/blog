@@ -5,7 +5,7 @@ spring:
     username: root
     password: 123456
   redis:
-    host: 127.0.0.1
+    host: 39.108.136.207
 
 logging:
   level:

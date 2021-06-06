@@ -1,1 +1,0 @@
-initcomponents 方法 initcomponents 是 在 使用 gui 工具 设计 gui 界面 时 netbeans 系统 自动 生成 的 方法 其 功能 是 在 界面 添加 各个 组件 并为 它们 注册 监听器 把 initcomponents 放在 构造 方法 中 目的 在于 在 主 类 调用 构造 方法 初始 化时 完 成了 界面 的 绘制 有 了 这个 在做 不同 界面 调转 时 很 有用 转 载于 

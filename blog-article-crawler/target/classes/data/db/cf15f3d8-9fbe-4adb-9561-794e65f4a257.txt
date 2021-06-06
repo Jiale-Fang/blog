@@ -1,1 +1,0 @@
-使用 pip 安装 pytorch 出现 is not a supported wheel on this platform 我 安装 的 是 windowscpu 版本 的 pytorch 搜 了 一波 网上 大多 都说 是因为 安装 的 anaconda 或者 python 是 位 的 而我 看了 一下 我 的 python 版 本是 位 没错 所以 更换 python 版本 对 我 来说 行不通 后 来去 pytorch 官 网 看了 一下 用 下面 这条 指令 就能 成功 下载 了 不过 比较慢 我 大概 花了 二十 分钟 跑了 一波 官 网 的 示例 跑 通 问题解决 

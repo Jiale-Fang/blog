@@ -1,1 +1,0 @@
-connection to database zabbix failed zabbix 连接 不 上 数据库 的 解决方法 在 配置 lnmpzabbix 时 发现 zabbixserver 服务 可以 启动 但是 没有 这个 端口 查看 日志 报错 如下 发现 日志 链接 不 上 查找 这个 文件 所在 的 位置 解决方法 有 两种 一 创建 mysqlsock 链接 重启 数据库 服务 二 修改 中 的 mysqlsock 配置 重启 zabbixserver 服务 ps 这样 就 大功告成 了 快去 试试 吧 

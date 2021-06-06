@@ -1,1 +1,0 @@
-idea 设置 idea 连接 mysql 报错 server returns invalid timezone. 问题 描述 idea 连接 mysql 时 报错 问题 原因 mysql 连接 设置 中 的 servertimezone 没有 配置 或 配置 错误 问题解决 设置 为 asiashanghai 如图所示 设置 中国 时区 若为 其他 时区 可以 搜索 对应 的 值 

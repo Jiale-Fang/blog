@@ -27,3 +27,11 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+aliyun:
+  oss:
+    file:
+      bucketname: tcefrep
+      endpoint: oss-cn-beijing.aliyuncs.com
+      keyid: LTAI5tHMG3zT56kVnBjQnddh
+      keysecret: wgbpbvo1k6dStZIg1kWchwoz4Y8OA8

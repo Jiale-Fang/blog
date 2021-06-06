@@ -1,1 +1,0 @@
-ubuntu 安装 ssh ubuntu 安装 ssh 一 安装 ssh 服务器 二 安装 ssh 客户端 三 重启 四 测试 查看 ip 用 putty 登录 登录 虚拟机 ubuntu 
