@@ -18,4 +18,5 @@ public class QueryPageBean implements Serializable {
 
     private Long typeId; //分类id
     private Long tagId; //标签id
+    private String shareStatement;  //分享状态
 }

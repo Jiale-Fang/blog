@@ -24,7 +24,7 @@ public interface ChatLogDao extends BaseMapper<ChatLog> {
      * @param receiver
      * @return
      */
-    @Select("SELECT msg_id,sender,receiver,create_time,content " +
+    @Select("SELECT msg_id,sender,receiver,create_time,content,text_type " +
             "FROM chat_log " +
             "WHERE (sender = #{sender} AND receiver = #{receiver}) " +
             "OR (sender = #{receiver} AND receiver = #{sender}) " +

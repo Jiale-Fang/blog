@@ -35,9 +35,6 @@ public class LinkServiceImpl extends ServiceImpl<LinkDao, Link> implements LinkS
     @Override
     public boolean addLink(Link link) {
         int i = linkDao.insert(link);
-        if (i != 1) {
-            throw new RuntimeException("添加友链失败！");
-        }
-        return true;
+        return i == 1;
     }
 }

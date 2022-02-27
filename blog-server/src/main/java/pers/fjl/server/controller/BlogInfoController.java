@@ -1,18 +1,20 @@
-package pers.fjl.extension.controller;
+package pers.fjl.server.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.entity.Result;
-import pers.fjl.extension.po.BlogInfo;
-import pers.fjl.extension.service.BlogInfoService;
+import pers.fjl.server.search.index.BlogInfo;
+import pers.fjl.server.service.BlogInfoService;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 
 @RestController
 @CrossOrigin
+@Api(tags = "博客主页控制器")
 @RequestMapping(value = "/search")
 public class BlogInfoController {
 
@@ -49,8 +51,4 @@ public class BlogInfoController {
         return new Result(true, "保存数据成功！", MessageConstant.OK);
     }
 
-    @GetMapping(value = "/test1")
-    public Result test1(){
-        return new Result(true, "成功！", MessageConstant.OK);
-    }
 }

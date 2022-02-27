@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.QueryPageBean;
+import pers.fjl.common.po.Tag;
 import pers.fjl.common.po.Type;
 import pers.fjl.common.po.User;
+import pers.fjl.common.vo.TagVo;
 import pers.fjl.common.vo.TypeVo;
 import pers.fjl.server.dao.TypeDao;
 import pers.fjl.server.service.TypeService;
@@ -32,7 +34,7 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
     @Override
     public boolean addType(Type type) {
         if (typeExist(type.getTypeName())){ // 要添加的分类已存在
-            throw new RuntimeException("添加失败，要添加的分类已存在");
+            return false;
         }
         typeDao.insert(type);
         return true;
@@ -77,5 +79,16 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
     @Cacheable(value = {"BlogPage"}, key = "#root.methodName")
     public List<TypeVo> getTypeCount() {
         return typeDao.getTypeCount();
+    }
+
+    @Override
+    public Page<TypeVo> adminType(QueryPageBean queryPageBean) {
+        //设置分页条件
+        Page<TypeVo> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
+        QueryWrapper<Type> wrapper = new QueryWrapper<>();
+        wrapper.like(queryPageBean.getQueryString() != null, "type_name", queryPageBean.getQueryString());
+        page.setTotal(typeDao.selectCount(wrapper));
+        page.setRecords(typeDao.adminType(queryPageBean));
+        return page;
     }
 }

@@ -28,6 +28,7 @@ public class MyWebsocketServer {
 
     /**
      * 客户端关闭
+     *
      * @param session session
      */
     @OnClose
@@ -39,6 +40,7 @@ public class MyWebsocketServer {
 
     /**
      * 发生错误
+     *
      * @param throwable e
      */
     @OnError
@@ -48,7 +50,8 @@ public class MyWebsocketServer {
 
     /**
      * 收到客户端发来消息
-     * @param message  消息对象
+     *
+     * @param message 消息对象
      */
     @OnMessage
     public void onMessage(String message, Session session) {
@@ -60,14 +63,20 @@ public class MyWebsocketServer {
             // 获取要发送的用户的用户名
             String toName = mess.getToName();
             String data = mess.getMessage();
-            MessageUtils.getMessage(false,toName,data);
-        }catch (Exception e){
+            if (mess.getMesType().equals(5) || mess.getMesType().equals(4)) {  //是图片消息
+                MessageUtils.getMessage(mess.getMesType(), toName, data);
+            }else {
+                MessageUtils.getMessage(2, toName, data);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
      * 群发消息
+     *
      * @param message 消息内容
      */
     private void sendAll(String message) {

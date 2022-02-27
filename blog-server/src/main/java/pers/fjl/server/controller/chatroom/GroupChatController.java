@@ -2,6 +2,7 @@ package pers.fjl.server.controller.chatroom;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.Result;
@@ -32,6 +33,7 @@ public class GroupChatController {
     private GroupChatService groupChatService;
 
     @GetMapping("/getMessage")
+    @ApiOperation(value = "获取群聊消息")
     @LoginRequired
     public Result getMessage(HttpServletRequest request){
         User user = (User) request.getAttribute("currentUser");
@@ -39,6 +41,7 @@ public class GroupChatController {
     }
 
     @PostMapping("/addMessage")
+    @ApiOperation(value = "发送群聊消息")
     public Result addMessage(@RequestBody GroupChat groupChat){
         groupChatService.addMessage(groupChat);
         return new Result(true, "添加群聊消息成功",MessageConstant.OK );

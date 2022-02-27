@@ -1,29 +1,31 @@
 package pers.fjl.server.controller.admapi;
 
-import com.wf.captcha.GifCaptcha;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.wf.captcha.SpecCaptcha;
-import com.wf.captcha.utils.CaptchaUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import pers.fjl.common.constant.CacheKey;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.Result;
 import pers.fjl.common.po.User;
+import pers.fjl.common.utils.JWTUtils;
 import pers.fjl.common.vo.UserVo;
 import pers.fjl.server.annotation.IpRequired;
+import pers.fjl.server.service.ResourceService;
 import pers.fjl.server.service.UserService;
-import pers.fjl.server.utils.JWTUtils;
 import pers.fjl.server.utils.RedisUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+
+import static pers.fjl.common.utils.JWTUtils.getTokenInfo;
 
 /**
  * <p>
@@ -43,7 +45,10 @@ public class IndexAdminController {
     private UserService userService;
     @Resource
     private RedisUtil redisUtil;
+    @Resource
+    private ResourceService resourceService;
 
+    @ApiOperation(value = "普通用户登录接口")
     @PostMapping("/login")
     @IpRequired
     public Result login(@RequestBody UserVo userVo, HttpServletRequest request) {
@@ -63,6 +68,10 @@ public class IndexAdminController {
             payload.put("username", userDB.getUsername());
             String token = JWTUtils.getToken(payload);
 
+            //获取用户权限并放入缓存
+            List<String> userResource = resourceService.getUserResource(userDB.getUid());
+            redisUtil.set(String.valueOf(userDB.getUid()), userResource.toArray(), 1800);
+
             return new Result(true, token, "token生成成功", userDB);
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,6 +79,7 @@ public class IndexAdminController {
         return new Result(false, "token生成失败,请检查你的账号与密码是否匹配", MessageConstant.ERROR);
     }
 
+    @ApiOperation(value = "验证码")
     @RequestMapping("/captcha")
     public Result captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
@@ -80,5 +90,11 @@ public class IndexAdminController {
         request.getSession().setAttribute("CAPTCHA", verCode);  //存入session
         // 将key和base64返回给前端
         return new Result(true, key, MessageConstant.VERIFICATION_CODE_SUCCESS, specCaptcha.toBase64());
+    }
+
+    @ApiOperation(value = "注销登录接口")
+    @PostMapping("/logout")
+    public Result logout() {
+        return new Result(true, MessageConstant.OK, "登出成功");
     }
 }

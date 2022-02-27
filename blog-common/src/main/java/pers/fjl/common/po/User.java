@@ -14,8 +14,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import pers.fjl.common.utils.JsonLongSerializer;
 
 /**
@@ -28,6 +32,7 @@ import pers.fjl.common.utils.JsonLongSerializer;
  */
 @Data
 //@JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel(value = "用户实体", description = "用户实体")
 @EqualsAndHashCode(callSuper = false)
 public class User extends Model<User> {
 
@@ -70,6 +75,11 @@ public class User extends Model<User> {
      * 禁用状态
      */
     private boolean dataStatus;
+
+    /**
+     * ip来源
+     */
+    private String ipSource;
 
     @Override
     protected Serializable pkVal() {

@@ -2,6 +2,7 @@ package pers.fjl.server.controller.chatroom;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import pers.fjl.common.constant.MessageConstant;
@@ -28,12 +29,14 @@ public class ChatLogController {
     private ChatLogService chatLogService;
 
     @PostMapping(value = "/addMessage")
+    @ApiOperation(value = "私聊添加消息")
     public Result addMessage(@RequestBody ChatLog chatLog){
         chatLogService.addMessage(chatLog);
         return new Result(true,"添加消息成功", MessageConstant.OK);
     }
 
     @PostMapping(value = "/getMessage")
+    @ApiOperation(value = "用户获取私聊信息")
     public Result getMessage(@RequestBody ChatLog chatLog){
         return new Result(true, MessageConstant.OK,"获取聊天记录成功", chatLogService.getMessage(chatLog));
     }

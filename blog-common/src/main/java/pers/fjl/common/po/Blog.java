@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,6 +31,7 @@ import pers.fjl.common.utils.JsonLongSerializer;
  * @since 2021-01-27
  */
 @Data
+@ApiModel(value = "博客实体", description = "博客实体")
 @EqualsAndHashCode(callSuper = false)
 public class Blog extends Model<Blog> {
 

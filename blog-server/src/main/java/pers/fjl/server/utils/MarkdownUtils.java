@@ -116,7 +116,7 @@ public class MarkdownUtils {
                 "    <description>Demo project for Spring Boot</description>\n" +
                 "    <properties>\n" +
                 "        <java.version>1.8</java.version>\n" +
-                "        <!--\t\t自定义es版本依赖否则会出bug-->\n" +
+                "        <!--自定义es版本依赖否则会出bug-->\n" +
                 "        <elasticsearch.version>7.6.1</elasticsearch.version>\n" +
                 "    </properties>\n" +
                 "    <dependencies>\n" +

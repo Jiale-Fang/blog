@@ -5,10 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableZuulProxy
+@EnableFeignClients({"pers.fjl.encrypt"})
+@EnableZuulProxy//开启网关代理
 @EnableHystrix
 public class EncryptApplication {
     public static void main(String[] args) {

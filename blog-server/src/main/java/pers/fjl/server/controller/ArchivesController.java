@@ -1,5 +1,6 @@
 package pers.fjl.server.controller;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.Result;
@@ -26,6 +27,7 @@ public class ArchivesController {
     private ArchivesService archivesService;
 
     @GetMapping("/getArchivesList")
+    @ApiOperation(value = "获取归档列表")
     public Result getArchivesList() {
         return new Result(true, MessageConstant.OK, "获取归档信息成功", archivesService.getArchivesList());
     }

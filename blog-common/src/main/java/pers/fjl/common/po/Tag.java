@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import io.swagger.annotations.ApiModel;
+import lombok.*;
 import pers.fjl.common.utils.JsonLongSerializer;
 
 /**
@@ -19,6 +19,10 @@ import pers.fjl.common.utils.JsonLongSerializer;
  * @since 2021-01-27
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ApiModel(value = "标签实体", description = "标签实体")
 @EqualsAndHashCode(callSuper = false)
 public class Tag extends Model<Tag> {
 

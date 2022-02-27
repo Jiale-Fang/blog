@@ -1,12 +1,15 @@
 package pers.fjl.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Comment;
 import pers.fjl.common.po.User;
+import pers.fjl.common.vo.CommentVo;
 import pers.fjl.server.dao.CommentDao;
 import pers.fjl.server.service.CommentService;
 
@@ -28,11 +31,11 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
     private CommentDao commentDao;
 
     @Cacheable(value = {"CommentMap"}, key = "#blogId")
-    public List<Comment> getCommentList(Long blogId) {
+    public List<CommentVo> getCommentList(Long blogId) {
         // 获取一级评论的list
-        List<Comment> comments1 = commentDao.selectRootList(blogId);
+        List<CommentVo> comments1 = commentDao.selectRootList(blogId);
         // 获取二级评论的list
-        List<Comment> comments2 = commentDao.selectChildList(blogId);
+        List<CommentVo> comments2 = commentDao.selectChildList(blogId);
         return combineChildren(comments1, comments2);
     }
 
@@ -46,13 +49,13 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
     }
 
     @CacheEvict(value = {"CommentMap"}, key = "#blogId")
-    public void delComment(Long blogId, Long commentId, Long uid) {
+    public boolean delComment(Long blogId, Long commentId, Long uid) {
         QueryWrapper<Comment> wrapper = new QueryWrapper<>();
         wrapper.eq("uid", uid)
                 .eq("blog_id", blogId)
                 .eq("comment_id", commentId);
         if (commentDao.selectOne(wrapper) == null) {
-            throw new RuntimeException("您删除的评论不是你发布的，你无权删除！");
+            return false;
         }
         // 获取被删的根评论
         Comment comment = commentDao.selectOne(wrapper);
@@ -61,6 +64,15 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         getDelIdList(commentId, idList);
         idList.add(commentId);
         commentDao.deleteBatchIds(idList);
+        return true;
+    }
+
+    @Override
+    public Page<CommentVo> adminComments(QueryPageBean queryPageBean) {
+        Page<CommentVo> commentVoPage = new Page<>();
+        commentVoPage.setRecords(commentDao.adminComments(queryPageBean));
+        commentVoPage.setTotal(commentDao.selectCount(null));
+        return commentVoPage;
     }
 
     /**
@@ -83,20 +95,20 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
     /**
      * 把子评论加入到父评论的children
      *
-     * @param rootList
-     * @param childList
+     * @param rootList 根评论
+     * @param childList 子评论
      * @return list
      */
-    public List<Comment> combineChildren(List<Comment> rootList, List<Comment> childList) {
-        for (Comment root : rootList) {
-            List<Comment> comments = new ArrayList<>();
-            for (Comment child : childList) {
+    public List<CommentVo> combineChildren(List<CommentVo> rootList, List<CommentVo> childList) {
+        for (CommentVo root : rootList) {
+            List<CommentVo> comments = new ArrayList<>();
+            for (CommentVo child : childList) {
                 if (child.getParentCommentId().equals(root.getCommentId())) {
                     comments.add(child);
                 }
             }
-            List<Comment> comments1 = combineChildren(comments, childList);
-            root.setChildren(comments1);
+//            List<Comment> comments1 = combineChildren(comments, childList);
+            root.setChildren(comments);
         }
         return rootList;
     }

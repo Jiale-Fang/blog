@@ -6,10 +6,10 @@ import pers.fjl.server.chatroom.ResultMessage;
 
 public class MessageUtils {
 
-    public static String getMessage(boolean isSystemMessage, String fromName, Object message) {
+    public static String getMessage(Integer mesType, String fromName, Object message) {
         try {
             ResultMessage result = new ResultMessage();
-            result.setSystem(isSystemMessage).setMessage(message);
+            result.setMesType(mesType).setMessage(message);
             if (fromName != null) {
                 result.setFromName(fromName);
             }

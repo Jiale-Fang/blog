@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint(value = "/chat/{username}", configurator = GetHttpSessionConfigurator.class)
+@ServerEndpoint(value = "/admin/chat/{username}", configurator = GetHttpSessionConfigurator.class)
 @Component
 @Slf4j
 public class ChatEndpoint {
@@ -68,7 +68,7 @@ public class ChatEndpoint {
 
         //将当前在线用户的用户名推送给所以客户端
         //1.获取消息
-        String message = MessageUtils.getMessage(true, "online", this.username);
+        String message = MessageUtils.getMessage(1, "online", this.username);
         //2.调用方法进行系统消息推送
         broadcastAllUsers(message);
     }
@@ -107,18 +107,25 @@ public class ChatEndpoint {
                 String toName = mess.getToName();
                 String data = mess.getMessage();
                 // 发送给客户端的message
-                String messageToSend = MessageUtils.getMessage(false, this.username, data);
+                String messageToSend = MessageUtils.getMessage(2, this.username, data);
+                if (mess.getMesType().equals(4)) {  //是图片消息
+                    messageToSend = MessageUtils.getMessage(4, this.username, data);
+                }
+                System.out.println("----------私聊消息-----------" + messageToSend);
                 onlineUsers.get(toName).session.getBasicRemote().sendText(messageToSend);
             } else {
                 // 调用service查出该用户的昵称和头像
                 User user = userService.selectByUsername(this.username);
                 GroupChatVo groupChatVo = new GroupChatVo();
                 BeanUtils.copyProperties(user, groupChatVo);
-                System.out.println("----------群聊消息-----------"+user);
-                System.out.println("----------群聊消息-----------"+groupChatVo);
+                System.out.println("----------群聊消息-----------" + user);
+                System.out.println("----------群聊消息-----------" + groupChatVo);
                 groupChatVo.setContent(mess.getMessage());
                 groupChatVo.setType(3);
-                String groupMess = MessageUtils.getMessage(true, null, groupChatVo);
+                String groupMess = MessageUtils.getMessage(1, null, groupChatVo);
+                if (mess.getMesType().equals(5)) {  //是图片消息
+                    groupMess = MessageUtils.getMessage(5, null, groupChatVo);
+                }
                 //调用方法进行群聊消息推送
                 broadcastAllUsers(groupMess);
             }
@@ -139,7 +146,7 @@ public class ChatEndpoint {
         onlineUsers.remove(username);
         System.out.println(username);
         //1.获取消息
-        String message = MessageUtils.getMessage(true, "offline", username);
+        String message = MessageUtils.getMessage(1, "offline", username);
         //2.调用方法进行系统消息推送
         broadcastAllUsers(message);
     }

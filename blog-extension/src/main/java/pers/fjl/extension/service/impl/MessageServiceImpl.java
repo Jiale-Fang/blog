@@ -32,9 +32,6 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, Message> impleme
     @CacheEvict(value = {"MessageMap"})
     public boolean addMessage(Message message) {
         int i = messageDao.insert(message);
-        if (i != 1) {
-            throw new RuntimeException("添加留言失败");
-        }
-        return true;
+        return i == 1;
     }
 }

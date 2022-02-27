@@ -56,6 +56,10 @@ public class ChatLog extends Model<ChatLog> {
      */
     private String content;
 
+    /**
+     * 消息种类
+     */
+    private Integer textType;
 
     @Override
     protected Serializable pkVal() {

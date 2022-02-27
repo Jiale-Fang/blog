@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import pers.fjl.common.utils.JsonLongSerializer;
@@ -20,6 +21,7 @@ import pers.fjl.common.utils.JsonLongSerializer;
  * @since 2021-01-27
  */
 @Data
+@ApiModel(value = "分类实体", description = "分类实体")
 @EqualsAndHashCode(callSuper = false)
 public class Type extends Model<Type> {
 

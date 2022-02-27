@@ -1,11 +1,18 @@
 package pers.fjl.server.utils;
 
+import com.alibaba.fastjson.JSON;
+import eu.bitwalker.useragentutils.UserAgent;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.net.InetAddress;
+import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.List;
+import java.util.Map;
 
 public class IpUtils {
     private IpUtils() {
@@ -46,6 +53,7 @@ public class IpUtils {
         return ipAddress;
     }
 
+
     /**
      * 获得MAC地址
      * @param ip
@@ -71,6 +79,40 @@ public class IpUtils {
             e.printStackTrace(System.out);
         }
         return macAddress;
+    }
+
+    /**
+     * 获取访问设备
+     *
+     * @param request 请求
+     * @return {@link UserAgent} 访问设备
+     */
+    public static UserAgent getUserAgent(HttpServletRequest request){
+        return UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+    }
+
+    /**
+     * 解析ip地址
+     *
+     * @param ipAddress ip地址
+     * @return 解析后的ip地址
+     */
+    public static String getIpSource(String ipAddress) {
+        try {
+            URL url = new URL("http://opendata.baidu.com/api.php?query=" + ipAddress + "&co=&resource_id=6006&oe=utf8");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), "utf-8"));
+            String line = null;
+            StringBuffer result = new StringBuffer();
+            while ((line = reader.readLine()) != null) {
+                result.append(line);
+            }
+            reader.close();
+            Map map = JSON.parseObject(result.toString(), Map.class);
+            List<Map<String, String>> data = (List) map.get("data");
+            return data.get(0).get("location");
+        } catch (Exception e) {
+            return "unknown";
+        }
     }
 
 }

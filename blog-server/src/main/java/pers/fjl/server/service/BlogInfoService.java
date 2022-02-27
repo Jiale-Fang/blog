@@ -1,8 +1,10 @@
-package pers.fjl.extension.service;
+package pers.fjl.server.service;
 
 import pers.fjl.common.entity.PageResult;
 import pers.fjl.common.entity.QueryPageBean;
-import pers.fjl.extension.po.BlogInfo;
+import pers.fjl.server.search.index.BlogInfo;
+import pers.fjl.server.search.mq.PostMqIndexMessage;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -45,4 +47,9 @@ public interface BlogInfoService {
      */
     PageResult highLightSearchPage(QueryPageBean queryPageBean) throws IOException;
 
+    /**
+     * 创建更新时同步es
+     * @param message str
+     */
+    void createOrUpdate(PostMqIndexMessage message);
 }

@@ -54,6 +54,11 @@ public class GroupChat extends Model<GroupChat> {
      */
     private String content;
 
+    /**
+     * 消息种类
+     */
+    private Integer textType;
+
     private Integer roomId;
 
 }

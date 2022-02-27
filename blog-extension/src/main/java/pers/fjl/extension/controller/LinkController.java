@@ -33,7 +33,9 @@ public class LinkController {
 
     @PostMapping("/addLink")
     public Result addLink(@RequestBody Link link){
-        return new Result(true, MessageConstant.OK, "添加友链成功，请等待管理员审核", linkService.addLink(link));
+        if (linkService.addLink(link))
+        return new Result(true, "添加友链成功，请等待管理员审核",MessageConstant.OK);
+        return new Result(false, "添加友链失败！",MessageConstant.ERROR);
     }
 }
 

@@ -1,8 +1,11 @@
 package pers.fjl.server.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Type;
 import pers.fjl.common.vo.TypeVo;
 
@@ -21,12 +24,15 @@ public interface TypeDao extends BaseMapper<Type> {
 
     /**
      * 获取每个分类的博客数量
-     * @return
+     * @return 分类数据
      */
-    @Select("SELECT DISTINCT t.type_id, t.type_name, COUNT(b.type_id) type_count " +
-            "FROM type t LEFT OUTER JOIN blog b " +
-            "ON t.type_id = b.type_id " +
-            "GROUP BY t.type_id " +
-            "ORDER BY COUNT(b.type_id) DESC")
     List<TypeVo> getTypeCount();
+
+    /**
+     * 获取后台管理分页数据
+     * @param queryPageBean 分页实体
+     * @return list
+     */
+    List<TypeVo> adminType(@Param("queryPageBean") QueryPageBean queryPageBean);
+
 }

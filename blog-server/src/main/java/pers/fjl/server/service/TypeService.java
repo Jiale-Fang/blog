@@ -70,4 +70,10 @@ public interface TypeService extends IService<Type> {
      */
     List<TypeVo> getTypeCount();
 
+    /**
+     * 获取后台分类分页数据
+     * @param queryPageBean 分页实体
+     * @return page
+     */
+    Page<TypeVo> adminType(QueryPageBean queryPageBean);
 }

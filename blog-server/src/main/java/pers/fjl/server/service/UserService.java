@@ -1,8 +1,15 @@
 package pers.fjl.server.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import pers.fjl.common.dto.UserAreaDTO;
+import pers.fjl.common.dto.UserBackDTO;
+import pers.fjl.common.dto.UserOnlineDTO;
+import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.User;
+import pers.fjl.server.dto.UserDetailDTO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -42,9 +49,10 @@ public interface UserService extends IService<User> {
     /**
      * 用户注册
      *
-     * @param user
+     * @param user user
+     * @return boolean
      */
-    void add(User user);
+    boolean add(User user);
 
     /**
      * 检验验证码
@@ -62,9 +70,41 @@ public interface UserService extends IService<User> {
 
     /**
      * 获取本站用户列表
-     * @return
+     * @return userList
      */
     List<User> getUserList();
 
+    /**
+     * 获取用户分布地区
+     * @return list
+     */
+    List<UserAreaDTO> listUserAreas();
+
+    void statisticalUserArea();
+
     User selectByUsername(String username);
+
+    /**
+     * 获取后台用户列表
+     * @param queryPageBean 分页实体
+     * @return page
+     */
+    Page<UserBackDTO> adminUser(QueryPageBean queryPageBean);
+
+    /**
+     * 获取在线用户列表
+     * @param queryPageBean 分页实体
+     * @return page
+     */
+    Page<UserOnlineDTO> listOnlineUsers(QueryPageBean queryPageBean);
+
+    /**
+     * 获取用户信息
+     * @param username
+     * @param request
+     * @param ipAddress
+     * @param ipSource
+     * @return
+     */
+    UserDetailDTO getUserDetail(String username, HttpServletRequest request, String ipAddress, String ipSource);
 }
