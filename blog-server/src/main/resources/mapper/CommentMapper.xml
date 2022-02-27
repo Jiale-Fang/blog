@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.CommentDao">
+
+    <select id="selectRootList" parameterType="java.lang.Long" resultType="pers.fjl.common.vo.CommentVo">
+        SELECT u.nickname, u.avatar, c.comment_id, c.uid, c.content, c.create_time, c.blog_id, c.parent_comment_id
+            FROM comment c, user u
+            WHERE c.uid = u.uid AND c.blog_id = #{blogId} AND c.parent_comment_id = -1
+    </select>
+
+    <select id="selectChildList" parameterType="java.lang.Long" resultType="pers.fjl.common.vo.CommentVo">
+       SELECT u.nickname, u.avatar, c.comment_id, c.uid, c.content, c.create_time, c.blog_id, c.parent_comment_id, c.reply_uid, uu.nickname as reply_nickname
+            FROM comment c, user u, user uu
+            WHERE c.uid = u.uid AND c.blog_id = #{blogId} AND c.parent_comment_id != -1 AND c.reply_uid = uu.uid
+    </select>
+
+    <select id="adminComments" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.CommentVo">
+        SELECT  c.comment_id, c.uid, c.nickname, u.nickname as reply_nickname, c.content, c.title, c.create_time, c.avatar
+        FROM (
+        SELECT DISTINCT c.comment_id, c.uid, u.nickname, c.reply_uid, b.title, u.avatar, c.content, DATE_FORMAT(c.create_time,'%Y-%m-%d') as 'create_time'
+        FROM `user` u, blog b, `comment` c
+        WHERE u.uid = c.uid AND c.blog_id = b.blog_id
+        <if test="queryPageBean.queryString !=null">
+            AND u.nickname LIKE '%${queryPageBean.queryString}%'
+        </if>
+        ) as c LEFT OUTER JOIN `user` u  on u.uid= c.reply_uid
+        ORDER BY c.create_time DESC
+        LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
+    </select>
+
+</mapper>

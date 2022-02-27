@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.admin.RoleDao">
+
+    <resultMap id="RoleMap" type="pers.fjl.common.dto.RoleDTO">
+        <id column="rid" property="rid"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_label" property="roleLabel"/>
+        <result column="create_time" property="createTime"/>
+        <result column="is_disable" property="isDisable"/>
+        <collection property="resourceIdList" ofType="java.lang.Integer">
+            <constructor>
+                <arg column="resource_id"/>
+            </constructor>
+        </collection>
+        <collection property="menuIdList" ofType="java.lang.Integer">
+            <constructor>
+                <arg column="menu_id"/>
+            </constructor>
+        </collection>
+    </resultMap>
+
+    <select id="listRoles" parameterType="pers.fjl.common.entity.QueryPageBean" resultMap="RoleMap">
+        SELECT
+        r.rid,
+        role_name,
+        role_label,
+        r.create_time,
+        r.is_disable,
+        rr.resource_id,
+        rm.menu_id
+        FROM
+        (
+        SELECT
+        rid,
+        role_name,
+        role_label,
+        create_time,
+        is_disable
+        FROM
+        tb_role
+        <where>
+            <if test="queryPageBean.queryString !=null ">
+                role_name like concat('%',${queryPageBean.queryString},'%')
+            </if>
+        </where>
+        LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
+        ) r
+        LEFT JOIN tb_role_resource rr ON r.rid = rr.rid
+        LEFT JOIN tb_role_menu rm on r.rid = rm.rid
+        ORDER BY r.rid
+    </select>
+
+    <select id="listRolesByUid" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT
+         role_label
+        FROM
+         tb_role r,
+         tb_user_role ur
+         WHERE
+         r.rid = ur.rid
+        AND ur.uid = ${uid}
+    </select>
+</mapper>
