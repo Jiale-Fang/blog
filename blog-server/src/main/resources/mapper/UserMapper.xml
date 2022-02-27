@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.UserDao">
+
+    <resultMap id="UserBackMap" type="pers.fjl.common.dto.UserBackDTO">
+        <id column="uid" property="uid"/>
+        <result column="avatar" property="avatar"/>
+        <result column="nickname" property="nickname"/>
+        <result column="last_ip" property="lastIp"/>
+        <result column="ip_source" property="ipSource"/>
+        <result column="create_time" property="createTime"/>
+        <result column="data_status" property="dataStatus"/>
+        <collection property="roleList" ofType="pers.fjl.common.dto.UserRoleDTO">
+            <id column="role_id" property="rid"/>
+            <id column="role_name" property="roleName"/>
+        </collection>
+    </resultMap>
+
+    <select id="adminUser" parameterType="pers.fjl.common.entity.QueryPageBean" resultMap="UserBackMap">
+       SELECT u.avatar, u.uid, u.username, u.nickname, u.last_ip, u.ip_source, u.create_time, u.data_status,
+        r.rid, r.role_name
+        FROM `user` u, tb_role r, tb_user_role ur
+        WHERE u.uid = ur.uid AND ur.rid = r.rid
+        <if test="queryPageBean.queryString !=null">
+            AND u.nickname LIKE '%${queryPageBean.queryString}%'
+        </if>
+        ORDER BY create_time DESC
+        LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
+    </select>
+
+
+</mapper>
