@@ -19,7 +19,7 @@ public class OssServiceImpl implements OssService {
     @Resource
     private ConstantPropertiesUtils constantPropertiesUtils;
 
-    public String uploadFileAvatar(MultipartFile file) {
+    public String uploadImg(MultipartFile file, String folderName) {
         //获取oss上传配置文件中的参数
         String bucketName = constantPropertiesUtils.getBucketname();
         String endpoint = constantPropertiesUtils.getEndpoint();
@@ -40,8 +40,7 @@ public class OssServiceImpl implements OssService {
             String newFileName = uuid + fileName;
 
             //获取当前日期,然后以日期和新的文件名组成全路径，使得oss中的文件按照日期进行分类存储
-            String date = new DateTime().toString("yyyy/MM/dd");
-            String fullFileName = date + "/" + newFileName;
+            String fullFileName = folderName + "/" + newFileName;
             log.info("图片保存在oss的全路径为：{}",fullFileName);
 
             //第一个参数Bucket名称 第二个参数 上传到oss文件路径和文件名称
@@ -51,7 +50,7 @@ public class OssServiceImpl implements OssService {
             ossClient.shutdown();
             return "https://"+bucketName+"."+ endpoint+"/"+fullFileName;
         } catch (Exception e) {
-//            log.error("文件上传失败",e);
+            log.error("文件上传失败",e);
             e.printStackTrace();
             throw new RuntimeException("文件上传oss失败");
         }

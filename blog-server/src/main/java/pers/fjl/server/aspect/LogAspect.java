@@ -1,22 +1,22 @@
-package pers.fjl.server.aspect;
-
-import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import pers.fjl.common.entity.RequestLog;
-
-import javax.servlet.http.HttpServletRequest;
-
-/**
- * 切面处理
- *
- * @author fangjiale 2021年01月26日
- */
+//package pers.fjl.server.aspect;
+//
+//import lombok.extern.slf4j.Slf4j;
+//import org.aspectj.lang.JoinPoint;
+//import org.aspectj.lang.annotation.*;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//import org.springframework.stereotype.Component;
+//import org.springframework.web.context.request.RequestContextHolder;
+//import org.springframework.web.context.request.ServletRequestAttributes;
+//import pers.fjl.common.entity.RequestLog;
+//
+//import javax.servlet.http.HttpServletRequest;
+//
+///**
+// * 切面处理
+// *
+// * @author fangjiale 2021年01月26日
+// */
 //@Aspect
 //@Slf4j
 //@Component
@@ -53,5 +53,4 @@ import javax.servlet.http.HttpServletRequest;
 //        log.info("Result:{}", result);
 //    }
 //
-
 //}

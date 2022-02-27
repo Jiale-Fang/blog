@@ -19,14 +19,14 @@ import javax.annotation.Resource;
  */
 
 @Api(value = "分类展示模块", description = "分类展示模块的接口信息")
-@RequestMapping("/type")
+@RequestMapping("/typeShow")
 @RestController
 @CrossOrigin
 public class TypeShowController {
     @Resource
     private BlogService blogService;
 
-    @ApiOperation(value = "分页查询", notes = "返回分页数据")
+    @ApiOperation(value = "根据分类分页展示", notes = "返回分页数据")
     @PostMapping("/getById")
     public Result getByTypeId(@RequestBody QueryPageBean queryPageBean) {
         if (queryPageBean.getTypeId() == null)

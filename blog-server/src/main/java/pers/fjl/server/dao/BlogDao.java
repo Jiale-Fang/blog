@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import pers.fjl.common.dto.BlogBackDTO;
+import pers.fjl.common.dto.BlogStatisticsDTO;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Blog;
 import pers.fjl.common.vo.BlogVo;
@@ -38,6 +40,23 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @param
      * @return List
      */
-    List<BlogVo> findHomePage(@Param("queryPageBean")QueryPageBean queryPageBean);
+    List<BlogVo> findHomePage(@Param("queryPageBean") QueryPageBean queryPageBean);
 
+    @Select("        SELECT DATE_FORMAT( create_time, \"%Y-%m-%d\" ) AS date, COUNT( 1 ) AS count\n" +
+            "        FROM blog " +
+            "        GROUP BY date\n" +
+            "        ORDER BY date DESC")
+    /**
+    * 文章统计
+    *
+    * @return {@link List< BlogStatisticsDTO >} 文章统计结果
+    */
+    List<BlogStatisticsDTO> listArticleStatistics();
+
+    /**
+     * 获取后台博客列表
+     * @param queryPageBean 分页实体
+     * @return list
+     */
+    List<BlogBackDTO> adminBlogPage(@Param("queryPageBean")QueryPageBean queryPageBean);
 }

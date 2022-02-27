@@ -2,6 +2,8 @@ package pers.fjl.server.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import pers.fjl.common.dto.BlogBackDTO;
+import pers.fjl.common.dto.BlogBackInfoDTO;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Blog;
 import pers.fjl.common.vo.AddBlogVo;
@@ -68,9 +70,22 @@ public interface BlogService extends IService<Blog> {
 
     /**
      * 点赞
-     * @param blogId
-     * @param uid
+     * @param blogId 博客id
+     * @param uid 用户id
      */
-    void thumbsUp(Long blogId, Long uid);
+    boolean thumbsUp(Long blogId, Long uid);
+
+    /**
+     * 获取博客后台可视化管理数据
+     * @return 博客数据dto
+     */
+    BlogBackInfoDTO getBlogBackInfo();
+
+    /**
+     * 获取博客后台分页数据
+     * @param queryPageBean 分页实体
+     * @return page
+     */
+    Page<BlogBackDTO> adminBlogPage(QueryPageBean queryPageBean);
 }
 

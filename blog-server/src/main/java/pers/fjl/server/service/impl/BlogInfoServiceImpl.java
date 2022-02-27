@@ -1,4 +1,4 @@
-package pers.fjl.extension.service.impl;
+package pers.fjl.server.service.impl;
 
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -15,9 +15,10 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.PageResult;
 import pers.fjl.common.entity.QueryPageBean;
-import pers.fjl.extension.dao.BlogInfoMapper;
-import pers.fjl.extension.po.BlogInfo;
-import pers.fjl.extension.service.BlogInfoService;
+import pers.fjl.server.search.repository.BlogInfoMapper;
+import pers.fjl.server.search.index.BlogInfo;
+import pers.fjl.server.search.mq.PostMqIndexMessage;
+import pers.fjl.server.service.BlogInfoService;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -144,6 +145,11 @@ public class BlogInfoServiceImpl implements BlogInfoService {
         pageResult.setTotal(total(queryPageBean.getQueryString(), true));
         pageResult.setRecords(list);
         return pageResult;
+    }
+
+    @Override
+    public void createOrUpdate(PostMqIndexMessage message) {
+        Long blogId = message.getBlogId();
     }
 
     public Map<String, Object> replaceHits(HighlightField field, Map<String, Object> sourceAsMap, String type) {

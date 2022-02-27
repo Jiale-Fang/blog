@@ -50,4 +50,15 @@ public class TagServiceImpl extends ServiceImpl<TagDao, Tag> implements TagServi
         return tagDao.selectPage(page, wrapper);
     }
 
+    @Override
+    public Page<TagVo> adminTag(QueryPageBean queryPageBean) {
+        //设置分页条件
+        Page<TagVo> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
+        QueryWrapper<Tag> wrapper = new QueryWrapper<>();
+        wrapper.like(queryPageBean.getQueryString() != null, "tag_name", queryPageBean.getQueryString());
+        page.setTotal(tagDao.selectCount(wrapper));
+        page.setRecords(tagDao.adminTag(queryPageBean));
+        return page;
+    }
+
 }

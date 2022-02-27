@@ -8,6 +8,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.annotation.PostConstruct;
+
 @SpringBootApplication
 @EnableCaching
 @EnableEurekaClient
@@ -18,6 +20,12 @@ public class BlogServerApplication {
         SpringApplication.run(BlogServerApplication.class, args);
     }
 
+    @PostConstruct
+    public void init() {
+        // 解决netty启动冲突问题
+        // see Netty4Utils.setAvailableProcessors()
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
+    }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

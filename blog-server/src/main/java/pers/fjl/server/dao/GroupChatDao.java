@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public interface GroupChatDao extends BaseMapper<GroupChat> {
 
-    @Select("SELECT u.username, u.nickname, g.content, g.create_time, u.avatar, g.uid " +
+    @Select("SELECT u.username, u.nickname, g.content, g.create_time, u.avatar, g.uid, text_type " +
             "FROM group_chat g, user u " +
             "WHERE g.uid = u.uid " +
             "ORDER BY g.create_time ASC")

@@ -2,6 +2,7 @@ package pers.fjl.server.controller.chatroom;
 
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,7 @@ public class FriendsController {
     private FriendsService friendsService;
 
     @GetMapping("/getFriendsList")
+    @ApiOperation(value = "用户获取好友列表")
     @LoginRequired
     public Result getFriendsList(HttpServletRequest request) {
         User user = (User) request.getAttribute("currentUser");
@@ -39,6 +41,7 @@ public class FriendsController {
     }
 
     @PostMapping("/addFriend")
+    @ApiOperation(value = "用户添加好友")
     public Result addFriend(@RequestBody Friends friends) {
         friendsService.addFriend(friends);
         return new Result(true, "添加好友成功", MessageConstant.OK);

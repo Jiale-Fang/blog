@@ -35,9 +35,16 @@ public interface TagService extends IService<Tag> {
     List<TagVo> getTagCount();
 
     /**
-     * 获取后台管理标签列表
+     * 获取个人后台管理标签列表
      * @param queryPageBean
      * @return page
      */
     Page<Tag> findPage(QueryPageBean queryPageBean);
+
+    /**
+     * 获取管理员后台管理标签列表
+     * @param queryPageBean 分页实体
+     * @return page page数据
+     */
+    Page<TagVo> adminTag(QueryPageBean queryPageBean);
 }

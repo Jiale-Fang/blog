@@ -28,7 +28,7 @@ public class TagShowController {
     @Resource
     private BlogTagService tagService;
 
-    @ApiOperation(value = "分页查询", notes = "返回分页数据")
+    @ApiOperation(value = "根据标签类型分页展示", notes = "返回分页数据")
     @PostMapping("/getById")
     public Result getByTagId(@RequestBody QueryPageBean queryPageBean) {
         if (queryPageBean.getTagId() == null) {

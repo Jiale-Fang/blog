@@ -1,5 +1,6 @@
 package pers.fjl.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,11 +52,11 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsDao, Friends> impleme
         Friends friends1 = new Friends();
         friends1.setFriendId(friends.getUid());
         friends1.setUid(friends.getFriendId());
-        int i = friendsDao.insert(friends);
-        int j = friendsDao.insert(friends1);
-        if (i!=1||j!=1){
-            throw new RuntimeException("添加好友失败，您已经添加过该好友，或者该好友已经添加了你");
+        Friends friendsDB = friendsDao.selectOne(new LambdaQueryWrapper<Friends>().eq(Friends::getUid, friends.getUid())
+                .eq(Friends::getFriendId, friends.getFriendId()));
+        if (friendsDB == null) {   // 证明没添加过好友
+            friendsDao.insert(friends);
+            friendsDao.insert(friends1);
         }
-
     }
 }

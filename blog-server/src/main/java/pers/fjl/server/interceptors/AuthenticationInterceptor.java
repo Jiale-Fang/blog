@@ -8,19 +8,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import pers.fjl.common.po.User;
+import pers.fjl.common.utils.JWTUtils;
 import pers.fjl.server.annotation.IpRequired;
 import pers.fjl.server.annotation.LoginRequired;
 import pers.fjl.server.service.UserService;
 import pers.fjl.server.utils.IpUtils;
-import pers.fjl.server.utils.JWTUtils;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-
-import static pers.fjl.server.utils.JWTUtils.getTokenInfo;
+import static pers.fjl.common.utils.JWTUtils.getTokenInfo;
 
 @Slf4j
 @Component

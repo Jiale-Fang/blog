@@ -4,3 +4,6 @@ eureka:
       defaultZone: http://xx:8686/eureka/
   instance:
     prefer-ip-address: true
+spring:
+  redis:
+    host: 39.108.136.207

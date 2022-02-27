@@ -1,8 +1,10 @@
 package pers.fjl.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -11,24 +13,26 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pers.fjl.common.dto.*;
 import pers.fjl.common.entity.QueryPageBean;
-import pers.fjl.common.po.Blog;
-import pers.fjl.common.po.ThumbsUp;
-import pers.fjl.common.po.User;
+import pers.fjl.common.po.*;
 import pers.fjl.common.vo.AddBlogVo;
 import pers.fjl.common.vo.BlogVo;
-import pers.fjl.server.dao.BlogDao;
-import pers.fjl.server.dao.ThumbsUpDao;
+import pers.fjl.common.vo.TypeVo;
+import pers.fjl.server.dao.*;
 import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.BlogTagService;
 import pers.fjl.server.service.UserService;
+import pers.fjl.server.service.ViewsService;
 import pers.fjl.server.utils.MarkdownUtils;
 
 import javax.annotation.Resource;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -47,11 +51,82 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
     @Resource
     private UserService userService;
     @Resource
+    private ViewsService viewsService;
+    @Resource
     private ThumbsUpDao thumbsUpDao;
+    @Resource
+    private MessageDao messageDao;
+    @Resource
+    private ViewsDao viewsDao;
+    @Resource
+    private UserDao userDao;
+    @Resource
+    private TypeDao typeDao;
+    @Resource
+    private TagDao tagDao;
 
     private Integer currentPage;
     private Integer pageSize;
     private Integer start;
+
+    /**
+     * 获取后台首页信息
+     *
+     * @return blogbackinfodto
+     */
+    public BlogBackInfoDTO getBlogBackInfo() {
+        // 查询访问量
+        Integer viewsCount = viewsDao.selectCount(null);
+        // 查询留言量
+        Integer messageCount = messageDao.selectCount(null);
+        // 查询用户量
+        Integer userCount = userDao.selectCount(null);
+        // 查询文章量
+        Integer articleCount = blogDao.selectCount(null);
+        // 查询一周访问量
+        List<ViewsDTO> viewsDTOList = viewsService.getViewsData();
+        // 查询文章统计
+        List<BlogStatisticsDTO> articleStatisticsList = blogDao.listArticleStatistics();
+        // 查询分类数据
+        List<TypeVo> typeList = typeDao.getTypeCount();
+        // 查询标签数据
+        List<Tag> tagList = tagDao.selectList(null);
+        // 查询博客浏览量前五
+        List<BlogRankDTO> blogRankDTOList = blogDao.selectList(new LambdaQueryWrapper<Blog>()
+                .select(Blog::getBlogId, Blog::getTitle, Blog::getViews)
+                .last("limit 5").orderByDesc(Blog::getViews))
+                .stream().map(blog -> BlogRankDTO.builder()
+                        .title(blog.getTitle())
+                        .views(blog.getViews())
+                        .build())
+                .sorted(Comparator.comparingInt(BlogRankDTO::getViews).reversed())
+                .collect(Collectors.toList());
+        // 查询redis访问量前五的文章
+//        Map<Object, Double> articleMap = redisService.zReverseRangeWithScore(ARTICLE_VIEWS_COUNT, 0, 4);
+        BlogBackInfoDTO blogBackInfoDTO = BlogBackInfoDTO.builder()
+                .articleStatisticsList(articleStatisticsList)
+                .tagList(tagList)
+                .viewsCount(viewsCount)
+                .messageCount(messageCount)
+                .userCount(userCount)
+                .articleCount(articleCount)
+                .blogRankDTOList(blogRankDTOList)
+                .typeList(typeList)
+                .viewsDTOList(viewsDTOList)
+                .build();
+        return blogBackInfoDTO;
+    }
+
+    @Override
+    public Page<BlogBackDTO> adminBlogPage(QueryPageBean queryPageBean) {
+        Page<BlogBackDTO> blogBackDTOPage = new Page<>();
+        blogBackDTOPage.setRecords(blogDao.adminBlogPage(queryPageBean));
+        Integer total = blogDao.selectCount(new LambdaQueryWrapper<Blog>().
+                like(StringUtils.isNotBlank(queryPageBean.getQueryString()), Blog::getContent, queryPageBean.getQueryString()).
+                or().like(StringUtils.isNotBlank(queryPageBean.getQueryString()), Blog::getTitle, queryPageBean.getQueryString()));
+        blogBackDTOPage.setTotal(total);
+        return blogBackDTOPage;
+    }
 
     @Cacheable(value = {"AdminBlog"}, key = "#uid")
     public Page<BlogVo> findPage(QueryPageBean queryPageBean, Long uid) {
@@ -157,20 +232,21 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
     }
 
     @Override
-    public void thumbsUp(Long blogId, Long uid) {
+    public boolean thumbsUp(Long blogId, Long uid) {
         QueryWrapper<ThumbsUp> wrapper = new QueryWrapper<>();
         wrapper.eq("blog_id", blogId)
                 .eq("uid", uid);
 
         if (thumbsUpDao.selectCount(wrapper) != 0) { // 该用户已点赞过该篇博客
             thumbsUpDao.delete(wrapper);
-            throw new RuntimeException("取消点赞成功");
+            return false;
         }
 
         ThumbsUp thumbsUp = new ThumbsUp();
         thumbsUp.setBlogId(blogId);
         thumbsUp.setUid(uid);
         thumbsUpDao.insert(thumbsUp);
+        return true;
     }
 
     public Page<BlogVo> search(QueryPageBean queryPageBean) {
@@ -185,10 +261,14 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
 
     /**
      * 用户提供的图片链接无效就自动生成图片
-     * @param postUrl
-     * @return
+     *
+     * @param postUrl 首图url
+     * @return 图片url
      */
     public String isImagesTrue(String postUrl) {
+        if (postUrl.contains("tcefrep.oss-cn-beijing.aliyuncs.com")) {   //本人的oss地址，就无需检验图片有效性
+            return postUrl;
+        }
         int max = 1000;
         int min = 1;
         String picUrl = "https://unsplash.it/800/450?image=";
@@ -203,12 +283,13 @@ public class BlogServiceImpl extends ServiceImpl<BlogDao, Blog> implements BlogS
             } else {
                 Random random = new Random();
                 int s = random.nextInt(max) % (max - min + 1) + min;
-                return picUrl+s;
+                return picUrl + s;
             }
         } catch (Exception e) {   // 代表图片链接无效
             Random random = new Random();
             int s = random.nextInt(max) % (max - min + 1) + min;
-            return picUrl+s;
+            return picUrl + s;
         }
     }
+
 }

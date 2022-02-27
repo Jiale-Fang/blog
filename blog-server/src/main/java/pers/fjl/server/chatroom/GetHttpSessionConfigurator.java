@@ -1,6 +1,5 @@
 package pers.fjl.server.chatroom;
 
-import pers.fjl.common.po.User;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.HandshakeResponse;
