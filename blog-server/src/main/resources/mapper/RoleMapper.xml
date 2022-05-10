@@ -41,7 +41,7 @@
         tb_role
         <where>
             <if test="queryPageBean.queryString !=null ">
-                role_name like concat('%',${queryPageBean.queryString},'%')
+                role_name LIKE '%${queryPageBean.queryString}%'
             </if>
         </where>
         LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}

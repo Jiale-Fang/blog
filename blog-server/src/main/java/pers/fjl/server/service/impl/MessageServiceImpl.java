@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Message;
 import pers.fjl.server.dao.MessageDao;
+import pers.fjl.server.filter.SensitiveFilter;
 import pers.fjl.server.service.MessageService;
 import pers.fjl.server.utils.IpUtils;
 
@@ -35,13 +36,14 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, Message> impleme
     }
 
     @Caching(evict = {
-            @CacheEvict(value = {"MessageMap"}),
+            @CacheEvict(value = {"MessagePage"}, allEntries = true),
             @CacheEvict(value = {"MessageMap"}, allEntries = true)
     })
     public boolean addMessage(Message message, String host) {
         message.setIp(host);
         String ipSource = IpUtils.getIpSource(host);
         message.setIpSource(ipSource);
+        message.setMessageContent(SensitiveFilter.filter(message.getMessageContent()));
         int i = messageDao.insert(message);
         return i == 1;
     }
@@ -52,5 +54,14 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, Message> impleme
         QueryWrapper<Message> wrapper = new QueryWrapper<>();
         wrapper.like(queryPageBean.getQueryString() != null, "nickname", queryPageBean.getQueryString());
         return messageDao.selectPage(page, wrapper);
+    }
+
+    @Caching(evict = {
+            @CacheEvict(value = {"MessagePage"}, allEntries = true),
+            @CacheEvict(value = {"MessageMap"}, allEntries = true)
+    })
+    @Override
+    public void deleteMessage(List<Long> messageIdList) {
+        messageDao.deleteBatchIds(messageIdList);
     }
 }

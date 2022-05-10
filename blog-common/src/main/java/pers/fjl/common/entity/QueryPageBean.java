@@ -16,7 +16,10 @@ public class QueryPageBean implements Serializable {
     private Integer pageSize;   //每页记录数
     private String queryString; //查询条件
 
-    private Long typeId; //分类id
-    private Long tagId; //标签id
-    private String shareStatement;  //分享状态
+    private Integer typeId; //分类id
+    private Integer tagId; //标签id
+    /**
+     * 版权状态
+     */
+    private Integer copyright;
 }

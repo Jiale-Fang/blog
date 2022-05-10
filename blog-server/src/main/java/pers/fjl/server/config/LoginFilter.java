@@ -3,6 +3,8 @@ package pers.fjl.server.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -13,6 +15,7 @@ import pers.fjl.server.dto.UserDetailDTO;
 import pers.fjl.server.exception.BizException;
 import pers.fjl.server.service.UserService;
 import pers.fjl.server.utils.IpUtils;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,27 +46,36 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                 Map<String, String> userInfo = new ObjectMapper().readValue(request.getInputStream(), Map.class);
                 String username = userInfo.get(getUsernameParameter());
                 String password = userInfo.get(getPasswordParameter());
-                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+                String code = userInfo.get("code");
+                String verKey = userInfo.get("verKey");
                 // 创建登录信息
                 UserDetailDTO userDetailDTO = null;
                 // 获取用户ip信息
                 String ipAddress = IpUtils.getIpAddr(request);
                 String ipSource = IpUtils.getIpSource(ipAddress);
+                if (verKey.length() != 0) {
+                    userService.verifyCode(verKey, code);
+                }
                 if (Objects.nonNull(username)) {    // 获取用户名
                     // 返回数据库用户信息
                     userDetailDTO = userService.getUserDetail(username, request, ipAddress, ipSource);
                 }
                 // 判断账号是否禁用
-                if (!userDetailDTO.isDataStatus()) {
-                    throw new BizException("账号已被禁用");
+                if (!userDetailDTO.isStatus()) {
+                    throw new AuthenticationServiceException("账号已被禁用");
                 }
+                UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
                 // 将登录信息放入springSecurity管理
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetailDTO, null, userDetailDTO.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 //  用户名密码验证通过后，将含有用户信息的token注册session
                 sessionRegistry.registerNewSession(request.getSession().getId(), auth.getPrincipal());
                 this.setDetails(request, auth);
-                return this.getAuthenticationManager().authenticate(authRequest);
+                try {
+                    return this.getAuthenticationManager().authenticate(authRequest);
+                } catch (BadCredentialsException e) {
+                    throw new AuthenticationServiceException("请输入正确的用户名或密码");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

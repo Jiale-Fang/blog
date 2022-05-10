@@ -3,22 +3,25 @@ package pers.fjl.server.controller.admin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
-import pers.fjl.common.constant.MessageConstant;
-import pers.fjl.common.dto.BlogBackInfoDTO;
+import pers.fjl.common.constant.RabbitMQConst;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.entity.Result;
 import pers.fjl.common.po.User;
-import pers.fjl.common.vo.AddBlogVo;
-import pers.fjl.server.annotation.IpRequired;
+import pers.fjl.common.vo.AddBlogVO;
+import pers.fjl.common.vo.BlogVO;
 import pers.fjl.server.annotation.LoginRequired;
-import pers.fjl.server.config.RabbitConfig;
+import pers.fjl.server.annotation.OptLog;
 import pers.fjl.server.search.mq.PostMqIndexMessage;
 import pers.fjl.server.service.BlogService;
 import pers.fjl.server.service.ViewsService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import static pers.fjl.common.constant.OptTypeConst.REMOVE;
 
 /**
  * 分类管理模块
@@ -37,41 +40,78 @@ public class BlogController {
     private ViewsService viewsService;
     @Resource
     private AmqpTemplate amqpTemplate;
+    @Resource
+    private RabbitTemplate rabbitTemplate;
 
     @LoginRequired
     @ApiOperation(value = "个人后台分页查询", notes = "返回分页数据")
-    @PostMapping("/findPage")
+    @PostMapping("/admin/findPage")
     public Result findPage(@RequestBody QueryPageBean queryPageBean, HttpServletRequest request) {
         User user = (User) request.getAttribute("currentUser");
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", blogService.findPage(queryPageBean, user.getUid()));
+        return Result.ok("获取分页数据成功", blogService.findPage(queryPageBean, user.getUid()));
     }
 
     @LoginRequired
-    @ApiOperation(value = "用户添加博客")
-    @PostMapping("/add")
-    public Result addBlog(@RequestBody AddBlogVo addBlogVo, HttpServletRequest request) {
+    @ApiOperation(value = "用户添加或更新博客")
+    @PostMapping("/admin/addOrUpdate")
+    public Result addOrUpdate(@RequestBody AddBlogVO addBlogVO, HttpServletRequest request) {
         User user = (User) request.getAttribute("currentUser");
-        boolean flag = blogService.addBlog(addBlogVo, user.getUid());
+        Long blogId = blogService.addOrUpdateBlog(addBlogVO, user.getUid());
+        System.out.println("es测试" + blogId);
         //发消息给mq然后同步es
-        amqpTemplate.convertAndSend(RabbitConfig.esExchange, RabbitConfig.esBingKey,
-                new PostMqIndexMessage(addBlogVo.getBlogId(), PostMqIndexMessage.CREATE_OR_UPDATE));
-        return new Result(flag, "添加成功", MessageConstant.OK);
+        amqpTemplate.convertAndSend(RabbitMQConst.esExchange, RabbitMQConst.esBingKey,
+                new PostMqIndexMessage(blogId, PostMqIndexMessage.CREATE_OR_UPDATE));
+        return Result.ok("添加或更新博客成功");
     }
 
-    @IpRequired
+    @LoginRequired
+    @ApiOperation(value = "管理员更新或发布博客")
+    @PostMapping("/admin/saveOrUpdate")
+    public Result adminSaveOrUpdateBlog(@RequestBody BlogVO blogVO, HttpServletRequest request) {
+        User user = (User) request.getAttribute("currentUser");
+        blogService.adminSaveOrUpdateBlog(blogVO, user.getUid());
+        return Result.ok("编辑成功");
+    }
+
+    @OptLog(optType = REMOVE)
+    @ApiOperation(value = "管理员删除博客")
+    @DeleteMapping("/admin/delete")
+    public Result deleteBlogs(@RequestBody List<Long> blogIdList) {
+        blogService.deleteBlogs(blogIdList);
+        PostMqIndexMessage postMqIndexMessage = new PostMqIndexMessage();
+        postMqIndexMessage.setBlogIdList(blogIdList).setType(PostMqIndexMessage.REMOVE);
+        amqpTemplate.convertAndSend(RabbitMQConst.esExchange, RabbitMQConst.esBingKey, postMqIndexMessage);
+        return Result.ok("删除博客成功");
+    }
+
     @ApiOperation(value = "根据id获取博客的信息")
-    @GetMapping("/getById/{blogId}")
-    public Result getOneBlog(@PathVariable("blogId") Long blogId, HttpServletRequest request) {
-        viewsService.addViews(blogId, (String) request.getAttribute("host"));
-        blogService.setViews(blogId);
-        return new Result(true, MessageConstant.OK, "获取博客信息成功", blogService.getOneBlog(blogId));
+    @GetMapping("/{blogId}")
+    public Result getOneBlog(@PathVariable("blogId") Long blogId) {
+        blogService.updateBlogViewsCount(blogId);
+        return Result.ok("获取博客信息成功", blogService.getOneBlog(blogId));
     }
 
-    @GetMapping("/thumbUp/{blogId}/{uid}")
+    @ApiOperation(value = "点赞")
+    @GetMapping("/admin/thumbUp/{blogId}/{uid}")
     public Result thumbsUp(@PathVariable("blogId") Long blogId, @PathVariable("uid") Long uid) {
-        if (blogService.thumbsUp(blogId, uid))
-            return new Result(true, "点赞成功", MessageConstant.OK);
-        return new Result(false, "取消点赞成功", MessageConstant.ERROR);
+        boolean flag = blogService.thumbsUp(blogId, uid);
+        if (flag)
+            return Result.ok("点赞成功");
+        return Result.ok("取消点赞成功");
+    }
+
+    @ApiOperation(value = "收藏")
+    @GetMapping("/admin/favorite/{blogId}/{uid}")
+    public Result favorite(@PathVariable("blogId") Long blogId, @PathVariable("uid") Long uid) {
+        boolean flag = blogService.favorite(blogId, uid);
+        if (flag)
+            return Result.ok("收藏成功");
+        return Result.ok("取消收藏成功");
+    }
+
+    @PostMapping("/search")
+    public Result search(@RequestBody QueryPageBean queryPageBean) {
+        return Result.ok("查询成功", blogService.search(queryPageBean));
     }
 
     /**
@@ -80,9 +120,9 @@ public class BlogController {
      * @return 后台信息
      */
     @ApiOperation(value = "查看后台信息")
-    @GetMapping("/admin")
+    @GetMapping("/admin/getBlogBackInfo")
     public Result getBlogBackInfo() {
-        return new Result(true, MessageConstant.OK, "获取后台信息成功", blogService.getBlogBackInfo());
+        return Result.ok("获取后台信息成功", blogService.getBlogBackInfo());
     }
 
     /**
@@ -91,9 +131,23 @@ public class BlogController {
      * @return 后台信息
      */
     @ApiOperation(value = "后台获取博客信息")
-    @GetMapping("/adminBlogPage")
+    @GetMapping("/admin/blogPage")
     public Result adminBlogPage(QueryPageBean queryPageBean) {
-        return new Result(true, MessageConstant.OK, "获取后台信息成功", blogService.adminBlogPage(queryPageBean));
+        return Result.ok("获取后台信息成功", blogService.adminBlogPage(queryPageBean));
+    }
+
+    @LoginRequired
+    @ApiOperation(value = "收藏夹分页查询", notes = "返回分页数据")
+    @PostMapping("/admin/findFavoritesPage")
+    public Result findFavoritesPage(@RequestBody QueryPageBean queryPageBean, HttpServletRequest request) {
+        User user = (User) request.getAttribute("currentUser");
+        return Result.ok("获取分页数据成功", blogService.findFavoritesPage(queryPageBean, user.getUid()));
+    }
+
+    @ApiOperation(value = "博文信息", notes = "博文信息")
+    @GetMapping("/blogInfo")
+    public Result blogInfo() {
+        return Result.ok("获取分页数据成功", blogService.blogInfo());
     }
 
 }

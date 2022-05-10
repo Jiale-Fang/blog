@@ -5,16 +5,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.Result;
 import pers.fjl.common.po.ChatLog;
+import pers.fjl.common.vo.ChatLogVO;
 import pers.fjl.server.service.ChatLogService;
 
 import javax.annotation.Resource;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author fangjiale
@@ -28,17 +28,17 @@ public class ChatLogController {
     @Resource
     private ChatLogService chatLogService;
 
-    @PostMapping(value = "/addMessage")
+    @PostMapping(value = "/admin/addMessage")
     @ApiOperation(value = "私聊添加消息")
-    public Result addMessage(@RequestBody ChatLog chatLog){
+    public Result addMessage(@RequestBody ChatLog chatLog) {
         chatLogService.addMessage(chatLog);
-        return new Result(true,"添加消息成功", MessageConstant.OK);
+        return Result.ok("添加消息成功");
     }
 
-    @PostMapping(value = "/getMessage")
+    @PostMapping(value = "/admin/getMessage")
     @ApiOperation(value = "用户获取私聊信息")
-    public Result getMessage(@RequestBody ChatLog chatLog){
-        return new Result(true, MessageConstant.OK,"获取聊天记录成功", chatLogService.getMessage(chatLog));
+    public Result getMessage(@RequestBody ChatLogVO chatLogVO) {
+        return Result.ok("获取聊天记录成功", chatLogService.getMessage(chatLogVO));
     }
 
 }

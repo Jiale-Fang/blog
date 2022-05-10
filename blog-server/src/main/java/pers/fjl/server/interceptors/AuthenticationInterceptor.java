@@ -11,13 +11,20 @@ import pers.fjl.common.po.User;
 import pers.fjl.common.utils.JWTUtils;
 import pers.fjl.server.annotation.IpRequired;
 import pers.fjl.server.annotation.LoginRequired;
+import pers.fjl.server.exception.BizException;
 import pers.fjl.server.service.UserService;
 import pers.fjl.server.utils.IpUtils;
+import pers.fjl.server.utils.RedisUtil;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Objects;
+
+import static pers.fjl.common.enums.StatusCodeEnum.TOKEN_EXPIRED;
+import static pers.fjl.common.constant.RedisConst.TOKEN_ALLOW_LIST;
 import static pers.fjl.common.utils.JWTUtils.getTokenInfo;
 
 @Slf4j
@@ -25,12 +32,16 @@ import static pers.fjl.common.utils.JWTUtils.getTokenInfo;
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Resource
     private UserService userServiceAuto;
+    @Resource
+    private RedisUtil redisUtilAuto;
 
     private static UserService userService;
+    private static RedisUtil redisUtil;
 
     @PostConstruct
     public void init() {
-        userService = this.userServiceAuto;  //将注入的对象交给静态对象管理
+        userService = this.userServiceAuto;
+        redisUtil = this.redisUtilAuto;//将注入的对象交给静态对象管理
     }
 
     public boolean preHandle(HttpServletRequest request,
@@ -60,29 +71,31 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 //            String token = request.getHeader("token");  // 从 http 请求头中取出 token
             String token = request.getHeader("Authorization");
             if (token == null) {
-                throw new RuntimeException("无token，请重新登录");
+                throw new BizException("无token，请重新登录");
             }
             String userId;
             try {
                 DecodedJWT verify = getTokenInfo(token);
-                userId= verify.getClaim("id").asString();
+                userId = verify.getClaim("id").asString();
             } catch (JWTDecodeException e) {
-                throw new RuntimeException("token无效，请重新登录");
+                throw new BizException("token无效，请重新登录");
+            }
+            if (Objects.isNull(redisUtil.get(TOKEN_ALLOW_LIST + userId)))  {    // token已经失效
+                throw new BizException(TOKEN_EXPIRED);
             }
             User user = userService.findById(Long.parseLong(userId));
             if (user == null) {
-                throw new RuntimeException("用户不存在，请重新登录");
+                throw new BizException("用户不存在，请重新登录");
             }
             // 验证 token
             try {
                 JWTUtils.verify(token);
             } catch (JWTVerificationException e) {
-                throw new RuntimeException("token无效，请重新登录");
+                throw new BizException("token无效，请重新登录");
             }
             request.setAttribute("currentUser", user);
             return true;
         }
-
         return true;
     }
 

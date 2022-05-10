@@ -31,18 +31,18 @@ public class ReportController {
     private ReportService reportService;
 
     @LoginRequired
-    @GetMapping("/getReport")
+    @GetMapping("/admin/getReport")
     @ApiOperation(value = "获取数据统计模块1")
     public Result getReport(HttpServletRequest request) throws Exception {
         User user = (User) request.getAttribute("currentUser");
-        return new Result(true, MessageConstant.OK, "获取博文数据成功!", reportService.getReport(user.getUid()));
+        return Result.ok("获取博文数据成功!", reportService.getReport(user.getUid()));
     }
 
     @LoginRequired
-    @GetMapping("/getReport2")
+    @GetMapping("/admin/getReport2")
     @ApiOperation(value = "获取数据统计模块1")
     public Result getReport2(HttpServletRequest request) throws Exception {
         User user = (User) request.getAttribute("currentUser");
-        return new Result(true, MessageConstant.OK, "获取单篇博文分析数据成功!", reportService.getReport2(user.getUid()));
+        return Result.ok("获取单篇博文分析数据成功!", reportService.getReport2(user.getUid()));
     }
 }

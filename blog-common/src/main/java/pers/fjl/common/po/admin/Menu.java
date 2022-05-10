@@ -62,6 +62,11 @@ public class Menu {
     private Integer isHidden;
 
     /**
+     * 1:用户的后台菜单；2:管理员的后台菜单
+     */
+    private Integer type;
+
+    /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)

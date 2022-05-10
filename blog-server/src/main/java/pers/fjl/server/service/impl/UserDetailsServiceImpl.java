@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.server.dto.UserDetailDTO;
@@ -13,9 +14,10 @@ import pers.fjl.server.dao.UserDao;
 import pers.fjl.server.dao.admin.RoleDao;
 import pers.fjl.server.exception.BizException;
 import pers.fjl.server.utils.IpUtils;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,11 +82,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .nickname(user.getNickname())
                 .avatar(user.getAvatar())
                 .lastIp(ipAddress)
+                .loginType(user.getLoginType())
                 .ipSource(ipSource)
-                .dataStatus(user.isDataStatus())
+                .status(user.isStatus())
                 .browser(userAgent.getBrowser().getName())
                 .os(userAgent.getOperatingSystem().getName())
-//                .lastLoginTime(LocalDateTime.now(ZoneId.of(SHANGHAI.getZone())))
+                .lastLoginTime(LocalDateTime.now())
                 .build();
     }
 

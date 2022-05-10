@@ -1,12 +1,14 @@
 package pers.fjl.server.handler;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import pers.fjl.common.constant.MessageConstant;
+import pers.fjl.common.dto.UserLoginDTO;
 import pers.fjl.common.entity.Result;
 import pers.fjl.common.po.Message;
 import pers.fjl.common.po.User;
@@ -24,6 +26,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import static pers.fjl.common.constant.RedisConst.*;
+import static pers.fjl.common.enums.StatusCodeEnum.*;
 
 /**
  * 登录成功处理
@@ -34,8 +38,6 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     private UserDao userDao;
     @Resource
     private RedisUtil redisUtil;
-    @Resource
-    private ResourceService resourceService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
@@ -49,15 +51,19 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
             payload.put("lastIp", user.getLastIp());
             payload.put("username", user.getUsername());
             String token = JWTUtils.getToken(payload);
-            //获取用户权限并放入缓存
-            List<String> userResource = resourceService.getUserResource(user.getUid());
-            redisUtil.set(String.valueOf(user.getUid()), userResource.toArray(), 1800);
-            httpServletResponse.getWriter().write(JSON.toJSONString(new Result(true, token, "token生成成功", user)));
+            UserLoginDTO userLoginDTO = new UserLoginDTO();
+            BeanUtils.copyProperties(user, userLoginDTO);
+            userLoginDTO.setUid(String.valueOf(user.getUid()));
+            HashMap<String, Object> userInfo = new HashMap<>();
+            userInfo.put("token", token);
+            userInfo.put("user", userLoginDTO);
+            redisUtil.set(TOKEN_ALLOW_LIST + user.getUid(), token, HOUR);   // token设置白名单，因此可以管理token的有效期
+            // 这里的JsonSerialize不起作用，所以要手动将Long类型的uid转换成String，否则会失去精度
+            httpServletResponse.getWriter().write(JSON.toJSONString(new Result(true, SUCCESS.getCode(), "token生成成功", userInfo)));
         } catch (Exception e) {
             e.printStackTrace();
-            httpServletResponse.getWriter().write(JSON.toJSONString(new Result(false, e.getMessage(),MessageConstant.ERROR)));
+            httpServletResponse.getWriter().write(JSON.toJSONString(new Result(false, FAIL.getCode(), "token生成失败")));
         }
-
         // 更新用户ip，最近登录时间
         updateUserInfo();
     }
@@ -71,9 +77,8 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         user.setUid(UserUtils.getLoginUser().getUid());
         user.setLastIp(UserUtils.getLoginUser().getLastIp());
         user.setIpSource(UserUtils.getLoginUser().getIpSource());
-        user.setDataStatus(true);
-//                .lastLoginTime(UserUtils.getLoginUser().getLastLoginTime())
-
+        user.setStatus(true);
+        user.setLastLoginTime(UserUtils.getLoginUser().getLastLoginTime());
         userDao.updateById(user);
     }
 

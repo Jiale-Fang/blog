@@ -2,8 +2,7 @@ package pers.fjl.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.po.Friends;
-import pers.fjl.common.po.Views;
-import pers.fjl.common.vo.FriendsVo;
+import pers.fjl.common.vo.FriendsVO;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface FriendsService extends IService<Friends> {
      * @param uid
      * @return
      */
-    List<FriendsVo> getFriendsList(Long uid);
+    List<FriendsVO> getFriendsList(Long uid);
 
     /**
      * 添加好友

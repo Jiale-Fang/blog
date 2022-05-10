@@ -8,9 +8,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Comment;
-import pers.fjl.common.po.User;
-import pers.fjl.common.vo.CommentVo;
+import pers.fjl.common.vo.CommentVO;
 import pers.fjl.server.dao.CommentDao;
+import pers.fjl.server.filter.SensitiveFilter;
 import pers.fjl.server.service.CommentService;
 
 import javax.annotation.Resource;
@@ -31,11 +31,11 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
     private CommentDao commentDao;
 
     @Cacheable(value = {"CommentMap"}, key = "#blogId")
-    public List<CommentVo> getCommentList(Long blogId) {
+    public List<CommentVO> getCommentList(Long blogId) {
         // 获取一级评论的list
-        List<CommentVo> comments1 = commentDao.selectRootList(blogId);
+        List<CommentVO> comments1 = commentDao.selectRootList(blogId);
         // 获取二级评论的list
-        List<CommentVo> comments2 = commentDao.selectChildList(blogId);
+        List<CommentVO> comments2 = commentDao.selectChildList(blogId);
         return combineChildren(comments1, comments2);
     }
 
@@ -45,6 +45,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         if (comment.getParentCommentId() == null) {
             comment.setParentCommentId(-1L);
         }
+        comment.setContent(SensitiveFilter.filter(comment.getContent()));
         commentDao.insert(comment);
     }
 
@@ -68,11 +69,11 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
     }
 
     @Override
-    public Page<CommentVo> adminComments(QueryPageBean queryPageBean) {
-        Page<CommentVo> commentVoPage = new Page<>();
-        commentVoPage.setRecords(commentDao.adminComments(queryPageBean));
-        commentVoPage.setTotal(commentDao.selectCount(null));
-        return commentVoPage;
+    public Page<CommentVO> adminComments(QueryPageBean queryPageBean) {
+        Page<CommentVO> commentVOPage = new Page<>();
+        commentVOPage.setRecords(commentDao.adminComments(queryPageBean));
+        commentVOPage.setTotal(commentDao.selectCount(null));
+        return commentVOPage;
     }
 
     /**
@@ -99,10 +100,10 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
      * @param childList 子评论
      * @return list
      */
-    public List<CommentVo> combineChildren(List<CommentVo> rootList, List<CommentVo> childList) {
-        for (CommentVo root : rootList) {
-            List<CommentVo> comments = new ArrayList<>();
-            for (CommentVo child : childList) {
+    public List<CommentVO> combineChildren(List<CommentVO> rootList, List<CommentVO> childList) {
+        for (CommentVO root : rootList) {
+            List<CommentVO> comments = new ArrayList<>();
+            for (CommentVO child : childList) {
                 if (child.getParentCommentId().equals(root.getCommentId())) {
                     comments.add(child);
                 }

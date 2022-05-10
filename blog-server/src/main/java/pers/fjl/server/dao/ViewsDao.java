@@ -1,5 +1,6 @@
 package pers.fjl.server.dao;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -21,11 +22,5 @@ import java.util.List;
 @Repository
 public interface ViewsDao extends BaseMapper<Views> {
 
-    @Select("SELECT DATE_FORMAT( create_time, \"%Y-%m-%d\" ) as days, COUNT(DATE_FORMAT( create_time, \"%Y-%m-%d\" )) as viewsCount \n" +
-            "FROM `views` " +
-            "WHERE " +
-            "create_time >= #{startTime} " +
-            "AND create_time <=  #{endTime} " +
-            "group by days\n")
-    List<ViewsDTO> getViewsData(Date startTime, Date endTime);
+    List<ViewsDTO> getViewsData(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 }

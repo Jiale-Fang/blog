@@ -5,16 +5,25 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.dto.LabelOptionDTO;
 import pers.fjl.common.dto.ResourceDTO;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.admin.Resource;
+import pers.fjl.common.po.admin.RoleResource;
+import pers.fjl.common.vo.ResourceVO;
 import pers.fjl.server.dao.admin.ResourceDao;
+import pers.fjl.server.dao.admin.TbRoleResourceDao;
+import pers.fjl.server.exception.BizException;
 import pers.fjl.server.service.ResourceService;
 import pers.fjl.server.utils.BeanCopyUtils;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,6 +40,8 @@ import java.util.stream.Collectors;
 public class ResourceServiceImpl extends ServiceImpl<ResourceDao, Resource> implements ResourceService {
     @javax.annotation.Resource
     private ResourceDao resourceDao;
+    @javax.annotation.Resource
+    private TbRoleResourceDao tbRoleResourceDao;
 
     @Cacheable(value = {"ResourceList"}, key = "#root.methodName")
     public List<String> getResourceList() {
@@ -100,6 +111,34 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceDao, Resource> impl
             resourceDTOList.addAll(childrenDTOList);
         }
         return resourceDTOList;
+    }
+
+    @CacheEvict(value = {"ResourceList", "UserResource"}, allEntries = true)
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void saveOrUpdateResource(ResourceVO resourceVO) {
+        Resource resource = new Resource();
+        BeanUtils.copyProperties(resourceVO, resource);
+        if (resourceVO.getId() != null) {  //代表是修改权限
+            resource.setUpdateTime(LocalDateTime.now());
+        }
+        this.saveOrUpdate(resource);
+    }
+
+    @CacheEvict(value = {"ResourceList", "UserResource"}, allEntries = true)
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteResource(Integer resourceId) {
+        // 删除子资源
+        List<Integer> resourceIdList = resourceDao.selectList(new LambdaQueryWrapper<Resource>()
+                .select(Resource::getId)
+                .eq(Resource::getParentId, resourceId))
+                .stream()
+                .map(Resource::getId)
+                .collect(Collectors.toList());
+        resourceIdList.add(resourceId);
+        resourceDao.deleteBatchIds(resourceIdList);
+        tbRoleResourceDao.delete(new LambdaQueryWrapper<RoleResource>().in(RoleResource::getResourceId, resourceIdList));// 需要将角色资源表关于该资源的记录删除
     }
 
     private List<Resource> listResourceModule(List<Resource> resourceList) {

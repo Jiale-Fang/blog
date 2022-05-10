@@ -7,8 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import pers.fjl.common.utils.JsonLongSerializer;
 
 /**
@@ -20,6 +19,9 @@ import pers.fjl.common.utils.JsonLongSerializer;
  * @since 2021-01-27
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class BlogTag extends Model<BlogTag> {
 
@@ -27,7 +29,7 @@ public class BlogTag extends Model<BlogTag> {
 
     private Long blogId;
 
-    private Long tagId;
+    private Integer tagId;
 
     @Override
     protected Serializable pkVal() {

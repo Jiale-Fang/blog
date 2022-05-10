@@ -52,4 +52,6 @@ public interface BlogInfoService {
      * @param message str
      */
     void createOrUpdate(PostMqIndexMessage message);
+
+    void saveViews();
 }

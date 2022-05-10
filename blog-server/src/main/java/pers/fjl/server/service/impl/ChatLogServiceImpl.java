@@ -1,22 +1,19 @@
 package pers.fjl.server.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.po.ChatLog;
-import pers.fjl.common.vo.ChatLogVo;
-import pers.fjl.common.vo.GroupChatVo;
+import pers.fjl.common.dto.ChatLogDTO;
+import pers.fjl.common.vo.ChatLogVO;
 import pers.fjl.server.dao.ChatLogDao;
 import pers.fjl.server.service.ChatLogService;
+import pers.fjl.server.utils.ChatLogTimeUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.List;
-
-import static pers.fjl.server.utils.ChatLogTimeUtils.formatTime;
+import java.util.*;
 
 /**
  * <p>
@@ -24,7 +21,7 @@ import static pers.fjl.server.utils.ChatLogTimeUtils.formatTime;
  * </p>
  *
  * @author fangjiale
- * @since 2021-0-12
+ * @since 2021-04-12
  */
 @Service
 public class ChatLogServiceImpl extends ServiceImpl<ChatLogDao, ChatLog> implements ChatLogService {
@@ -37,40 +34,56 @@ public class ChatLogServiceImpl extends ServiceImpl<ChatLogDao, ChatLog> impleme
     }
 
     @Override
-    public List<ChatLogVo> getMessage(ChatLog chatLog) {
-
-        List<ChatLogVo> chatLogVos = new ArrayList<>();
-        List<ChatLog> chatLogs = chatLogDao.getMessage(chatLog.getSender(), chatLog.getReceiver());
+    public Map<String, List<?>> getMessage(ChatLogVO chatLogVO) {
+        List<ChatLogDTO> chatLogDTOS = new ArrayList<>();
+        List<ChatLog> chatLogs = chatLogDao.getMessage(chatLogVO);
         Long currentTime = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        ArrayList<String> voiceIdList = new ArrayList<>();
         // 发送者和接收者是相对的，要解决这个问题
         for (ChatLog chatLog1 : chatLogs) {
-            ChatLogVo chatLogVo = new ChatLogVo();
-            BeanUtils.copyProperties(chatLog1, chatLogVo);
-            if (chatLog1.getTextType() == 1) {  //代表是文本消息
-                if (chatLog.getSender().equals(chatLogVo.getSender())) { // 代表发送者就是自己
-                    chatLogVo.setType(1);
-                } else {
-                    chatLogVo.setType(2);
-                }
-            } else {    //代表只是普通的文本消息
-                if (chatLog.getSender().equals(chatLogVo.getSender())) { // 代表发送者就是自己
-                    chatLogVo.setType(7);
-                } else {
-                    chatLogVo.setType(8);
-                }
+            ChatLogDTO chatLogDTO = new ChatLogDTO();
+            BeanUtils.copyProperties(chatLog1, chatLogDTO);
+            switch (chatLog1.getTextType()) {
+                case 1: // 文字消息
+                    if (chatLogVO.getSender().equals(chatLogDTO.getSender())) { // 代表发送者就是自己
+                        chatLogDTO.setType(1);
+                    } else {
+                        chatLogDTO.setType(2);
+                    }
+                    break;
+                case 2: // 图片消息
+                    if (chatLogVO.getSender().equals(chatLogDTO.getSender())) { // 代表发送者就是自己
+                        chatLogDTO.setType(7);
+                    } else {
+                        chatLogDTO.setType(8);
+                    }
+                    break;
+                case 3: // 语音消息
+                    if (chatLogVO.getSender().equals(chatLogDTO.getSender())) { // 代表发送者就是自己
+                        chatLogDTO.setType(9);
+                    } else {
+                        chatLogDTO.setType(10);
+                    }
+                    voiceIdList.add(chatLog1.getMsgId().toString());
+                    break;
             }
-            LocalDateTime ldt = chatLogVo.getCreateTime();
+            chatLogDTOS.add(chatLogDTO);
+            LocalDateTime ldt = chatLogDTO.getCreateTime();
             Long time = ldt.toInstant(ZoneOffset.of("+8")).toEpochMilli();  //获取聊天记录的毫秒值
             if (Math.abs(currentTime - time) >= 5 * 60 * 1000) {   //两条聊天记录间隔超过五分钟就要显示他的时间
                 currentTime = time;
-                ChatLogVo chatLogTimeVo = new ChatLogVo();
-                chatLogTimeVo.setType(6);
-                chatLogTimeVo.setFormatTime(formatTime(ldt));
-                chatLogVos.add(chatLogTimeVo);
+                ChatLogDTO chatLogTimeVo = new ChatLogDTO();
+                chatLogTimeVo.setType(6);   // 单纯显示时间的消息
+                chatLogTimeVo.setFormatTime(ChatLogTimeUtils.formatTime(ldt));
+                chatLogDTOS.add(chatLogTimeVo);
             }
-            chatLogVos.add(chatLogVo);
         }
-
-        return chatLogVos;
+        Map<String, List<?>> listMap = new HashMap<>();
+        // 查询的时候是倒序查的最后15条数据，所以需要倒排
+        Collections.reverse(chatLogDTOS);
+        Collections.reverse(voiceIdList);
+        listMap.put("chatLogList", chatLogDTOS);
+        listMap.put("voiceIdList", voiceIdList);
+        return listMap;
     }
 }

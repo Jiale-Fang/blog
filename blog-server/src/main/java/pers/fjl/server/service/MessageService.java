@@ -37,4 +37,10 @@ public interface MessageService extends IService<Message> {
      * @return page
      */
     Page<Message> getMessagePage(QueryPageBean queryPageBean);
+
+    /**
+     * 删除留言
+     * @param messageIdList 留言id列表
+     */
+    void deleteMessage(List<Long> messageIdList);
 }

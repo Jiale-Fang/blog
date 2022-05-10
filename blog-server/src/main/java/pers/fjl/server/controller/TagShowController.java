@@ -32,9 +32,9 @@ public class TagShowController {
     @PostMapping("/getById")
     public Result getByTagId(@RequestBody QueryPageBean queryPageBean) {
         if (queryPageBean.getTagId() == null) {
-            return new Result(true, MessageConstant.OK, "获取标签信息成功", blogService.findHomePage(queryPageBean));
+            return Result.ok("获取标签信息成功", blogService.findHomePage(queryPageBean));
         }
-        return new Result(true, MessageConstant.OK, "根据id获取标签信息成功", tagService.getByTagId(queryPageBean));
+        return Result.ok("根据id获取标签信息成功", tagService.getByTagId(queryPageBean));
     }
 
 }

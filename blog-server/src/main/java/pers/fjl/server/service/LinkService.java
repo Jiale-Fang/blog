@@ -44,4 +44,10 @@ public interface LinkService extends IService<Link> {
      */
     void updateLinkDisable(Link link);
 
+    /**
+     * 保存或更新友链
+     *
+     * @param link 友链
+     */
+    void saveOrUpdateFriendLink(Link link);
 }

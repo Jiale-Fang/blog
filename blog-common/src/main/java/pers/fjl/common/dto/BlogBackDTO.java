@@ -63,7 +63,7 @@ public class BlogBackDTO {
     /**
      * 版权状态
      */
-    private String shareStatement;
+    private Integer copyright;
 
     /**
      * 浏览次数

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pers.fjl.common.utils.JsonLongSerializer;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class UserBackDTO {
     /**
      * id
      */
+    @JsonSerialize(using = JsonLongSerializer.class )
     private Long uid;
 
     /**
@@ -67,8 +69,17 @@ public class UserBackDTO {
     private LocalDateTime createTime;
 
     /**
+     * 最近登录时间
+     */
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime lastLoginTime;
+
+    /**
      * 状态
      */
-    private Integer dataStatus;
+    private Integer status;
+
+    private Integer loginType;
 
 }

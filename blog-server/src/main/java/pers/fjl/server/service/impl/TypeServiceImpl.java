@@ -1,21 +1,25 @@
 package pers.fjl.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.entity.QueryPageBean;
-import pers.fjl.common.po.Tag;
+import pers.fjl.common.po.Blog;
 import pers.fjl.common.po.Type;
-import pers.fjl.common.po.User;
-import pers.fjl.common.vo.TagVo;
-import pers.fjl.common.vo.TypeVo;
+import pers.fjl.common.vo.TypeVO;
+import pers.fjl.server.dao.BlogDao;
 import pers.fjl.server.dao.TypeDao;
+import pers.fjl.server.exception.BizException;
 import pers.fjl.server.service.TypeService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -30,6 +34,8 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
 
     @Resource
     private TypeDao typeDao;
+    @Resource
+    private BlogDao blogDao;
 
     @Override
     public boolean addType(Type type) {
@@ -77,18 +83,55 @@ public class TypeServiceImpl extends ServiceImpl<TypeDao, Type> implements TypeS
     }
 
     @Cacheable(value = {"BlogPage"}, key = "#root.methodName")
-    public List<TypeVo> getTypeCount() {
+    public List<TypeVO> getTypeCount() {
         return typeDao.getTypeCount();
     }
 
     @Override
-    public Page<TypeVo> adminType(QueryPageBean queryPageBean) {
+    public Page<TypeVO> adminType(QueryPageBean queryPageBean) {
         //设置分页条件
-        Page<TypeVo> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
+        Page<TypeVO> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         QueryWrapper<Type> wrapper = new QueryWrapper<>();
         wrapper.like(queryPageBean.getQueryString() != null, "type_name", queryPageBean.getQueryString());
         page.setTotal(typeDao.selectCount(wrapper));
         page.setRecords(typeDao.adminType(queryPageBean));
         return page;
+    }
+
+    @Override
+    public List<Type> searchTypes(QueryPageBean queryPageBean) {
+        // 搜索标签
+        return typeDao.selectList(new LambdaQueryWrapper<Type>()
+                .like(StringUtils.isNotBlank(queryPageBean.getQueryString()), Type::getTypeName, queryPageBean.getQueryString())
+                .orderByDesc(Type::getTypeId));
+    }
+
+    @Override
+    @Transactional
+    public boolean saveOrUpdateType(Type type) {
+        //判断分类是否存在
+        Type typeDB = typeDao.selectOne(new LambdaQueryWrapper<Type>().eq(Type::getTypeName, type.getTypeName())
+                .select(Type::getTypeId));
+        if (Objects.nonNull(typeDB)) {   // 分类已经存在
+            throw new BizException("分类名已存在");
+        }
+        Type typeAdd = Type.builder()
+                .typeId(type.getTypeId())
+                .typeName(type.getTypeName())
+                .build();
+        this.saveOrUpdate(typeAdd);
+        return true;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void delete(List<Integer> typeIdList) {
+        // 查询分类id下是否有文章
+        Integer count = blogDao.selectCount(new LambdaQueryWrapper<Blog>()
+                .in(Blog::getTypeId, typeIdList));
+        if (count > 0) {
+            throw new BizException("删除失败，分类中存在文章");
+        }
+        typeDao.deleteBatchIds(typeIdList);
     }
 }

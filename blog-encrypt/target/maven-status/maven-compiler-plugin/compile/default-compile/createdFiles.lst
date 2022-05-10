@@ -1,6 +1,7 @@
 pers\fjl\encrypt\rsa\Base64Utils.class
 pers\fjl\encrypt\api\ResourceApi.class
 pers\fjl\encrypt\rsa\RsaKeys.class
+pers\fjl\encrypt\config\RedisConfig.class
 pers\fjl\encrypt\rsa\RSA.class
 pers\fjl\encrypt\adapter\IgnoreTokenConfig.class
 pers\fjl\encrypt\handler\BaseExceptionHandler.class

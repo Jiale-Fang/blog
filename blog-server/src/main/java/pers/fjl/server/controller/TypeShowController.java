@@ -30,7 +30,7 @@ public class TypeShowController {
     @PostMapping("/getById")
     public Result getByTypeId(@RequestBody QueryPageBean queryPageBean) {
         if (queryPageBean.getTypeId() == null)
-            return new Result(true, MessageConstant.OK, "获取分类信息成功", blogService.findHomePage(queryPageBean));
-        return new Result(true, MessageConstant.OK, "根据id获取分类信息成功", blogService.getByTypeId(queryPageBean));
+            return Result.ok("获取分类信息成功", blogService.findHomePage(queryPageBean));
+        return Result.ok("根据id获取分类信息成功", blogService.getByTypeId(queryPageBean));
     }
 }

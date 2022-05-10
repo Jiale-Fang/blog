@@ -2,7 +2,7 @@ server:
   port: 9005
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: blog‐crawler #指定服务名 datasource:
 

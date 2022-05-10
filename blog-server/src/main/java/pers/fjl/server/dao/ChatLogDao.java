@@ -1,9 +1,10 @@
 package pers.fjl.server.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import pers.fjl.common.po.ChatLog;
+import pers.fjl.common.vo.ChatLogVO;
 
 import java.util.List;
 
@@ -20,14 +21,7 @@ public interface ChatLogDao extends BaseMapper<ChatLog> {
 
     /**
      * 获取某用户的聊天记录
-     * @param sender
-     * @param receiver
-     * @return
+     * @return list
      */
-    @Select("SELECT msg_id,sender,receiver,create_time,content,text_type " +
-            "FROM chat_log " +
-            "WHERE (sender = #{sender} AND receiver = #{receiver}) " +
-            "OR (sender = #{receiver} AND receiver = #{sender}) " +
-            "ORDER BY create_time ASC ")
-    List<ChatLog> getMessage(Long sender, Long receiver);
+    List<ChatLog> getMessage(@Param("chatLogVO") ChatLogVO chatLogVO);
 }

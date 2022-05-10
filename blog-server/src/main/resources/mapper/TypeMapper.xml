@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.fjl.server.dao.TypeDao">
 
-    <select id="adminType" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.TypeVo">
+    <select id="adminType" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.TypeVO">
         SELECT DISTINCT t.type_id, t.type_name, COUNT(b.type_id) type_count
         FROM type t LEFT OUTER JOIN blog b
         ON t.type_id = b.type_id
@@ -14,7 +14,7 @@
         LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
     </select>
 
-    <select id="getTypeCount" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.TypeVo">
+    <select id="getTypeCount" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.TypeVO">
       SELECT DISTINCT t.type_id, t.type_name, COUNT(b.type_id) type_count
             FROM type t LEFT OUTER JOIN blog b
             ON t.type_id = b.type_id

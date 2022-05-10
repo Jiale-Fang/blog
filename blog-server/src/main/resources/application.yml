@@ -10,29 +10,22 @@ spring:
     name: blog-server #指定服务名
   mail:
     host: smtp.qq.com
-    username: 1626680964@qq.com
-    password: wgnkslscrfmeccgi
+    username:
+    password:
     default-encoding: UTF-8
-#    port: 587
-#    properties:
-#      mail:
-#      smtp:
-#      auth: true
-#      socketFactory:
-#      class: javax.net.ssl.SSLSocketFactory
-#  rabbitmq:
-#    username: guest
-#    password: guest
-#    host: 1.117.157.53
-#    port: 5672
-#  data:
-#    elasticsearch:
-#      cluster-name: elasticsearch
-#      cluster-nodes: 127.0.0.1:9300
-#      repositories:
-#        enabled: true
-#es:
-#  host: 127.0.0.1
+  rabbitmq:
+    username: guest
+    password: guest
+    host: ip
+    port: 5672
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: ip:9300
+      repositories:
+        enabled: true
+es:
+  host: ip
 
 # Mybatis-Plus 配置
 mybatis-plus:
@@ -56,10 +49,42 @@ mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-aliyun:
+# 上传模式
+upload:
+  mode: oss
+  local:
+    url:
+    path:
   oss:
     file:
-      bucketname: tcefrep
-      endpoint: oss-cn-beijing.aliyuncs.com
-      keyid: LTAI5tHMG3zT56kVnBjQnddh
-      keysecret: wgbpbvo1k6dStZIg1kWchwoz4Y8OA8
+      url:
+      bucketName:
+      endpoint:
+      keyId:
+      keySecret:
+
+face:
+  group-id: tcefrep
+
+
+#第三方配置信息
+qq:
+  app-id:
+  app_KEY:
+  redirect_URI :
+  check-token-url: https://graph.qq.com/oauth2.0/me?access_token={access_token}
+  user-info-url: https://graph.qq.com/user/get_user_info?openid={openid}&access_token={access_token}&oauth_consumer_key={oauth_consumer_key}
+
+weibo:
+  app-id:
+  app-secret:
+  grant-type:
+  redirect-url:
+  access-token-url: https://api.weibo.com/oauth2/access_token
+  user-info-url: https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}
+
+pay:
+  appId:
+  appSecret:
+  notifyUrl:
+  returnUrl:

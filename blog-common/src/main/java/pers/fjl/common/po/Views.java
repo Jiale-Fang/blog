@@ -10,8 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import pers.fjl.common.utils.JsonLongSerializer;
 
@@ -26,33 +25,35 @@ import java.time.LocalDateTime;
  * @since 2021-01-27
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(value = "浏览量实体", description = "浏览量实体")
 @EqualsAndHashCode(callSuper = false)
 public class Views extends Model<Views> {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonSerialize(using = JsonLongSerializer.class )
+    @TableId(value = "id")
+    private Long id;
+
     /**
      * 博客id
      */
     @JsonSerialize(using = JsonLongSerializer.class)
-    @TableId(value = "blog_id")
     private Long blogId;
 
     /**
      * 创建时间
      */
-    @ApiModelProperty(value = "创建时间")
-    @TableField("`create_time`")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createTime;
 
     /**
-     * 访问者ip
+     * 数量
      */
-    private String ip;
+    private Integer count;
 
 }

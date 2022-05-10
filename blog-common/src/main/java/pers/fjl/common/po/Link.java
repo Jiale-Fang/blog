@@ -68,7 +68,7 @@ public class Link extends Model<Link> {
     /**
      * 友链展示状态（1表示展示，0是不展示）
      */
-    private boolean dataStatus;
+    private boolean status;
 
     @Override
     protected Serializable pkVal() {

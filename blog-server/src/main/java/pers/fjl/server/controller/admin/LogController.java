@@ -30,22 +30,22 @@ public class LogController {
      * @return {@link Result} 日志列表
      */
     @ApiOperation(value = "查看操作日志")
-    @GetMapping("/operation")
+    @GetMapping("/admin/operation")
     public Result listOperationLogs(QueryPageBean queryPageBean) {
-        return new Result(true, MessageConstant.OK, "获取日志列表成功", operationLogService.listOperationLogs(queryPageBean));
+        return Result.ok("获取日志列表成功", operationLogService.listOperationLogs(queryPageBean));
     }
 
-//    /**
-//     * 删除操作日志
-//     *
-//     * @param logIdList 日志id列表
-//     * @return {@link Result<>}
-//     */
-//    @ApiOperation(value = "删除操作日志")
-//    @DeleteMapping("/admin/operation/logs")
-//    public Result<?> deleteOperationLogs(@RequestBody List<Integer> logIdList) {
-//        operationLogService.removeByIds(logIdList);
-//        return Result.ok();
-//    }
+    /**
+     * 删除操作日志
+     *
+     * @param logIdList 日志id列表
+     * @return {@link Result}
+     */
+    @ApiOperation(value = "删除操作日志")
+    @DeleteMapping("/admin/delete")
+    public Result deleteOperationLogs(@RequestBody List<Integer> logIdList) {
+        operationLogService.removeByIds(logIdList);
+        return Result.ok("删除成功");
+    }
 
 }

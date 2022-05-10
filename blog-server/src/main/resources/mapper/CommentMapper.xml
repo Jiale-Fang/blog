@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.fjl.server.dao.CommentDao">
 
-    <select id="selectRootList" parameterType="java.lang.Long" resultType="pers.fjl.common.vo.CommentVo">
+    <select id="selectRootList" parameterType="java.lang.Long" resultType="pers.fjl.common.vo.CommentVO">
         SELECT u.nickname, u.avatar, c.comment_id, c.uid, c.content, c.create_time, c.blog_id, c.parent_comment_id
             FROM comment c, user u
             WHERE c.uid = u.uid AND c.blog_id = #{blogId} AND c.parent_comment_id = -1
     </select>
 
-    <select id="selectChildList" parameterType="java.lang.Long" resultType="pers.fjl.common.vo.CommentVo">
+    <select id="selectChildList" parameterType="java.lang.Long" resultType="pers.fjl.common.vo.CommentVO">
        SELECT u.nickname, u.avatar, c.comment_id, c.uid, c.content, c.create_time, c.blog_id, c.parent_comment_id, c.reply_uid, uu.nickname as reply_nickname
             FROM comment c, user u, user uu
             WHERE c.uid = u.uid AND c.blog_id = #{blogId} AND c.parent_comment_id != -1 AND c.reply_uid = uu.uid
     </select>
 
-    <select id="adminComments" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.CommentVo">
+    <select id="adminComments" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.CommentVO">
         SELECT  c.comment_id, c.uid, c.nickname, u.nickname as reply_nickname, c.content, c.title, c.create_time, c.avatar
         FROM (
         SELECT DISTINCT c.comment_id, c.uid, u.nickname, c.reply_uid, b.title, u.avatar, c.content, DATE_FORMAT(c.create_time,'%Y-%m-%d') as 'create_time'

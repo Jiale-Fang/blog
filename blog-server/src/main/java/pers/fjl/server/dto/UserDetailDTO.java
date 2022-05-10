@@ -81,7 +81,7 @@ public class UserDetailDTO implements UserDetails {
     /**
      * 是否禁用
      */
-    private boolean dataStatus;
+    private boolean status;
 
     /**
      * 浏览器
@@ -92,6 +92,11 @@ public class UserDetailDTO implements UserDetails {
      * 最近登录时间
      */
     private LocalDateTime lastLoginTime;
+
+    /**
+     * 登录类型
+     */
+    private Integer loginType;
 
     /**
      * 操作系统
@@ -126,7 +131,7 @@ public class UserDetailDTO implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.dataStatus;
+        return this.status;
     }
 
     /**

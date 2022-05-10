@@ -24,8 +24,8 @@ public class Role {
     /**
      * 角色id
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "rid", type = IdType.AUTO)
+    private Integer rid;
 
     /**
      * 角色名

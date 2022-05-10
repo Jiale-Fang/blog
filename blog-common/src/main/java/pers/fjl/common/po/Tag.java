@@ -28,9 +28,8 @@ public class Tag extends Model<Tag> {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonSerialize(using = JsonLongSerializer.class )
-    @TableId(value = "tag_id")
-    private Long tagId;
+    @TableId(value = "tag_id", type = IdType.AUTO)
+    private Integer tagId;
 
     private String tagName;
 

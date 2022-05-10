@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.BlogTag;
-import pers.fjl.common.vo.BlogVo;
+import pers.fjl.common.vo.BlogVO;
 
 /**
  * <p>
@@ -16,12 +16,12 @@ import pers.fjl.common.vo.BlogVo;
  */
 public interface BlogTagService extends IService<BlogTag> {
 
-    boolean addOneBlogTag(Long blogId, Long[] value);
+    boolean addOneBlogTag(Long blogId, Integer[] value);
 
     /**
      * 根据标签id获取博客分页数据
      * @param queryPageBean
      * @return page
      */
-    Page<BlogVo> getByTagId(QueryPageBean queryPageBean);
+    Page<BlogVO> getByTagId(QueryPageBean queryPageBean);
 }

@@ -53,9 +53,9 @@ hystrix:
 #            timeoutInMilliseconds: 360000
 #  metrics:
 #    enabled:
-#ribbon:
-#  eureka:
-#    enabled: true
-#  ReadTimeout: 60000
-#  ConnectTimeout: 60000
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
 

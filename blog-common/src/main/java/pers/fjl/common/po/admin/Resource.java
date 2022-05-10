@@ -62,7 +62,7 @@ public class Resource extends Model<Resource> {
     /**
      * 是否匿名访问 0否 1是
      */
-    private Boolean isAnonymous;
+    private Integer isAnonymous;
 
     /**
      * 创建时间

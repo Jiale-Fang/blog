@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 /**
  * <p>
- *  爬取的博客页面控制器
+ * 爬取的博客页面控制器
  * </p>
  *
  * @author fangjiale
@@ -28,12 +28,12 @@ public class CrawledBlogController {
     @ApiOperation(value = "分页查询", notes = "返回分页数据")
     @PostMapping("/crawlerPage")
     public Result crawlerPage(@RequestBody QueryPageBean queryPageBean) {
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", crawledBlogService.crawlerPage(queryPageBean));
+        return Result.ok("获取分页数据成功", crawledBlogService.crawlerPage(queryPageBean));
     }
 
     @GetMapping("/{blogId}")
     public Result getOneBlog(@PathVariable("blogId") Long blogId) {
-        return new Result(true, MessageConstant.OK, "获取博客信息成功", crawledBlogService.getOneBlog(blogId));
+        return Result.ok("获取博客信息成功", crawledBlogService.getOneBlog(blogId));
     }
 }
 

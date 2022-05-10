@@ -8,7 +8,7 @@ import pers.fjl.common.dto.BlogBackDTO;
 import pers.fjl.common.dto.BlogStatisticsDTO;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Blog;
-import pers.fjl.common.vo.BlogVo;
+import pers.fjl.common.vo.BlogVO;
 
 import java.util.List;
 
@@ -29,10 +29,10 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @param
      * @return List
      */
-    @Select("SELECT b.blog_id, t.type_name, b.recommend, b.flag, b.update_time, b.title, b.flag " +
+    @Select("SELECT b.blog_id, t.type_name, b.recommend, b.published, b.update_time, b.title " +
             "FROM blog b,type t " +
             "WHERE b.type_id = t.type_id AND b.uid = #{uid} LIMIT #{start},#{pageSize} ")
-    List<BlogVo> getAllBlogs(Long uid, Integer start, Integer pageSize);
+    List<BlogVO> getAllBlogs(Long uid, Integer start, Integer pageSize);
 
     /**
      * 获取博客列表(多表查询)
@@ -40,7 +40,7 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @param
      * @return List
      */
-    List<BlogVo> findHomePage(@Param("queryPageBean") QueryPageBean queryPageBean);
+    List<BlogVO> findHomePage(@Param("queryPageBean") QueryPageBean queryPageBean);
 
     @Select("        SELECT DATE_FORMAT( create_time, \"%Y-%m-%d\" ) AS date, COUNT( 1 ) AS count\n" +
             "        FROM blog " +
@@ -59,4 +59,19 @@ public interface BlogDao extends BaseMapper<Blog> {
      * @return list
      */
     List<BlogBackDTO> adminBlogPage(@Param("queryPageBean")QueryPageBean queryPageBean);
+
+    /**
+     * 获取收藏夹的分页数据
+     * @param queryPageBean 分页实体
+     * @param uid 用户id
+     * @return
+     */
+    List<BlogVO> findFavoritesPage(@Param("queryPageBean")  QueryPageBean queryPageBean, @Param("uid") Long uid);
+
+    /**
+     * 获取管理后台对应博文数量
+     * @param queryPageBean 分页实体
+     * @return 用户id
+     */
+    Integer adminBlogPageCount(@Param("queryPageBean")QueryPageBean queryPageBean);
 }

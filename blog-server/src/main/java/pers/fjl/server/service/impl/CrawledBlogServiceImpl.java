@@ -29,7 +29,6 @@ public class CrawledBlogServiceImpl extends ServiceImpl<CrawledBlogDao, CrawledB
     @Cacheable(value = {"crawlerPage"}, key = "#root.methodName+'['+#queryPageBean.currentPage+']'")
     public Page<CrawledBlog> crawlerPage(QueryPageBean queryPageBean) {
         Page<CrawledBlog> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
-        System.out.println("当前页" + queryPageBean.getCurrentPage() + "======>" + queryPageBean.getPageSize());
         return crawledBlogDao.selectPage(page, null);
     }
 

@@ -5,6 +5,7 @@ import pers.fjl.common.dto.LabelOptionDTO;
 import pers.fjl.common.dto.ResourceDTO;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.admin.Resource;
+import pers.fjl.common.vo.ResourceVO;
 
 import java.util.List;
 
@@ -44,5 +45,13 @@ public interface ResourceService extends IService<Resource> {
      * @return 资源列表
      */
     List<ResourceDTO> listResources(QueryPageBean queryPageBean);
+
+    /**
+     * 新增或修改资源
+     * @param resourceVO 资源
+     */
+    void saveOrUpdateResource(ResourceVO resourceVO);
+
+    void deleteResource(Integer resourceId);
 }
 
