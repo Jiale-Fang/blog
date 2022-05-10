@@ -10,22 +10,22 @@ spring:
     name: blog-server #指定服务名
   mail:
     host: smtp.qq.com
-    username:
+    username: 1626680964@qq.com
     password:
     default-encoding: UTF-8
   rabbitmq:
     username: guest
     password: guest
-    host: ip
+    host: 1.117.157.53
     port: 5672
   data:
     elasticsearch:
       cluster-name: docker-cluster
-      cluster-nodes: ip:9300
+      cluster-nodes: :9300
       repositories:
         enabled: true
 es:
-  host: ip
+  host:
 
 # Mybatis-Plus 配置
 mybatis-plus:
@@ -59,7 +59,7 @@ upload:
     file:
       url:
       bucketName:
-      endpoint: oss-cn-beijing.aliyuncs.com
+      endpoint:
       keyId:
       keySecret:
 
@@ -78,8 +78,8 @@ qq:
 weibo:
   app-id:
   app-secret:
-  grant-type: authorization_code
-  redirect-url: https://www.tcefrep.site/oauth/login/weibo
+  grant-type:
+  redirect-url:
   access-token-url: https://api.weibo.com/oauth2/access_token
   user-info-url: https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}
 
