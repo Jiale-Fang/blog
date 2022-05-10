@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Type;
-import pers.fjl.common.vo.TypeVo;
+import pers.fjl.common.vo.TypeVO;
 
 import java.util.List;
 
@@ -68,12 +68,32 @@ public interface TypeService extends IService<Type> {
      * 获取每个分类的博客数量
      * @return list
      */
-    List<TypeVo> getTypeCount();
+    List<TypeVO> getTypeCount();
 
     /**
      * 获取后台分类分页数据
      * @param queryPageBean 分页实体
      * @return page
      */
-    Page<TypeVo> adminType(QueryPageBean queryPageBean);
+    Page<TypeVO> adminType(QueryPageBean queryPageBean);
+
+    /**
+     * 查找type列表
+     * @param queryPageBean 分页实体
+     * @return list
+     */
+    List<Type> searchTypes(QueryPageBean queryPageBean);
+
+    /**
+     * 添加或编辑分类
+     * @param type 分类实体
+     * @return flag
+     */
+    boolean saveOrUpdateType(Type type);
+
+    /**
+     * 分类
+     * @param typeIdList 删除的分类id列表
+     */
+    void delete(List<Integer> typeIdList);
 }

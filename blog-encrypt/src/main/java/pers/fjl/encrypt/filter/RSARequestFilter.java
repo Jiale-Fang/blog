@@ -74,7 +74,6 @@ public class RSARequestFilter extends BaseFilter {
          * 3. 将解密后的请求参数写回request body中
          * 4. 转发请求
          */
-
         RequestContext ctx = RequestContext.getCurrentContext(); //获取容器
         HttpServletRequest request = ctx.getRequest();
         String token = request.getHeader(this.tokenHeader);
@@ -103,9 +102,10 @@ public class RSARequestFilter extends BaseFilter {
                 try {
                     decryptData = rsaService.RSADecryptDataPEM(s2, RsaKeys.getServerPrvKeyPkcs8());
                 } catch (BadPaddingException e) {
-//                    System.out.println("网关发送的是明文数据");
+//                    e.printStackTrace();
+                    System.out.println("网关发送的是明文数据");
                 }
-//                System.out.println("解密后" + decryptData);
+                System.out.println("解密后" + decryptData);
             }
 
             if (!Strings.isNullOrEmpty(decryptData)) {

@@ -17,7 +17,7 @@ public class ViewsDTO {
     /**
      * 日期
      */
-    private String days;
+    private String day;
 
     /**
      * 访问量综合（每天）

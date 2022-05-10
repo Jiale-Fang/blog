@@ -9,16 +9,18 @@
         <result column="last_ip" property="lastIp"/>
         <result column="ip_source" property="ipSource"/>
         <result column="create_time" property="createTime"/>
-        <result column="data_status" property="dataStatus"/>
+        <result column="status" property="status"/>
+        <result column="login_type" property="loginType"/>
+        <result column="last_login_time" property="lastLoginTime"/>
         <collection property="roleList" ofType="pers.fjl.common.dto.UserRoleDTO">
-            <id column="role_id" property="rid"/>
+            <id column="rid" property="rid"/>
             <id column="role_name" property="roleName"/>
         </collection>
     </resultMap>
 
     <select id="adminUser" parameterType="pers.fjl.common.entity.QueryPageBean" resultMap="UserBackMap">
-       SELECT u.avatar, u.uid, u.username, u.nickname, u.last_ip, u.ip_source, u.create_time, u.data_status,
-        r.rid, r.role_name
+       SELECT u.avatar, u.uid, u.username, u.nickname, u.last_ip, u.ip_source, u.create_time, u.status,
+        r.rid, r.role_name, u.last_login_time, u.login_type
         FROM `user` u, tb_role r, tb_user_role ur
         WHERE u.uid = ur.uid AND ur.rid = r.rid
         <if test="queryPageBean.queryString !=null">

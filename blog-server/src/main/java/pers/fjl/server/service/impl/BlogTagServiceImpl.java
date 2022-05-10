@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.BlogTag;
-import pers.fjl.common.vo.BlogVo;
+import pers.fjl.common.vo.BlogVO;
 import pers.fjl.server.dao.BlogTagDao;
 import pers.fjl.server.service.BlogTagService;
 
@@ -34,10 +34,10 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
 
     @Transactional
     @CacheEvict(value = {"BlogPage"}, allEntries = true)
-    public boolean addOneBlogTag(Long blogId, Long[] value) {
+    public boolean addOneBlogTag(Long blogId, Integer[] value) {
         BlogTag blogTag = new BlogTag();
         blogTag.setBlogId(blogId);
-        for (Long tag : value) {
+        for (Integer tag : value) {
             blogTag.setTagId(tag);
             blogTagDao.insert(blogTag);
         }
@@ -45,12 +45,12 @@ public class BlogTagServiceImpl extends ServiceImpl<BlogTagDao, BlogTag> impleme
     }
 
     @Cacheable(value = {"BlogPage"}, key = "#root.methodName+'['+#queryPageBean.tagId+']'")
-    public Page<BlogVo> getByTagId(QueryPageBean queryPageBean) {
+    public Page<BlogVO> getByTagId(QueryPageBean queryPageBean) {
         currentPage = queryPageBean.getCurrentPage();
         pageSize = queryPageBean.getPageSize();
         start = (currentPage - 1) * pageSize;
         //设置分页条件
-        Page<BlogVo> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
+        Page<BlogVO> page = new Page<>(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         QueryWrapper<BlogTag> wrapper = new QueryWrapper<>();
         wrapper.eq(queryPageBean.getTagId() != null, "tag_id", queryPageBean.getTagId());
         page.setTotal(blogTagDao.selectCount(wrapper));

@@ -1,13 +1,19 @@
 package pers.fjl.encrypt.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
+import pers.fjl.common.constant.MessageConstant;
+import pers.fjl.common.entity.Result;
 import pers.fjl.encrypt.adapter.IgnoreTokenConfig;
+
 import javax.servlet.http.HttpServletRequest;
 
+import static pers.fjl.common.enums.StatusCodeEnum.FAIL;
+
 /**
- * 基础过滤器(还没测试。。
+ * 基础过滤器
  */
 @Slf4j
 public abstract class BaseFilter extends ZuulFilter {
@@ -18,8 +24,8 @@ public abstract class BaseFilter extends ZuulFilter {
         HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
         String uri = request.getRequestURI();
         // /api/server/....   截取第三个/以即其之后的字符串
-        String result = uri.substring(uri.indexOf("/server")+7);
-        log.info("是否放行该请求:{}",IgnoreTokenConfig.isIgnoreToken(result));
+        String result = uri.substring(uri.indexOf("/server") + 7);
+        log.info("是否放行不鉴权'" + result + "'请求:{}", IgnoreTokenConfig.isIgnoreToken(result));
         return IgnoreTokenConfig.isIgnoreToken(result);
     }
 
@@ -30,7 +36,7 @@ public abstract class BaseFilter extends ZuulFilter {
         ctx.addZuulResponseHeader(
                 "Content-Type", "application/json;charset=UTF-8");
         if (ctx.getResponseBody() == null) {
-            ctx.setResponseBody("该用户没有权限，出现异常");
+            ctx.setResponseBody(JSON.toJSONString(new Result(false, errCode, errMsg, errMsg)));
             //不进行路由，直接返回
             ctx.setSendZuulResponse(false);
         }

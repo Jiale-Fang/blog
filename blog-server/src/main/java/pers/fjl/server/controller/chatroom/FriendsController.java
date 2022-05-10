@@ -32,19 +32,19 @@ public class FriendsController {
     @Resource
     private FriendsService friendsService;
 
-    @GetMapping("/getFriendsList")
+    @GetMapping("/admin/getFriendsList")
     @ApiOperation(value = "用户获取好友列表")
     @LoginRequired
     public Result getFriendsList(HttpServletRequest request) {
         User user = (User) request.getAttribute("currentUser");
-        return new Result(true, MessageConstant.OK, "返回好友列表成功", friendsService.getFriendsList(user.getUid()));
+        return Result.ok("返回好友列表成功", friendsService.getFriendsList(user.getUid()));
     }
 
-    @PostMapping("/addFriend")
+    @PostMapping("/admin/addFriend")
     @ApiOperation(value = "用户添加好友")
     public Result addFriend(@RequestBody Friends friends) {
         friendsService.addFriend(friends);
-        return new Result(true, "添加好友成功", MessageConstant.OK);
+        return Result.ok("添加好友成功");
     }
 
 }

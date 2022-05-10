@@ -2,7 +2,7 @@ server:
   port: 9007
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: blog‐ai
 

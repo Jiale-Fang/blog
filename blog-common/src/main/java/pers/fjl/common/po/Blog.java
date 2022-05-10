@@ -52,7 +52,12 @@ public class Blog extends Model<Blog> {
     /**
      * 评论状态
      */
-    private boolean commentabled;
+    private boolean commentAble;
+
+    /**
+     * 版权状态
+     */
+    private Integer copyright;
 
     /**
      * 内容
@@ -76,11 +81,6 @@ public class Blog extends Model<Blog> {
     private String firstPicture;
 
     /**
-     * 标记
-     */
-    private String flag;
-
-    /**
      * 点赞数
      */
     private Integer thumbs;
@@ -96,11 +96,6 @@ public class Blog extends Model<Blog> {
     private boolean recommend;
 
     /**
-     * 版权状态
-     */
-    private String shareStatement;
-
-    /**
      * 标题
      */
     private String title;
@@ -112,6 +107,8 @@ public class Blog extends Model<Blog> {
     @TableField("`update_time`")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime updateTime;
 
     /**
@@ -119,7 +116,7 @@ public class Blog extends Model<Blog> {
      */
     private Integer views;
 
-    private Long typeId;
+    private Integer typeId;
 
     private Long uid;
 

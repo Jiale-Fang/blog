@@ -9,16 +9,9 @@ import java.util.List;
 public interface ViewsService extends IService<Views> {
 
     /**
-     * 添加博客浏览量的记录
-     * @param blogId 博客id
-     * @param host 主机
-     * @return boolean
-     */
-    boolean addViews(Long blogId, String host);
-
-    /**
      * 获取七天全站浏览量数据
      * @return list
      */
     List<ViewsDTO> getViewsData();
+
 }

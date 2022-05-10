@@ -48,6 +48,11 @@ public class UserMenuDTO {
     private Boolean hidden;
 
     /**
+     * 菜单类型
+     */
+    private Integer type;
+
+    /**
      * 子菜单列表
      */
     private List<UserMenuDTO> children;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.fjl.server.dao.TagDao">
 
-    <select id="adminTag" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.TagVo">
+    <select id="adminTag" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="pers.fjl.common.vo.TagVO">
         SELECT DISTINCT t.tag_id, t.tag_name, COUNT(bts.tag_id) tag_count
         FROM tag t LEFT OUTER JOIN blog_tag bts
         ON t.tag_id = bts.tag_id
@@ -14,7 +14,13 @@
         LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
     </select>
 
-    <select id="getTagCount"  resultType="pers.fjl.common.vo.TagVo">
+    <select id="getBlogTagList" resultType="pers.fjl.common.po.Tag">
+        SELECT t.tag_id, t.tag_name
+        FROM blog_tag bt, tag t
+        WHERE bt.blog_id = #{blogId} AND bt.tag_id = t.tag_id
+    </select>
+
+    <select id="getTagCount"  resultType="pers.fjl.common.vo.TagVO">
         SELECT DISTINCT t.tag_id, t.tag_name, COUNT(bts.tag_id) tag_count
         FROM tag t LEFT OUTER JOIN blog_tag bts
         ON t.tag_id = bts.tag_id

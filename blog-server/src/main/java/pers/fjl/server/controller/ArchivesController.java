@@ -29,7 +29,7 @@ public class ArchivesController {
     @GetMapping("/getArchivesList")
     @ApiOperation(value = "获取归档列表")
     public Result getArchivesList() {
-        return new Result(true, MessageConstant.OK, "获取归档信息成功", archivesService.getArchivesList());
+        return Result.ok("获取归档信息成功", archivesService.getArchivesList());
     }
 }
 

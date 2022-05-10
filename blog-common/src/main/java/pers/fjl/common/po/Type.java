@@ -8,8 +8,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import pers.fjl.common.utils.JsonLongSerializer;
 
 /**
@@ -21,15 +20,17 @@ import pers.fjl.common.utils.JsonLongSerializer;
  * @since 2021-01-27
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(value = "分类实体", description = "分类实体")
 @EqualsAndHashCode(callSuper = false)
 public class Type extends Model<Type> {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonSerialize(using = JsonLongSerializer.class )
-    @TableId(value = "type_id")
-    private Long typeId;
+    @TableId(value = "type_id", type = IdType.AUTO)
+    private Integer typeId;
 
     private String typeName;
 

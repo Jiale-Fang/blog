@@ -6,14 +6,16 @@ import org.springframework.web.bind.annotation.*;
 import pers.fjl.common.constant.MessageConstant;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.entity.Result;
+import pers.fjl.common.po.Tag;
 import pers.fjl.server.annotation.LoginRequired;
 import pers.fjl.server.annotation.OptLog;
 import pers.fjl.server.service.TagService;
 
 import javax.annotation.Resource;
 
-import static pers.fjl.common.constant.OptTypeConst.SAVE;
-import static pers.fjl.common.constant.OptTypeConst.UPDATE;
+import java.util.List;
+
+import static pers.fjl.common.constant.OptTypeConst.*;
 
 /**
  * 标签管理模块
@@ -31,15 +33,15 @@ public class TagController {
 
     @LoginRequired
     @ApiOperation(value = "个人后台标签分页查询", notes = "返回分页数据")
-    @PostMapping("/findPage")
+    @PostMapping("/admin/findPage")
     public Result findPage(@RequestBody QueryPageBean queryPageBean) {
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", tagService.findPage(queryPageBean));
+        return Result.ok("获取分页数据成功", tagService.findPage(queryPageBean));
     }
 
     @ApiOperation(value = "管理员后台标签数据", notes = "返回分页数据")
-    @PostMapping("/adminTag")
+    @PostMapping("/admin/tagList")
     public Result adminTag(@RequestBody QueryPageBean queryPageBean) {
-        return new Result(true, MessageConstant.OK, "获取后台标签数据成功", tagService.adminTag(queryPageBean));
+        return Result.ok("获取后台标签数据成功", tagService.adminTag(queryPageBean));
     }
 
 //    @OptLog(optType = SAVE)
@@ -49,9 +51,34 @@ public class TagController {
 //        return new Result(flag,"添加成功", MessageConstant.OK);
 //    }
 
+    @ApiOperation(value = "获取标签列表", notes = "返回分页数据")
     @GetMapping("/getTagList")
     public Result getTagList(){
-        return new Result(true,MessageConstant.OK,"获取成功", tagService.getTagList());
+        return Result.ok("获取成功", tagService.getTagList());
+    }
+
+    @ApiOperation(value = "搜索标签", notes = "返回分页数据")
+    @GetMapping("/admin/search")
+    public Result searchTags(QueryPageBean queryPageBean){
+        return Result.ok("搜索成功", tagService. searchTags(queryPageBean));
+    }
+
+    @OptLog(optType = SAVE_OR_UPDATE)
+    @PostMapping("/admin/saveOrUpdate")
+    @ApiOperation(value = "后台标签添加或更改", notes = "添加或更改")
+    public Result saveOrUpdateTag(@RequestBody Tag tag) {
+        boolean flag = tagService.saveOrUpdateType(tag);
+        if (flag)
+            return Result.ok("添加或更改标签成功");
+        return Result.fail("添加失败，要添加或更改的标签已存在");
+    }
+
+    @OptLog(optType = REMOVE)
+    @DeleteMapping("/admin/delete")
+    @ApiOperation(value = "删除后台标签", notes = "删除标签")
+    public Result delete(@RequestBody List<Integer> tagIdList) {
+        tagService.delete(tagIdList);
+        return Result.ok("删除标签成功", MessageConstant.OK);
     }
 
 

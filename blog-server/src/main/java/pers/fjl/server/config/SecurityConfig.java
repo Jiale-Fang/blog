@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.session.ConcurrentSession
 import org.springframework.security.web.session.ConcurrentSessionFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import pers.fjl.server.handler.*;
+import pers.fjl.server.service.impl.UserDetailsServiceImpl;
 
 import javax.annotation.Resource;
 
@@ -32,7 +33,7 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
-    private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
     @Resource
     private AccessDeniedHandlerImpl accessDeniedHandler;
     @Resource
@@ -43,8 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private LogoutSuccessHandlerImpl logoutSuccessHandler;
     @Resource
     private AuthenticationFailHandlerImpl authenticationFailHandler;
-    @Resource
-    private SessionRegistry sessionRegistry;
+//    @Resource
+//    private SessionRegistry sessionRegistry;
 
     // 自定义filter交给工厂管理
     @Bean
@@ -57,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         loginFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
         loginFilter.setAuthenticationFailureHandler(authenticationFailHandler);
         //session并发控制,因为默认的并发控制方法是空方法.这里必须自己配置一个
-        loginFilter.setSessionAuthenticationStrategy(new ConcurrentSessionControlAuthenticationStrategy(sessionRegistry));
+        loginFilter.setSessionAuthenticationStrategy(new ConcurrentSessionControlAuthenticationStrategy(sessionRegistry()));
         return loginFilter;
     }
 
@@ -122,7 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .sessionRegistry(sessionRegistry());
         http.addFilterAt(loginFilter(), UsernamePasswordAuthenticationFilter.class)
         //session并发控制过滤器
-        .addFilterAt(new ConcurrentSessionFilter(sessionRegistry),ConcurrentSessionFilter.class);
+        .addFilterAt(new ConcurrentSessionFilter(sessionRegistry()),ConcurrentSessionFilter.class);
     }
 
     /**

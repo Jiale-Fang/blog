@@ -36,25 +36,25 @@ public class HomeController {
     @ApiOperation(value = "首页分页查询", notes = "返回分页数据")
     @PostMapping("/findHomePage")
     public Result findHomePage(@RequestBody QueryPageBean queryPageBean) {
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", blogService.findHomePage(queryPageBean));
+        return Result.ok("获取分页数据成功", blogService.findHomePage(queryPageBean));
     }
 
     @GetMapping("/getTypeCount")
     @ApiOperation(value = "首页分类数据", notes = "返回分类数据")
     public Result getTypeCount() {
-        return new Result(true, MessageConstant.OK, "获取分类信息成功", typeService.getTypeCount());
+        return Result.ok( "获取分类信息成功", typeService.getTypeCount());
     }
 
     @GetMapping("/getTagCount")
     @ApiOperation(value = "首页标签数据", notes = "返回标签数据")
     public Result getTagCount() {
-        return new Result(true, MessageConstant.OK, "获取标签信息成功", tagService.getTagCount());
+        return Result.ok( "获取标签信息成功", tagService.getTagCount());
     }
 
     @GetMapping("/latestList")
     @ApiOperation(value = "首页最新博文列表", notes = "返回最新博文列表")
     public Result getRecommendList() {
-        return new Result(true, MessageConstant.OK, "获取最新推荐信息成功", blogService.getLatestList());
+        return Result.ok( "获取最新推荐信息成功", blogService.getLatestList());
     }
 
 }

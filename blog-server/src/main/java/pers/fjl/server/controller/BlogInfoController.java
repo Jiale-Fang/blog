@@ -24,31 +24,31 @@ public class BlogInfoController {
     @ApiOperation(value = "分页条件查询", notes = "返回分页数据")
     @PostMapping("/searchPage2")
     public Result searchPage(@RequestBody QueryPageBean queryPageBean) throws IOException {
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", blogInfoService.searchPage(queryPageBean));
+        return Result.ok("获取分页数据成功", blogInfoService.searchPage(queryPageBean));
     }
 
     @ApiOperation(value = "分页高亮条件查询", notes = "返回分页数据")
     @PostMapping("/searchPage1")
     public Result highLightSearchPage(@RequestBody QueryPageBean queryPageBean) throws IOException {
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", blogInfoService.highLightSearchPage(queryPageBean));
+        return Result.ok("获取分页数据成功", blogInfoService.highLightSearchPage(queryPageBean));
     }
 
     @ApiOperation(value = "分页查询", notes = "返回分页数据")
     @PostMapping("/homePage")
     public Result homePage(@RequestBody QueryPageBean queryPageBean) throws IOException {
-        return new Result(true, MessageConstant.OK, "获取分页数据成功", blogInfoService.homePage(queryPageBean));
+        return Result.ok("获取分页数据成功", blogInfoService.homePage(queryPageBean));
     }
 
     @GetMapping(value = "/importData")
     public Result importData() {
         blogInfoService.importData();
-        return new Result(true, "引入数据成功！", MessageConstant.OK);
+        return Result.ok("引入数据成功！");
     }
 
     @PostMapping(value = "/save")
     public Result save(@RequestBody BlogInfo blogInfo){
         blogInfoService.save(blogInfo);
-        return new Result(true, "保存数据成功！", MessageConstant.OK);
+        return Result.ok("保存数据成功！");
     }
 
 }

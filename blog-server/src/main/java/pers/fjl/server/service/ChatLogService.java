@@ -2,9 +2,10 @@ package pers.fjl.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.po.ChatLog;
-import pers.fjl.common.vo.ChatLogVo;
+import pers.fjl.common.vo.ChatLogVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ChatLogService extends IService<ChatLog> {
 
@@ -16,8 +17,8 @@ public interface ChatLogService extends IService<ChatLog> {
 
     /**
      * 获取和某人的聊天记录
-     * @param chatLog
-     * @return
+     * @param chatLogVO 聊天信息
+     * @return map
      */
-    List<ChatLogVo> getMessage(ChatLog chatLog);
+    Map<String, List<?>> getMessage(ChatLogVO chatLogVO);
 }

@@ -1,5 +1,6 @@
 package pers.fjl.server.service.impl;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -12,20 +13,38 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import pers.fjl.common.entity.PageResult;
 import pers.fjl.common.entity.QueryPageBean;
+import pers.fjl.common.po.Blog;
+import pers.fjl.common.po.Views;
+import pers.fjl.server.dao.BlogDao;
+import pers.fjl.server.dao.ViewsDao;
 import pers.fjl.server.search.repository.BlogInfoMapper;
 import pers.fjl.server.search.index.BlogInfo;
 import pers.fjl.server.search.mq.PostMqIndexMessage;
 import pers.fjl.server.service.BlogInfoService;
+import pers.fjl.server.service.ViewsService;
+import pers.fjl.server.utils.BeanCopyUtils;
+import pers.fjl.server.utils.RedisUtil;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import static pers.fjl.common.enums.ZoneEnum.SHANGHAI;
+
+import static pers.fjl.common.constant.RedisConst.BLOG_VIEWS_COUNT;
 
 @Service
 public class BlogInfoServiceImpl implements BlogInfoService {
@@ -34,11 +53,30 @@ public class BlogInfoServiceImpl implements BlogInfoService {
     private BlogInfoMapper blogInfoMapper;
     @Resource
     private RestHighLevelClient restHighLevelClient;
+    @Resource
+    private BlogDao blogDao;
+    @Resource
+    private RedisUtil redisUtil;
+    @Resource
+    private ViewsService viewsService;
+    @Resource
+    private final ElasticsearchOperations elasticsearchOperations;
+
+    @Autowired
+    public BlogInfoServiceImpl(ElasticsearchOperations elasticsearchOperations1) {
+        this.elasticsearchOperations = elasticsearchOperations1;
+    }
 
     private SearchRequest searchRequest = new SearchRequest("blog-search");
 
     @Override
     public void importData() {
+        List<Blog> blogList = blogDao.selectList(null);
+        for (Blog blog : blogList) {
+            BlogInfo blogInfo = new BlogInfo();
+            BeanUtils.copyProperties(blog, blogInfo);
+            save(blogInfo);
+        }
     }
 
     public PageResult homePage(QueryPageBean queryPageBean) throws IOException {
@@ -150,6 +188,9 @@ public class BlogInfoServiceImpl implements BlogInfoService {
     @Override
     public void createOrUpdate(PostMqIndexMessage message) {
         Long blogId = message.getBlogId();
+        Blog blog = blogDao.selectById(blogId);
+        BlogInfo blogInfo = BeanCopyUtils.copyObject(blog, BlogInfo.class);
+        elasticsearchOperations.save(blogInfo);
     }
 
     public Map<String, Object> replaceHits(HighlightField field, Map<String, Object> sourceAsMap, String type) {
@@ -157,7 +198,6 @@ public class BlogInfoServiceImpl implements BlogInfoService {
             Text[] fragments = field.fragments();
             String n_field = "";
             for (Text text : fragments) {
-//                n_field += text;
                 n_field += text;
                 break;
             }
@@ -179,5 +219,23 @@ public class BlogInfoServiceImpl implements BlogInfoService {
         searchRequest.source(sourceBuilder);
         SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
         return (int) searchResponse.getHits().getTotalHits().value;
+    }
+
+    @Scheduled(cron = " 0 0 0 * * ?", zone = "Asia/Shanghai")
+    public void saveViews() {
+        List<Views> viewsList = new ArrayList<>();
+        // 查询浏览量
+        Map<Object, Double> viewsCountMap = redisUtil.zAllScore(BLOG_VIEWS_COUNT);
+        viewsCountMap.forEach((blogId, count) -> {
+            // 获取昨天日期插入数据
+            Views views = Views.builder()
+            .createTime(LocalDateTimeUtil.offset(LocalDateTime.now(ZoneId.of(SHANGHAI.getZone())), -1, ChronoUnit.DAYS))
+                    .blogId((Long) blogId)
+                    .count(Optional.of(count.intValue()).orElse(0))
+                    .build();
+            viewsList.add(views);
+        });
+        viewsService.saveBatch(viewsList);
+        redisUtil.removeRange(BLOG_VIEWS_COUNT, 0, -1L);
     }
 }

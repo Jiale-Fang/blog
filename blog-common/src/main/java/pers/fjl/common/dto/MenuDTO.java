@@ -64,6 +64,11 @@ public class MenuDTO {
     private Integer isHidden;
 
     /**
+     * 1:用户的后台菜单；2:管理员的后台菜单
+     */
+    private Integer type;
+
+    /**
      * 子菜单列表
      */
     private List<MenuDTO> children;

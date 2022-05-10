@@ -3,9 +3,9 @@
 <mapper namespace="pers.fjl.server.dao.BlogDao">
 
     <select id="findHomePage" parameterType="pers.fjl.common.entity.QueryPageBean"
-            resultType="pers.fjl.common.vo.BlogVo">
-        SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.flag,
-        b.update_time, b.title, b.flag, b.first_picture, b.thumbs
+            resultType="pers.fjl.common.vo.BlogVO">
+        SELECT b.blog_id, u.nickname, u.avatar, t.type_name, b.views, b.description, b.create_time ,b.recommend, b.published,
+        b.update_time, b.title, b.published, b.first_picture, b.thumbs
         FROM blog b, user u, type t
         WHERE b.uid = u.uid AND b.type_id = t.type_id
         <if test="queryPageBean.queryString !=null">
@@ -18,15 +18,42 @@
         LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
     </select>
 
-    <select id="adminBlogPage" parameterType="pers.fjl.common.entity.QueryPageBean" resultMap="adminBlogPageResultMap">
-    SELECT b.blog_id bid, b.create_time, b.first_picture, b.published, b.title, b.views, b.thumbs, t.type_name, b.share_statement
+    <select id="adminBlogPageCount" parameterType="pers.fjl.common.entity.QueryPageBean" resultType="java.lang.Integer">
+    SELECT count(DISTINCT b.blog_id)
     FROM blog b, type t
+        <if test="queryPageBean.tagId !=null">
+            , tag tt, blog_tag bt
+        </if>
     WHERE b.type_id = t.type_id
+        <if test="queryPageBean.tagId !=null">
+            AND (tt.tag_id = '${queryPageBean.tagId}' ) AND (bt.tag_id = tt.tag_id) AND (bt.blog_id = b.blog_id)
+        </if>
         <if test="queryPageBean.queryString !=null">
             AND b.title LIKE '%${queryPageBean.queryString}%'
         </if>
-        <if test="queryPageBean.shareStatement !=null">
-            AND (b.share_statement = '${queryPageBean.shareStatement}' )
+        <if test="queryPageBean.copyright !=null">
+            AND (b.copyright = '${queryPageBean.copyright}' )
+        </if>
+        <if test="queryPageBean.typeId !=null">
+            AND (t.type_id = '${queryPageBean.typeId}' )
+        </if>
+    </select>
+
+    <select id="adminBlogPage" parameterType="pers.fjl.common.entity.QueryPageBean" resultMap="adminBlogPageResultMap">
+    SELECT b.blog_id, b.create_time, b.first_picture, b.published, b.title, b.views, b.thumbs, t.type_name, b.copyright
+    FROM blog b, type t
+        <if test="queryPageBean.tagId !=null">
+            , tag tt, blog_tag bt
+        </if>
+    WHERE b.type_id = t.type_id
+        <if test="queryPageBean.tagId !=null">
+            AND (tt.tag_id = '${queryPageBean.tagId}' ) AND (bt.tag_id = tt.tag_id) AND (bt.blog_id = b.blog_id)
+        </if>
+        <if test="queryPageBean.queryString !=null">
+            AND b.title LIKE '%${queryPageBean.queryString}%'
+        </if>
+        <if test="queryPageBean.copyright !=null">
+            AND (b.copyright = '${queryPageBean.copyright}' )
         </if>
         <if test="queryPageBean.typeId !=null">
             AND (t.type_id = '${queryPageBean.typeId}' )
@@ -43,7 +70,7 @@
         <result column="title" property="title"/>
         <result column="views" property="views"/>
         <result column="thumbs" property="thumbs"/>
-        <result column="share_statement" property="shareStatement"/>
+        <result column="copyright" property="copyright"/>
         <result column="type_name" property="typeName"/>
 <!--        <collection property="tagDTOList" ofType="pers.fjl.common.po.Tag" javaType="ArrayList">-->
 <!--            <id column="tag_id" property="tagId"/>-->
@@ -63,13 +90,24 @@
         <result column="thumbs" property="thumbs" />
         <result column="published" property="published" />
         <result column="recommend" property="recommend" />
-        <result column="share_statement" property="shareStatement" />
+        <result column="copyright" property="copyright" />
         <result column="update_time" property="updateTime" />
         <result column="views" property="views" />
         <result column="type_id" property="typeId" />
         <result column="description" property="description" />
         <result column="appreciation" property="appreciation" />
-        <result column="commentabled" property="commentabled" />
+        <result column="comment_able" property="commentAble" />
     </resultMap>
+
+    <select id="findFavoritesPage" resultType="pers.fjl.common.vo.BlogVO">
+        SELECT b.blog_id, b.title, b.description, t.type_name, b.create_time
+        FROM  blog b, favorites f, type t
+        WHERE ${uid} = f.uid AND f.blog_id = b.blog_id AND t.type_id = b.type_id
+        <if test="queryPageBean.queryString !=null">
+            AND b.title LIKE '%${queryPageBean.queryString}%'
+        </if>
+        ORDER BY f.create_time DESC
+        LIMIT ${queryPageBean.pageSize * (queryPageBean.currentPage-1)},#{queryPageBean.pageSize}
+    </select>
 
 </mapper>

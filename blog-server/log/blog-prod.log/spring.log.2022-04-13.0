@@ -1,0 +1,38 @@
+2022-04-13 23:29:40.625  WARN 16144 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/G:/download/java/java%20web/day24_maven/repository/org/json/json/20160810/json-20160810.jar!/org/json/JSONObject.class
+	jar:file:/G:/download/java/java%20web/day24_maven/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2022-04-13 23:29:40.643  INFO 16144 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2022-04-13 23:29:51.373  WARN 16144 --- [main] o.s.data.convert.CustomConversions       : Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:29:51.375  WARN 16144 --- [main] o.s.data.convert.CustomConversions       : Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:29:51.376  WARN 16144 --- [main] o.s.data.convert.CustomConversions       : Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:29:51.377  WARN 16144 --- [main] o.s.data.convert.CustomConversions       : Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:29:56.582  WARN 16144 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2022-04-13 23:29:56.598  WARN 16144 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2022-04-13 23:30:03.201  WARN 16144 --- [main] ockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2022-04-13 23:30:07.988  INFO 16144 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 33.299 seconds (JVM running for 37.499)
+2022-04-13 23:30:08.737  WARN 16144 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1649863808737, current=DOWN, previous=UP]
+2022-04-13 23:31:10.166  WARN 18796 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/G:/download/java/java%20web/day24_maven/repository/org/json/json/20160810/json-20160810.jar!/org/json/JSONObject.class
+	jar:file:/G:/download/java/java%20web/day24_maven/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2022-04-13 23:31:10.177  INFO 18796 --- [main] p.fjl.server.MybatisPlusApplicationTest  : The following profiles are active: dev
+2022-04-13 23:31:23.459  WARN 18796 --- [main] o.s.data.convert.CustomConversions       : Registering converter from class org.springframework.data.geo.Point to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:31:23.460  WARN 18796 --- [main] o.s.data.convert.CustomConversions       : Registering converter from interface java.util.Map to class org.springframework.data.geo.Point as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:31:23.460  WARN 18796 --- [main] o.s.data.convert.CustomConversions       : Registering converter from class org.springframework.data.elasticsearch.core.geo.GeoPoint to interface java.util.Map as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:31:23.461  WARN 18796 --- [main] o.s.data.convert.CustomConversions       : Registering converter from interface java.util.Map to class org.springframework.data.elasticsearch.core.geo.GeoPoint as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-04-13 23:31:29.564  WARN 18796 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2022-04-13 23:31:29.581  WARN 18796 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2022-04-13 23:31:36.566  WARN 18796 --- [main] ockingLoadBalancerClientRibbonWarnLogger : You already have RibbonLoadBalancerClient on your classpath. It will be used by default. As Spring Cloud Ribbon is in maintenance mode. We recommend switching to BlockingLoadBalancerClient instead. In order to use it, set the value of `spring.cloud.loadbalancer.ribbon.enabled` to `false` or remove spring-cloud-starter-netflix-ribbon from your project.
+2022-04-13 23:31:41.679  INFO 18796 --- [main] p.fjl.server.MybatisPlusApplicationTest  : Started MybatisPlusApplicationTest in 37.756 seconds (JVM running for 40.337)
+2022-04-13 23:31:42.113  WARN 18796 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1649863902113, current=DOWN, previous=UP]

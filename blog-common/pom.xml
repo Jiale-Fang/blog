@@ -22,6 +22,11 @@
             <version>2.2.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.0.Final</version>
+        </dependency>
         <!--        引入jwt-->
         <dependency>
             <groupId>com.auth0</groupId>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.ChatLogDao">
+
+    <select id="getMessage" parameterType="pers.fjl.common.vo.ChatLogVO" resultType="pers.fjl.common.po.ChatLog">
+        SELECT msg_id,sender,receiver,create_time,content,text_type
+        FROM chat_log
+        WHERE (sender = #{chatLogVO.sender} AND receiver = #{chatLogVO.receiver})
+        OR (sender = #{chatLogVO.receiver} AND receiver = #{chatLogVO.sender})
+        ORDER BY create_time DESC
+         limit ${15 * (chatLogVO.currentPage)}
+    </select>
+
+</mapper>

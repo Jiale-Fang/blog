@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pers.fjl.common.po.Tag;
-import pers.fjl.common.vo.TypeVo;
+import pers.fjl.common.vo.TypeVO;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class BlogBackInfoDTO {
     /**
      * 分类统计
      */
-    private List<TypeVo> typeList;
+    private List<TypeVO> typeList;
 
     /**
      * 标签列表

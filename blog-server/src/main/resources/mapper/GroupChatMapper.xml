@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.GroupChatDao">
+
+    <select id="getMessage" resultType="pers.fjl.common.vo.GroupChatVO">
+        SELECT u.username, u.nickname, g.content, g.create_time, u.avatar, g.uid, text_type, g.msg_id
+        FROM group_chat g, user u
+        WHERE g.uid = u.uid
+        ORDER BY g.create_time DESC
+        limit #{rows}
+    </select>
+
+</mapper>

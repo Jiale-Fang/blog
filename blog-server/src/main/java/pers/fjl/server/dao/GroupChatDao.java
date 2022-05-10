@@ -1,11 +1,9 @@
 package pers.fjl.server.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-import pers.fjl.common.po.ChatLog;
 import pers.fjl.common.po.GroupChat;
-import pers.fjl.common.vo.GroupChatVo;
+import pers.fjl.common.vo.GroupChatVO;
 
 import java.util.List;
 
@@ -20,9 +18,10 @@ import java.util.List;
 @Repository
 public interface GroupChatDao extends BaseMapper<GroupChat> {
 
-    @Select("SELECT u.username, u.nickname, g.content, g.create_time, u.avatar, g.uid, text_type " +
-            "FROM group_chat g, user u " +
-            "WHERE g.uid = u.uid " +
-            "ORDER BY g.create_time ASC")
-    List<GroupChatVo> getMessage();
+    /**
+     * 获取群聊记录
+     * @param rows 条数
+     * @return list
+     */
+    List<GroupChatVO> getMessage(Integer rows);
 }

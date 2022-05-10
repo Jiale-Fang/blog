@@ -4,9 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Tag;
-import pers.fjl.common.vo.BlogVo;
-import pers.fjl.common.vo.TagVo;
-import pers.fjl.common.vo.TypeVo;
+import pers.fjl.common.vo.TagVO;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ public interface TagService extends IService<Tag> {
      *
      * @return list
      */
-    List<TagVo> getTagCount();
+    List<TagVO> getTagCount();
 
     /**
      * 获取个人后台管理标签列表
@@ -46,5 +44,25 @@ public interface TagService extends IService<Tag> {
      * @param queryPageBean 分页实体
      * @return page page数据
      */
-    Page<TagVo> adminTag(QueryPageBean queryPageBean);
+    Page<TagVO> adminTag(QueryPageBean queryPageBean);
+
+    /**
+     * 搜索tag
+     * @param queryPageBean
+     * @return
+     */
+    List<Tag> searchTags(QueryPageBean queryPageBean);
+
+    /**
+     * 添加或更改标签
+     * @param tag 标签
+     * @return
+     */
+    boolean saveOrUpdateType(Tag tag);
+
+    /**
+     * 删除标签
+     * @param tagIdList 要删除的标签id列表
+     */
+    void delete(List<Integer> tagIdList);
 }

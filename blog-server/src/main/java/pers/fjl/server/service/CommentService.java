@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.fjl.common.entity.QueryPageBean;
 import pers.fjl.common.po.Comment;
-import pers.fjl.common.vo.CommentVo;
+import pers.fjl.common.vo.CommentVO;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public interface CommentService extends IService<Comment> {
      * @param blogId
      * @return
      */
-    List<CommentVo> getCommentList(Long blogId);
+    List<CommentVO> getCommentList(Long blogId);
 
     /**
      * 回复评论
@@ -47,5 +47,5 @@ public interface CommentService extends IService<Comment> {
      * @param queryPageBean 分页实体
      * @return page
      */
-    Page<CommentVo> adminComments(QueryPageBean queryPageBean);
+    Page<CommentVO> adminComments(QueryPageBean queryPageBean);
 }

@@ -54,7 +54,7 @@ public class PoemServiceImpl implements PoemService {
                 while ((myString = stderrReader.readLine()) != null) {
                     log.error("PythonException:[{}]", myString);
                 }
-                throw new RuntimeException("python脚本出错了");
+                throw new BizException("python脚本出错了");
             }
 
         } catch (Exception e) {

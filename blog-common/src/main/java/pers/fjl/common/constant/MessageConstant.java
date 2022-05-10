@@ -15,6 +15,9 @@ public class MessageConstant {
     public static final String REP_ERROR = "重复操作";//重复操作
     public static final String VERIFICATION_CODE_SUCCESS = "验证码生成成功";
     public static final String NOT_LOGIN = "用户尚未登录";
+    public static final String BizException= "业务异常";
     public static final boolean USER_ABLE = true;//用户可用
     public static final boolean USER_DISABLE = false;//用户已经被禁用
+    public static final String QQ_LOGIN_ERROR = "qq登录错误";
+    public static final String WEIBO_LOGIN_ERROR = "微博登录错误";
 }

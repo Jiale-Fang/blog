@@ -5,7 +5,7 @@ spring:
     active: dev
   application:
     name: blog-eureka
-#ribbon:
-#  ReadTimeout: 60000
-#  ConnectTimeout: 60000
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
 

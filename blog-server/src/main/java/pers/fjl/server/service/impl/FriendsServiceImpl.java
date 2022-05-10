@@ -5,12 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.po.Friends;
-import pers.fjl.common.po.Views;
-import pers.fjl.common.vo.FriendsVo;
+import pers.fjl.common.vo.FriendsVO;
 import pers.fjl.server.dao.FriendsDao;
-import pers.fjl.server.dao.ViewsDao;
 import pers.fjl.server.service.FriendsService;
-import pers.fjl.server.service.ViewsService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,12 +26,12 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsDao, Friends> impleme
     private FriendsDao friendsDao;
 
     @Override
-    public List<FriendsVo> getFriendsList(Long uid) {
-        List<FriendsVo> friendsList = friendsDao.getFriendsList(uid);
+    public List<FriendsVO> getFriendsList(Long uid) {
+        List<FriendsVO> friendsList = friendsDao.getFriendsList(uid);
         String lastContent = "";
         for (int i = 0; i < friendsList.size(); i++) {
             if (friendsDao.findLastContent(uid, friendsList.get(i).getFriendId()) != null) {
-                FriendsVo voDb = friendsDao.findLastContent(uid, friendsList.get(i).getFriendId());
+                FriendsVO voDb = friendsDao.findLastContent(uid, friendsList.get(i).getFriendId());
                 lastContent = voDb.getLastContent();
                 friendsList.get(i).setCreateTime(voDb.getCreateTime());
                 if (lastContent.length() >= 12) // 太长了无法显示在聊天区域

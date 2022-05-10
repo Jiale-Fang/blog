@@ -9,7 +9,7 @@ public class RedisConst {
     /**
      * 验证码过期时间
      */
-    public static final long CODE_EXPIRE_TIME = 15 * 60;
+    public static final long CODE_EXPIRE_TIME = 30 * 60;
 
     /**
      * 用户地区分布更新时间
@@ -22,14 +22,21 @@ public class RedisConst {
     public static final String USER_CODE_KEY = "code:";
 
     /**
+     * 用户权限列表
+     */
+    public static final String USER_RESOURCE_KEY = "UserResource::";
+
+    /**
+     * 有效的token列表
+     */
+    public static final String TOKEN_ALLOW_LIST = "token:";
+
+    public static final Integer HOUR = 3600;
+
+    /**
      * 博客浏览量
      */
     public static final String BLOG_VIEWS_COUNT = "blog_views_count";
-
-    /**
-     * 文章浏览量
-     */
-    public static final String ARTICLE_VIEWS_COUNT = "article_views_count";
 
     /**
      * 文章点赞量

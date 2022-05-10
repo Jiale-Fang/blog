@@ -3,12 +3,21 @@ package pers.fjl.server.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.swagger.models.auth.In;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pers.fjl.common.dto.LabelOptionDTO;
 import pers.fjl.common.dto.MenuDTO;
 import pers.fjl.common.dto.UserMenuDTO;
 import pers.fjl.common.po.admin.Menu;
+import pers.fjl.common.po.admin.RoleMenu;
+import pers.fjl.common.po.admin.UserRole;
+import pers.fjl.common.vo.MenuVO;
 import pers.fjl.server.dao.admin.MenuDao;
+import pers.fjl.server.dao.admin.TbRoleMenuDao;
+import pers.fjl.server.dao.admin.TbUserRoleDao;
+import pers.fjl.server.exception.BizException;
 import pers.fjl.server.service.MenuService;
 import pers.fjl.server.utils.BeanCopyUtils;
 
@@ -16,11 +25,19 @@ import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static pers.fjl.common.constant.CommonConst.ADMIN_MENUS;
+import static pers.fjl.common.constant.CommonConst.USER_MENUS;
+
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuDao, Menu> implements MenuService {
 
     @Resource
     private MenuDao menuDao;
+    @Resource
+    private TbRoleMenuDao tbRoleMenuDao;
+    @Resource
+    private TbUserRoleDao tbUserRoleDao;
+
 
     public List<MenuDTO> listMenus() {
         // 查询菜单数据
@@ -78,10 +95,24 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao, Menu> implements MenuS
                 .collect(Collectors.groupingBy(Menu::getParentId));
     }
 
+    @Cacheable(value = {"AdminMenus"}, key = "#root.methodName")
     @Override
-    public List<UserMenuDTO> listUserMenus() {
-        // 查询用户菜单信息
-        List<Menu> menuList = menuDao.selectList(null);
+    public List<UserMenuDTO> listAdminMenus(Long uid) {
+        return listMenus(uid, ADMIN_MENUS);
+    }
+
+    @Cacheable(value = {"UserMenus"}, key = "#root.methodName")
+    @Override
+    public List<UserMenuDTO> listUserMenus(Long uid) {
+        return listMenus(uid, USER_MENUS);
+    }
+
+    public List<UserMenuDTO> listMenus(Long uid, Integer type){
+        // 查询用户对应角色拥有的菜单
+        UserRole userRole = tbUserRoleDao.selectOne(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUid, uid));
+        List<Integer> menuIdList = tbRoleMenuDao.selectList(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRid, userRole.getRid()))
+                .stream().map(RoleMenu::getMenuId).collect(Collectors.toList());
+        List<Menu> menuList = menuDao.selectList(new LambdaQueryWrapper<Menu>().in(Menu::getId, menuIdList).eq(Menu::getType, type));
         // 获取目录列表
         List<Menu> catalogList = listCatalog(menuList);
         // 获取目录下的子菜单
@@ -119,6 +150,32 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao, Menu> implements MenuS
                     .children(list)
                     .build();
         }).collect(Collectors.toList());
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void saveOrUpdateMenu(MenuVO menuVO) {
+        Menu menu = BeanCopyUtils.copyObject(menuVO, Menu.class);
+        this.saveOrUpdate(menu);
+    }
+
+    @Override
+    public void deleteMenu(Integer menuId) {
+        // 查询是否有角色关联
+        Integer count = tbRoleMenuDao.selectCount(new LambdaQueryWrapper<RoleMenu>()
+                .eq(RoleMenu::getMenuId, menuId));
+        if (count > 0) {
+            throw new BizException("菜单下有角色关联");
+        }
+        // 查询子菜单
+        List<Integer> menuIdList = menuDao.selectList(new LambdaQueryWrapper<Menu>()
+                .select(Menu::getId)
+                .eq(Menu::getParentId, menuId))
+                .stream()
+                .map(Menu::getId)
+                .collect(Collectors.toList());
+        menuIdList.add(menuId);
+        menuDao.deleteBatchIds(menuIdList);
     }
 
     /**
@@ -161,4 +218,6 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao, Menu> implements MenuS
             return userMenuDTO;
         }).collect(Collectors.toList());
     }
+
+
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.fjl.server.dao.ViewsDao">
+
+    <select id="getViewsData" resultType="pers.fjl.common.dto.ViewsDTO">
+        SELECT DATE_FORMAT( create_time, "%Y-%m-%d" ) as `day`, SUM(count) viewsCount
+        FROM `views`
+        WHERE
+        create_time &gt; #{startTime}
+        AND create_time &lt;=  #{endTime}
+        GROUP BY `day`
+    </select>
+
+</mapper>
