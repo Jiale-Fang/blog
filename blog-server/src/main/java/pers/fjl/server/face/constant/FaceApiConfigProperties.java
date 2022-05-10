@@ -9,11 +9,11 @@ import lombok.Data;
 @Data
 public class FaceApiConfigProperties {
     // 人脸识别API验证信息
-    public static final String API_ID = "";
+    public static final String API_ID = "25932549";
 
-    public static final String API_KEY = "";
+    public static final String API_KEY = "hy7clCr9NsuZp1pHXCMQEEXH";
 
-    public static final String SECRET_KEY = "";
+    public static final String SECRET_KEY = "0b9qcIFHyfUQg4VTMSGzFvwsGDXMifdU";
 
     public static String TOKEN = "";
 
