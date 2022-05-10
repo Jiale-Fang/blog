@@ -61,7 +61,7 @@ public class GoGoPayServiceImpl implements GoGoPayService {
 
     // 接收GOGO支付完成的回调通知方法，在该函数中主要用于商户自己根据支付完成处理相应的数据逻辑
     public String callBackNotify(NotifyParamsVO notifyParamsVO, HttpServletResponse response) {
-     return null;
+        return null;
     }
 
     //生成回调通知的签名sign

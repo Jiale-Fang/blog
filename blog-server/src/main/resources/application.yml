@@ -59,7 +59,7 @@ upload:
     file:
       url:
       bucketName:
-      endpoint:
+      endpoint: oss-cn-beijing.aliyuncs.com
       keyId:
       keySecret:
 
@@ -78,8 +78,8 @@ qq:
 weibo:
   app-id:
   app-secret:
-  grant-type:
-  redirect-url:
+  grant-type: authorization_code
+  redirect-url: https://www.tcefrep.site/oauth/login/weibo
   access-token-url: https://api.weibo.com/oauth2/access_token
   user-info-url: https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}
 
