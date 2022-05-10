@@ -13,19 +13,26 @@ spring:
     username: 1626680964@qq.com
     password:
     default-encoding: UTF-8
+#    port: 587
+#    properties:
+#      mail:
+#      smtp:
+#      auth: true
+#      socketFactory:
+#      class: javax.net.ssl.SSLSocketFactory
   rabbitmq:
     username: guest
     password: guest
-    host: 1.117.157.53
+    host:
     port: 5672
   data:
     elasticsearch:
       cluster-name: docker-cluster
-      cluster-nodes: :9300
+      cluster-nodes: ip:9300
       repositories:
         enabled: true
 es:
-  host:
+  host: ip
 
 # Mybatis-Plus 配置
 mybatis-plus:
@@ -78,7 +85,7 @@ qq:
 weibo:
   app-id:
   app-secret:
-  grant-type:
+  grant-type: authorization_code
   redirect-url:
   access-token-url: https://api.weibo.com/oauth2/access_token
   user-info-url: https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}
