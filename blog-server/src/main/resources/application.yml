@@ -11,7 +11,7 @@ spring:
   mail:
     host: smtp.qq.com
     username: 1626680964@qq.com
-    password:
+    password: wgnkslscrfmeccgi
     default-encoding: UTF-8
 #    port: 587
 #    properties:
@@ -23,16 +23,16 @@ spring:
   rabbitmq:
     username: guest
     password: guest
-    host:
+    host: 1.117.157.53
     port: 5672
   data:
     elasticsearch:
       cluster-name: docker-cluster
-      cluster-nodes: ip:9300
+      cluster-nodes: 111.172.248.51:9300
       repositories:
         enabled: true
 es:
-  host: ip
+  host: 111.172.248.51
 
 # Mybatis-Plus 配置
 mybatis-plus:
@@ -64,11 +64,11 @@ upload:
     path:
   oss:
     file:
-      url:
-      bucketName:
-      endpoint:
-      keyId:
-      keySecret:
+      url: https://tcefrep.oss-cn-beijing.aliyuncs.com/
+      bucketName: tcefrep
+      endpoint: oss-cn-beijing.aliyuncs.com
+      keyId: LTAI5tHMG3zT56kVnBjQnddh
+      keySecret: wgbpbvo1k6dStZIg1kWchwoz4Y8OA8
 
 face:
   group-id: tcefrep
@@ -76,22 +76,22 @@ face:
 
 #第三方配置信息
 qq:
-  app-id:
-  app_KEY:
-  redirect_URI :
+  app-id: 101999460
+  app_KEY: 346210e977dad5aa16913ca576eb25a1
+  redirect_URI : https://www.tcefrep.site/oauth/login/qq
   check-token-url: https://graph.qq.com/oauth2.0/me?access_token={access_token}
   user-info-url: https://graph.qq.com/user/get_user_info?openid={openid}&access_token={access_token}&oauth_consumer_key={oauth_consumer_key}
 
 weibo:
-  app-id:
-  app-secret:
+  app-id: 2028412959
+  app-secret: 9c6eaa41231436933902a453bb659339
   grant-type: authorization_code
-  redirect-url:
+  redirect-url: https://www.tcefrep.site/oauth/login/weibo
   access-token-url: https://api.weibo.com/oauth2/access_token
   user-info-url: https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}
 
 pay:
-  appId:
-  appSecret:
-  notifyUrl:
-  returnUrl:
+  appId: bd840528aaabcd1c
+  appSecret: bd840528aaabcd1c133b8b00abd4149b
+  notifyUrl: https://www.tcefrep.site/api/server/pay/notifyUrl
+  returnUrl: https://note.youdao.com/s/bX2WxUmz
